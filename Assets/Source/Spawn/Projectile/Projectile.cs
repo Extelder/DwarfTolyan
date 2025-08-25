@@ -8,8 +8,6 @@ using UnityEngine;
 
 public class Projectile : PoolObject
 {
-    [field: SerializeField] public float HypeValue { get; set; } = 0.1f;
-    [field: SerializeField] public float DefaultHypeValue { get; set; } = 0.1f;
     [SerializeField] private TrailRenderer _trail;
     [SerializeField] private CinemachineImpulseSource _cinemachineImpulseSource;
     [SerializeField] private LayerMask _layerMask;
@@ -18,7 +16,6 @@ public class Projectile : PoolObject
     [field: SerializeField] public float ExplosionForce { get; private set; }
     [field: SerializeField] public float ExplosionRange { get; set; }
     [SerializeField] private bool _onlyPlayerHealth;
-    [SerializeField] private ParticleSystem _explosiveParticle;
     [SerializeField] private float _speed;
 
     private Collider[] _colliders = new Collider[50];
@@ -38,21 +35,19 @@ public class Projectile : PoolObject
 
     private void Awake()
     {
-        DefaultHypeValue = HypeValue;
         _useGravity = Rigidbody.useGravity;
         _defaultDamage = Damage;
-        _trailTime = _trail.time;
+        //_trailTime = _trail.time;
         _collider = GetComponent<Collider>();
     }
 
     public virtual void Initiate(Vector3 targetPosition, bool useTargetPosition = true)
     {
         StopAllCoroutines();
-        HypeValue = DefaultHypeValue;
         _collider.enabled = true;
         _projectileGFX.SetActive(true);
-        _trail.enabled = true;
-        _trail.time = -1;
+        //_trail.enabled = true;
+        //_trail.time = -1;
         Rigidbody.useGravity = _useGravity;
         Rigidbody.velocity = new Vector3(0, 0, 0);
         StartCoroutine(WaitingForFrame());
@@ -65,14 +60,14 @@ public class Projectile : PoolObject
     private IEnumerator WaitingForFrame()
     {
         yield return new WaitForEndOfFrame();
-        _trail.time = _trailTime;
+        //_trail.time = _trailTime;
     }
 
     private void OnDisable()
     {
         Disposable.Clear();
-        _trail.time = 0;
-        _trail.enabled = false;
+        //_trail.time = 0;
+        //_trail.enabled = false;
         _explosived = false;
         OnDisableVirtual();
     }
@@ -123,7 +118,7 @@ public class Projectile : PoolObject
         if (_explosived)
             return;
         _collider.enabled = false;
-        _trail.time = 0;
+        //_trail.time = 0;
 
         Rigidbody.useGravity = false;
         Rigidbody.velocity = new Vector3(0, 0, 0);
@@ -162,7 +157,6 @@ public class Projectile : PoolObject
 
 
         Exploded?.Invoke();
-        _explosiveParticle?.Play();
         _projectileGFX.SetActive(false);
         Invoke(nameof(ReturnToPool), ReturnToPoolDelay);
     }

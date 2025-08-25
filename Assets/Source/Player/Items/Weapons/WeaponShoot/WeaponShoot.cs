@@ -6,8 +6,6 @@ using Random = UnityEngine.Random;
 
 public class WeaponShoot : RaycastBehaviour
 {
-    [field: SerializeField] public float HypeValue { get; set; }= 0.1f;
-
     [SerializeField] private DefaultWeaponShootState _weaponShootState;
 
     [field: SerializeField] public RaycastWeaponItem Weapon { get; private set; }
