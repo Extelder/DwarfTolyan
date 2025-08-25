@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class WeaponStateMachine : StateMachine
 {
+    [SerializeField] private bool _mainShoot;
     [field: SerializeField] public ItemTakeUp Item { get; private set; }
 
     [Header("States")] [SerializeField] private State _idle;
@@ -14,6 +15,13 @@ public class WeaponStateMachine : StateMachine
     {
         base.OnEnable();
 
+        if (!_mainShoot)
+        {
+            PlayerCharacter.Instance.Binds.Character.SecondaryShoot.started += OnMainShootPressedDown;
+            PlayerCharacter.Instance.Binds.Character.SecondaryShoot.canceled += OnMainShootPressedUp;
+            return;
+        }
+        
         PlayerCharacter.Instance.Binds.Character.MainShoot.started += OnMainShootPressedDown;
         PlayerCharacter.Instance.Binds.Character.MainShoot.canceled += OnMainShootPressedUp;
     }
@@ -60,6 +68,13 @@ public class WeaponStateMachine : StateMachine
 
     public virtual void OnDisable()
     {
+        if (!_mainShoot)
+        {
+            PlayerCharacter.Instance.Binds.Character.SecondaryShoot.started -= OnMainShootPressedDown;
+            PlayerCharacter.Instance.Binds.Character.SecondaryShoot.canceled -= OnMainShootPressedUp;
+            return;
+        }
+        
         PlayerCharacter.Instance.Binds.Character.MainShoot.started -= OnMainShootPressedDown;
         PlayerCharacter.Instance.Binds.Character.MainShoot.canceled -= OnMainShootPressedUp;
     }

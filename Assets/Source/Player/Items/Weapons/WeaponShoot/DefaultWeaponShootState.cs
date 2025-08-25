@@ -7,7 +7,7 @@ public class DefaultWeaponShootState : WeaponShootState
 {
     public event Action ShootPerformed;
 
-    private bool _alreadyShooting;
+    protected bool _alreadyShooting;
 
     public override void Enter()
     {
@@ -49,7 +49,7 @@ public class DefaultWeaponShootState : WeaponShootState
         CanChanged = true;
     }
 
-    private IEnumerator AnimationEndChecking()
+    public virtual IEnumerator AnimationEndChecking()
     {
         while (true)
         {

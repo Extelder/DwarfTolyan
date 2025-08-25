@@ -10,7 +10,7 @@ public class ProjectileWeaponShoot : WeaponShoot
 
     private Pool _currentPool;
 
-    private void Awake()
+    private void Start()
     {
         Initiate();
     }

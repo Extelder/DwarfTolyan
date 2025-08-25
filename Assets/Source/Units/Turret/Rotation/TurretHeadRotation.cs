@@ -64,7 +64,6 @@ public class TurretHeadRotation : MonoBehaviour
     {
         if (_currentCollider != null)
         {
-            Debug.Log("Looking");
             transform.LookAt(_currentCollider.ClosestPoint(transform.position), transform.up);
         }
     }
