@@ -10,14 +10,19 @@ public class Turret : MonoBehaviour
     [field: SerializeReferenceButton]
     public BaseTurretShootAbility ShootAbility { get; set; }
 
+    [field: SerializeReference]
+    [field: SerializeReferenceButton]
     public BaseTurretMove TurretMove { get; set; }
 
     private WeaponShootData _shootData;
+    private TurretMoveData _turretMoveData;
     private CompositeDisposable _shootingDisposable = new CompositeDisposable();
+    private CompositeDisposable _movingDisposable = new CompositeDisposable();
 
     public void Start()
     {
-        ShootAbility.StartShooting(ref _shootingDisposable, () => {ShootAbility.Shoot();});
+        ShootAbility.StartShooting(ref _shootingDisposable, () => { ShootAbility.Shoot(); });
+        TurretMove.StartMoving(ref _movingDisposable, () => { TurretMove.Move(); });
     }
 
     private void OnDisable()
@@ -38,7 +43,7 @@ public class Turret : MonoBehaviour
     {
         var type = modificator.GetType();
 
-        var newInstance = Activator.CreateInstance(type, ShootAbility);
+        var newInstance = Activator.CreateInstance(type, ShootAbility, _turretMoveData);
         TurretMove = (BaseTurretMove) newInstance;
     }
 }

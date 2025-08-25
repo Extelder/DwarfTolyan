@@ -6,14 +6,14 @@ public abstract class TurretMoveAbilityModificator : TurretMoveAbility
 {
     protected BaseTurretMove CurrentShootAbility;
 
-    public TurretMoveAbilityModificator(BaseTurretMove turretShootAbility)
+    public TurretMoveAbilityModificator(BaseTurretMove turretShootAbility, TurretMoveData turretMoveData)
     {
         CurrentShootAbility = turretShootAbility;
+        MoveData = turretMoveData;
     }
-    
+
     public TurretMoveAbilityModificator()
     {
-        
     }
 
     public override void Move()
