@@ -1223,6 +1223,7 @@ GameObject:
   - component: {fileID: 709447343}
   - component: {fileID: 709447344}
   - component: {fileID: 709447345}
+  - component: {fileID: 709447347}
   m_Layer: 3
   m_Name: Turret
   m_TagString: Untagged
@@ -1312,12 +1313,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ShootAbility>k__BackingField:
-    rid: 3970162198807576578
+    rid: 3970162198807576588
   references:
     version: 2
     RefIds:
-    - rid: 3970162198807576578
+    - rid: 3970162198807576588
       type: {class: MachineGunShoot, ns: , asm: Assembly-CSharp}
+      data:
+        <ShootData>k__BackingField: {fileID: 709447347}
+--- !u!114 &709447347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709447341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb9c3188d6cfb64daf870625785eeb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 5
+  _rate: 1
 --- !u!1 &710254639
 GameObject:
   m_ObjectHideFlags: 0

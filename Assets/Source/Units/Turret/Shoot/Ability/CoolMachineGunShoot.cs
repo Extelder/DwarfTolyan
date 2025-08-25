@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CoolMachineGunShoot : TurretShootAbilityModificator
 {
-    public CoolMachineGunShoot(BaseTurretShootAbility turretShootAbility) : base(turretShootAbility)
+    public CoolMachineGunShoot(BaseTurretShootAbility turretShootAbility, WeaponShootData weaponShootData) : base(turretShootAbility, weaponShootData)
+    {
+        
+    }
+    public CoolMachineGunShoot() 
     {
         
     }

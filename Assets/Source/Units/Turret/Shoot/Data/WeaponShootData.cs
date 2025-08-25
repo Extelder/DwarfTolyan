@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponShootData : IWeaponShootData
+public class WeaponShootData : MonoBehaviour, IWeaponShootData
 {
-    private int _damage;
+    [SerializeField] private int _damage;
+    [SerializeField] private int _rate;
 
     public WeaponShootData(IWeaponShootData weaponShootData)
     {
@@ -14,5 +15,10 @@ public class WeaponShootData : IWeaponShootData
     public int GetDamage()
     {
         return _damage;
+    }
+
+    public float GetRate()
+    {
+        return _rate;
     }
 }
