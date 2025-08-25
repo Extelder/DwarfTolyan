@@ -1,26 +1,44 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] private TurretShootAbilityModificator[] _shoots;
-
     [field: SerializeReference]
     [field: SerializeReferenceButton]
-    public BaseTurretShootAbility ShootAbility { get; private set; }
+    public BaseTurretShootAbility ShootAbility { get; set; }
 
-    private IWeaponShootData _shootData;
+    public BaseTurretMove TurretMove { get; set; }
+
+    private WeaponShootData _shootData;
+    private CompositeDisposable _shootingDisposable = new CompositeDisposable();
 
     public void Start()
     {
-        ShootAbility = new CoolMachineGunShoot(ShootAbility);
-        ShootAbility.Shoot();
+        ShootAbility.StartShooting(ref _shootingDisposable, () => {ShootAbility.Shoot();});
     }
 
-    public void ModifyShootData(IWeaponShootData shootData)
+    private void OnDisable()
     {
-        _shootData = new WeaponShootData(shootData);
+        _shootingDisposable?.Clear();
+        StopAllCoroutines();
+    }
+
+    public void ModifyShoot(TurretShootAbilityModificator modificator)
+    {
+        var type = modificator.GetType();
+
+        var newInstance = Activator.CreateInstance(type, ShootAbility, _shootData);
+        ShootAbility = (BaseTurretShootAbility) newInstance;
+    }
+
+    public void ModifyMove(TurretMoveAbilityModificator modificator)
+    {
+        var type = modificator.GetType();
+
+        var newInstance = Activator.CreateInstance(type, ShootAbility);
+        TurretMove = (BaseTurretMove) newInstance;
     }
 }

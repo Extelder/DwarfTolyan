@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IWeaponShootData 
+public abstract class BaseTurretMove
 {
-    int GetDamage();
-    float GetRate();
+    public abstract void Move();
 }
