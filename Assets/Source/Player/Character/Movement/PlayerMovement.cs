@@ -51,11 +51,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (Moving == true || _groundChecker.Detected == true)
                 _currentVelocity =
-                    Vector3.MoveTowards(_currentVelocity, desiredVelocityXZ, _acceleration * Time.deltaTime);
+                    Vector3.MoveTowards(_currentVelocity, desiredVelocityXZ, _acceleration * Time.fixedDeltaTime);
             else if (Moving == false)
             {
                 _currentVelocity =
-                    Vector3.MoveTowards(_currentVelocity, desiredVelocityXZ, _decceleration * Time.deltaTime);
+                    Vector3.MoveTowards(_currentVelocity, desiredVelocityXZ, _decceleration * Time.fixedDeltaTime);
             }
 
             _rigidbody.velocity =
