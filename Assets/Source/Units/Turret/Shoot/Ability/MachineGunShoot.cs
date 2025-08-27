@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MachineGunShoot : TurretShootAbility
 {
-    [SerializeField] private Pools _pools;
     [SerializeField] protected Transform _shootOrigin;
     [SerializeField] protected float _range;
     [SerializeField] protected Turret _turret;
@@ -13,7 +12,7 @@ public class MachineGunShoot : TurretShootAbility
     {
         Debug.Log("Machine gun shoot ");
         Vector3 direction = _shootOrigin.position + _shootOrigin.forward * _range;
-        Projectile projectile = _pools.TurretRPGProjectilePool.GetFreeElement
+        Projectile projectile = Pools.Instance.TurretMachineGunProjectilePool.GetFreeElement
                 (_shootOrigin.position, Quaternion.FromToRotation(_shootOrigin.position, direction)).
             GetComponent<Projectile>();
         Debug.LogError(_turret.Damage);

@@ -29,6 +29,6 @@ public class ProjectileWeaponShoot : WeaponShoot
         Projectile projectile = _currentPool
             .GetFreeElement(_muzzle.position, Quaternion.FromToRotation(_muzzle.position, direction))
             .GetComponent<Projectile>();
-        projectile.Initiate(direction);
+        projectile.Initiate(direction, DamageCharacterics.Instance.CurrentValue);
     }
 }

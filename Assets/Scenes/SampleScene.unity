@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1757,7 +1757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!195 &338771968
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1837,7 +1837,6 @@ MonoBehaviour:
       type: {class: RocketGunShoot, ns: , asm: Assembly-CSharp}
       data:
         <ShootData>k__BackingField: {fileID: 338771970}
-        _pools: {fileID: 1975593914}
         _shootOrigin: {fileID: 311143336}
         _range: 1000
         _turret: {fileID: 338771971}
@@ -3491,7 +3490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &709447342
 Transform:
   m_ObjectHideFlags: 0
@@ -3557,7 +3556,6 @@ MonoBehaviour:
       type: {class: MachineGunShoot, ns: , asm: Assembly-CSharp}
       data:
         <ShootData>k__BackingField: {fileID: 709447347}
-        _pools: {fileID: 1975593914}
         _shootOrigin: {fileID: 2127872789}
         _range: 1000
         _turret: {fileID: 709447345}
@@ -7543,7 +7541,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ReturnToPoolDelay>k__BackingField: 15
   _autoreturnToPool: 1
-  _trail: {fileID: 1795865927}
   _cinemachineImpulseSource: {fileID: 1795865928}
   _layerMask:
     serializedVersion: 2
@@ -8105,17 +8102,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961410802}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1975593914 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2537617937669693081, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
-  m_PrefabInstance: {fileID: 249246666}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3af78a63920600f4d86c3b81171dd947, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2007980817
 GameObject:
   m_ObjectHideFlags: 0
@@ -8388,7 +8374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ReturnToPoolDelay>k__BackingField: 15
   _autoreturnToPool: 1
-  _trail: {fileID: 2007980819}
   _cinemachineImpulseSource: {fileID: 2007980820}
   _layerMask:
     serializedVersion: 2
@@ -8768,10 +8753,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -7.453
       objectReference: {fileID: 0}
+    - target: {fileID: 5472482070995216990, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5472482070995216990, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 5663802286191655006, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
       propertyPath: _weaponShootState
       value: 
       objectReference: {fileID: 1018037391}
+    - target: {fileID: 5896618536400420192, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896618536400420192, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6186605037920319486, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
       propertyPath: m_DefaultVelocity.x
       value: 0.025
@@ -8860,6 +8861,14 @@ PrefabInstance:
       propertyPath: m_HorizontalAxis.m_MaxSpeed
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 7143558610111639509, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143558610111639509, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8131600981919677145, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
       propertyPath: <CurrentValue>k__BackingField
       value: 3
@@ -8879,6 +8888,14 @@ PrefabInstance:
     - target: {fileID: 8407512051833340437, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
       propertyPath: _jetpackVelocity
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846863513980888891, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8846863513980888891, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 9051529062302247413, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
       propertyPath: maxSwayAmount

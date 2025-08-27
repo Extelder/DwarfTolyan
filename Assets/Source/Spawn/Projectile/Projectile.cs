@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class Projectile : PoolObject
 {
-    [SerializeField] private TrailRenderer _trail;
     [SerializeField] private CinemachineImpulseSource _cinemachineImpulseSource;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject _projectileGFX;
@@ -24,20 +23,13 @@ public class Projectile : PoolObject
     private bool _useGravity;
     public CompositeDisposable Disposable { get; private set; } = new CompositeDisposable();
 
-    private float _defaultDamage;
-
-    private float _trailTime;
-
     public event Action Exploded;
-    public event Action Initiated;
 
     [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 
     private void Awake()
     {
         _useGravity = Rigidbody.useGravity;
-        _defaultDamage = Damage;
-        //_trailTime = _trail.time;
         _collider = GetComponent<Collider>();
     }
 
@@ -46,52 +38,28 @@ public class Projectile : PoolObject
         StopAllCoroutines();
         _collider.enabled = true;
         _projectileGFX.SetActive(true);
-        //_trail.enabled = true;
-        //_trail.time = -1;
         Rigidbody.useGravity = _useGravity;
         Rigidbody.velocity = new Vector3(0, 0, 0);
-        StartCoroutine(WaitingForFrame());
         if (useTargetPosition)
             transform.LookAt(targetPosition, transform.forward);
         Rigidbody.AddForce(transform.forward * _speed, ForceMode.Impulse);
-        Initiated?.Invoke();
     }
-    
+
     public virtual void Initiate(Vector3 targetPosition, float damage, bool useTargetPosition = true)
     {
         Damage = damage;
-        StopAllCoroutines();
-        _collider.enabled = true;
-        _projectileGFX.SetActive(true);
-        //_trail.enabled = true;
-        //_trail.time = -1;
-        Rigidbody.useGravity = _useGravity;
-        Rigidbody.velocity = new Vector3(0, 0, 0);
-        StartCoroutine(WaitingForFrame());
-        if (useTargetPosition)
-            transform.LookAt(targetPosition, transform.forward);
-        Rigidbody.AddForce(transform.forward * _speed, ForceMode.Impulse);
-        Initiated?.Invoke();
-    }
-
-    private IEnumerator WaitingForFrame()
-    {
-        yield return new WaitForEndOfFrame();
-        //_trail.time = _trailTime;
+        Initiate(targetPosition, useTargetPosition);
     }
 
     private void OnDisable()
     {
         Disposable.Clear();
-        //_trail.time = 0;
-        //_trail.enabled = false;
         _explosived = false;
         OnDisableVirtual();
     }
 
     public virtual void OnDisableVirtual()
     {
-        
     }
 
     private void OnCollisionEnter(Collision other)
@@ -112,7 +80,6 @@ public class Projectile : PoolObject
     {
         if (other.material.bounciness >= 0.95f)
             return;
-        ;
         if (other.TryGetComponent<Projectile>(out Projectile projectile))
             return;
         if (_onlyPlayerHealth)
@@ -122,20 +89,13 @@ public class Projectile : PoolObject
             Explode();
     }
 
+
     public void Explode()
     {
-        Damage = _defaultDamage;
-        Explode(1);
-    }
-
-    public void Explode(float damageMultiplier)
-    {
         Disposable.Clear();
-        Damage *= damageMultiplier;
         if (_explosived)
             return;
         _collider.enabled = false;
-        //_trail.time = 0;
 
         Rigidbody.useGravity = false;
         Rigidbody.velocity = new Vector3(0, 0, 0);
@@ -161,7 +121,7 @@ public class Projectile : PoolObject
             {
                 if (_onlyPlayerHealth)
                 {
-                    playerHitBox.TakeDamage(Damage * damageMultiplier);
+                    playerHitBox.TakeDamage(Damage);
                     continue;
                 }
             }
@@ -182,11 +142,6 @@ public class Projectile : PoolObject
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, ExplosionRange);
-    }
-
-    public void HitExplode()
-    {
-        Explode(5);
     }
 
     public virtual void Accept(IWeaponVisitor visitor)

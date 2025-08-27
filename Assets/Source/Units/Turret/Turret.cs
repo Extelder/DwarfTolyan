@@ -30,6 +30,7 @@ public class Turret : MonoBehaviour
 
     public void Start()
     {
+        OnDamageValueChanged(DamageCharacterics.Instance.CurrentValue);
         DamageCharacterics.Instance.ValueChanged += OnDamageValueChanged;
         ShootAbility.StartShooting(ref _shootingDisposable, () => { ShootAbility.Shoot(); });
         TurretMove.StartMoving(ref _movingDisposable, () => { TurretMove.Move(); });
@@ -41,7 +42,7 @@ public class Turret : MonoBehaviour
         DamageCharacterics.Instance.ValueChanged -= OnDamageValueChanged;
         StopAllCoroutines();
     }
-
+    
     public void ModifyShoot(TurretShootAbilityModificator modificator)
     {
         var type = modificator.GetType();
