@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public float Damage { get; private set; }
+    
     [field: SerializeReference]
     [field: SerializeReferenceButton]
     public BaseTurretShootAbility ShootAbility { get; set; }
@@ -14,13 +16,21 @@ public class Turret : MonoBehaviour
     [field: SerializeReferenceButton]
     public BaseTurretMove TurretMove { get; set; }
 
+    [SerializeField] private float _multiplier;
+    
     private WeaponShootData _shootData;
     private TurretMoveData _turretMoveData;
     private CompositeDisposable _shootingDisposable = new CompositeDisposable();
     private CompositeDisposable _movingDisposable = new CompositeDisposable();
 
+    private void OnDamageValueChanged(float value)
+    {
+        Damage = value * _multiplier;
+    }
+
     public void Start()
     {
+        DamageCharacterics.Instance.ValueChanged += OnDamageValueChanged;
         ShootAbility.StartShooting(ref _shootingDisposable, () => { ShootAbility.Shoot(); });
         TurretMove.StartMoving(ref _movingDisposable, () => { TurretMove.Move(); });
     }
@@ -28,6 +38,7 @@ public class Turret : MonoBehaviour
     private void OnDisable()
     {
         _shootingDisposable?.Clear();
+        DamageCharacterics.Instance.ValueChanged -= OnDamageValueChanged;
         StopAllCoroutines();
     }
 
@@ -45,5 +56,10 @@ public class Turret : MonoBehaviour
 
         var newInstance = Activator.CreateInstance(type, ShootAbility, _turretMoveData);
         TurretMove = (BaseTurretMove) newInstance;
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        ShootAbility.DrawGizmos();
     }
 }

@@ -10,4 +10,9 @@ public class NailGunProjectile : Projectile
     {
         base.Initiate(targetPosition);
     }
+
+    public override void Initiate(Vector3 targetPosition, float damage, bool useTargetPosition = true)
+    {
+        base.Initiate(targetPosition, damage);
+    }
 }

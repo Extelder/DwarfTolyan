@@ -56,6 +56,23 @@ public class Projectile : PoolObject
         Rigidbody.AddForce(transform.forward * _speed, ForceMode.Impulse);
         Initiated?.Invoke();
     }
+    
+    public virtual void Initiate(Vector3 targetPosition, float damage, bool useTargetPosition = true)
+    {
+        Damage = damage;
+        StopAllCoroutines();
+        _collider.enabled = true;
+        _projectileGFX.SetActive(true);
+        //_trail.enabled = true;
+        //_trail.time = -1;
+        Rigidbody.useGravity = _useGravity;
+        Rigidbody.velocity = new Vector3(0, 0, 0);
+        StartCoroutine(WaitingForFrame());
+        if (useTargetPosition)
+            transform.LookAt(targetPosition, transform.forward);
+        Rigidbody.AddForce(transform.forward * _speed, ForceMode.Impulse);
+        Initiated?.Invoke();
+    }
 
     private IEnumerator WaitingForFrame()
     {
