@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineGunShoot : TurretShootAbility
+public class RocketGunShoot : TurretShootAbility
 {
     [SerializeField] private Pool _projectilePool;
     [SerializeField] protected Transform _shootOrigin;

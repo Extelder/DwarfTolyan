@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponShootData : MonoBehaviour, IWeaponShootData
 {
     [SerializeField] private int _damage;
-    [SerializeField] private int _rate;
+    [SerializeField] private float _rate;
 
     public WeaponShootData(IWeaponShootData weaponShootData)
     {

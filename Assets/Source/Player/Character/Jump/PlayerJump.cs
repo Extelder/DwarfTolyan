@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
+    [SerializeField] private float _jetpackVelocity;
     [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private float _jumpMaxTime;
 
@@ -47,18 +48,20 @@ public class PlayerJump : MonoBehaviour
         _jumping = true;
 
         StopAllCoroutines();
+        float jumpForce = JumpCharacteristic.Instance.CurrentValue;
+
+        _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
         StartCoroutine(Jumping());
         StartCoroutine(CancelingJump());
     }
 
     private IEnumerator Jumping()
     {
-        float jumpForce = JumpCharacteristic.Instance.CurrentValue;
-
         while (_jumping)
         {
             yield return new WaitForSeconds(0.02f);
-            _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            _rigidbody.AddForce(transform.up * _jetpackVelocity, ForceMode.VelocityChange);
         }
     }
 

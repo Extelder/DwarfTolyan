@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class TurretHeadRotation : MonoBehaviour
 {
+    [SerializeField] private float _speed;
+    
     [SerializeField] private float _searchingRange;
 
     [SerializeField] private LayerMask _ignoreEnemiesRaycastMask;
@@ -64,7 +66,9 @@ public class TurretHeadRotation : MonoBehaviour
     {
         if (_currentCollider != null)
         {
-            transform.LookAt(_currentCollider.ClosestPoint(transform.position), transform.up);
+            Vector3 direction = _currentCollider.ClosestPoint(transform.position) - transform.position;
+            Quaternion toRotation = Quaternion.LookRotation(direction, transform.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, _speed * Time.deltaTime);
         }
     }
 
