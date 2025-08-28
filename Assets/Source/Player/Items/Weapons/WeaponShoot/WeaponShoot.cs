@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class WeaponShoot : RaycastBehaviour
 {
-    [SerializeField] private DefaultWeaponShootState _weaponShootState;
+    [field: SerializeField] public DefaultWeaponShootState WeaponShootState { get; private set; }
 
     [field: SerializeField] public RaycastWeaponItem Weapon { get; private set; }
 
@@ -17,12 +17,12 @@ public class WeaponShoot : RaycastBehaviour
 
     private void OnEnable()
     {
-        _weaponShootState.ShootPerformed += OnShootPerformed;
+        WeaponShootState.ShootPerformed += OnShootPerformed;
     }
 
     private void OnDisable()
     {
-        _weaponShootState.ShootPerformed -= OnShootPerformed;
+        WeaponShootState.ShootPerformed -= OnShootPerformed;
     }
 
     public virtual void OnShootPerformed()

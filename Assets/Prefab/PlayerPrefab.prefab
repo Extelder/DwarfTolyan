@@ -2220,7 +2220,6 @@ GameObject:
   - component: {fileID: 8308118315892675271}
   - component: {fileID: 7337035393123337641}
   - component: {fileID: 478650573350214928}
-  - component: {fileID: 7107157030059673817}
   - component: {fileID: 8770738623135090037}
   m_Layer: 6
   m_Name: MeleeWeapon
@@ -2304,7 +2303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1adb9c8277cfc45834771433cd5388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weaponShoot: {fileID: 7107157030059673817}
+  _weaponShoot: {fileID: 0}
   _impulseSource: {fileID: 478650573350214928}
 --- !u!114 &7337035393123337641
 MonoBehaviour:
@@ -2380,27 +2379,6 @@ MonoBehaviour:
   m_UseImpactDirection: 1
   m_ScaleImpactWithMass: 0
   m_ScaleImpactWithSpeed: 0
---- !u!114 &7107157030059673817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8867733703823492872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484945c0e57ef364987ed3e4031fe021, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Camera>k__BackingField: {fileID: 6614982620178768092}
-  <ToIgnore>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 44
-  <Range>k__BackingField: 100
-  _weaponShootState: {fileID: 8625246232186678988}
-  <Weapon>k__BackingField: {fileID: 11400000, guid: a5c24624236a8f04baa614de6d5f043e, type: 2}
-  CurrentShootOffset: {x: 0, y: 0, z: 0}
-  _muzzle: {fileID: 8953852025178760859}
 --- !u!95 &8770738623135090037
 Animator:
   serializedVersion: 5

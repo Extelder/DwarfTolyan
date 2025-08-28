@@ -45,6 +45,19 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         UnitHitted?.Invoke();
     }
 
+    public void Visit(WeaponOverlapAttack weaponOverlapAttack)
+    {
+        if (!_health)
+            return;
+        if (_health.IsDead())
+            return;
+        TakeDamage(weaponOverlapAttack.Damage);
+        Debug.LogError(weaponOverlapAttack.Damage + " melee");
+        SpawningDecal(transform.position);
+        Hit?.Invoke();
+        UnitHitted?.Invoke();
+    }
+
     public void Visit(LaserGunShoot laserGunShoot, float damage)
     {
         if (!_health)

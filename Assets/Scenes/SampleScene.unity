@@ -2451,6 +2451,69 @@ Transform:
   m_Father: {fileID: 308705728}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 30, y: -45, z: 0}
+--- !u!1 &474534828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8867733703823492872, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+  m_PrefabInstance: {fileID: 6614982619493453224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &474534829 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6671680850045178860, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+  m_PrefabInstance: {fileID: 6614982619493453224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &474534835 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8625246232186678988, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+  m_PrefabInstance: {fileID: 6614982619493453224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474534828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b69ae194230854ab41583df576b699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &474534838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474534828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e05314f95370d4980a8dcf6c895d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Colliders: []
+  Size: 10
+  SphereRadius: 1
+  SearchLayer:
+    serializedVersion: 2
+    m_Bits: 129
+  OverlapPoint: {fileID: 1333849613}
+  BoxSize: {x: 0, y: 0, z: 0}
+  PositionOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &474534839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474534828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a13a7d3590f7ab64796df65408d4a49b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Camera>k__BackingField: {fileID: 1445787429}
+  <ToIgnore>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 12
+  <Range>k__BackingField: 0
+  <WeaponShootState>k__BackingField: {fileID: 474534835}
+  <Weapon>k__BackingField: {fileID: 0}
+  CurrentShootOffset: {x: 0, y: 0, z: 0}
+  _overlapSettings: {fileID: 474534838}
 --- !u!1 &499886969
 GameObject:
   m_ObjectHideFlags: 0
@@ -4645,6 +4708,17 @@ Transform:
   m_Father: {fileID: 308705728}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 45}
+--- !u!114 &1093401067 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5474556574849874934, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+  m_PrefabInstance: {fileID: 6614982619493453224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ec7b80aeb747b47a9ab96b705b11d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1098009763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5382,6 +5456,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316801434}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1333849612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1333849613}
+  m_Layer: 6
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1333849613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333849612}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 474534829}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342315681
 GameObject:
   m_ObjectHideFlags: 0
@@ -5976,6 +6081,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444584872}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1445787429 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6614982620178768092, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+  m_PrefabInstance: {fileID: 6614982619493453224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1458919802
 GameObject:
   m_ObjectHideFlags: 0
@@ -7850,6 +7960,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5663802286191655006, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: <WeaponShootState>k__BackingField
+      value: 
+      objectReference: {fileID: 1093401067}
     - target: {fileID: 6614982620799848337, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
       propertyPath: m_Name
       value: PlayerPrefab
@@ -7898,8 +8012,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8308118315892675271, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      propertyPath: _weaponShoot
+      value: 
+      objectReference: {fileID: 474534839}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6671680850045178860, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1333849613}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8867733703823492872, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 474534839}
+    - targetCorrespondingSourceObject: {fileID: 8867733703823492872, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 474534838}
   m_SourcePrefab: {fileID: 100100000, guid: 26ac1e35c34fce248a70903cadcfbfc1, type: 3}
