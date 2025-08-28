@@ -7,7 +7,7 @@ using UnityEngine;
 public class TurretShootAbility : BaseTurretShootAbility
 {
     [field: SerializeField] public override WeaponShootData ShootData { get; protected set; }
-
+    
     public override void StartShooting(ref CompositeDisposable disposable, Action shoot)
     {
         disposable = new CompositeDisposable();

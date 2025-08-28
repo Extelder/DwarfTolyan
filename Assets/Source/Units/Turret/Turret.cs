@@ -7,7 +7,7 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public float Damage { get; private set; }
-    
+
     [field: SerializeReference]
     [field: SerializeReferenceButton]
     public BaseTurretShootAbility ShootAbility { get; set; }

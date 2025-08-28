@@ -20,4 +20,5 @@ public class Pools : MonoBehaviour
     [field:SerializeField] public Pool DefaultProjectilePool { get; private set; }
     [field:SerializeField] public Pool TurretMachineGunProjectilePool { get; private set; }
     [field:SerializeField] public Pool TurretRPGProjectilePool { get; private set; }
+    [field:SerializeField] public Pool BloodExplodeDecalPool { get; private set; }
 }
