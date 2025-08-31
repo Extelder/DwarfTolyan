@@ -22,7 +22,7 @@ public class EnemyOverlapPlayerCheck : EnemyPlayerCheck
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
-    public override event Action PlayerDetected;
+    public override event Action<PlayerHitBox> PlayerDetected;
     public override event Action PlayerLost;
 
     private void Start()
@@ -45,9 +45,15 @@ public class EnemyOverlapPlayerCheck : EnemyPlayerCheck
                     continue;
                 }
 
+                if (_others[i].TryGetComponent<ShieldHitBox>(out ShieldHitBox shieldHitBox))
+                {
+                    PlayerDetected?.Invoke(shieldHitBox);
+                    return;
+                }
+                
                 if (_others[i].TryGetComponent<PlayerHitBox>(out PlayerHitBox playerHitBox))
                 {
-                    PlayerDetected?.Invoke();
+                    PlayerDetected?.Invoke(playerHitBox);
                     return;
                 }
             }

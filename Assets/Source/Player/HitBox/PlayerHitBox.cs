@@ -10,14 +10,10 @@ public class PlayerHitBox : MonoBehaviour
     
     private bool _active;
     private PlayerHealth _health;
-
-    private void Awake()
-    {
-        _health = PlayerHealth.Instance;
-    }
-
+    
     private void Start()
     {
+        _health = PlayerHealth.Instance;
         StopAllCoroutines();
         StartCoroutine(WaitForDelay());
     }
@@ -28,11 +24,11 @@ public class PlayerHitBox : MonoBehaviour
         _active = true;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         if (!_active)
             return;
-        
+        Debug.Log("player Damage " + damage);
         _health.TakeDamage(damage);
     }
 }

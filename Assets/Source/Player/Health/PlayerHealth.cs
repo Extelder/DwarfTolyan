@@ -39,6 +39,7 @@ public class PlayerHealth : Health
         base.TakeDamage(value);
         if (value > 100)
         {
+            Debug.Log("PlayerHealth " + CurrentValue);
             PlayerDamaged?.Invoke(100);
             return;
         }

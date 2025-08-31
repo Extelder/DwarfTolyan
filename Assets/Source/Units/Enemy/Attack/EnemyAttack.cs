@@ -9,6 +9,7 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private string _attackAnimationBoolName;
 
+    [SerializeField] private float _damage;
     [SerializeField] private EnemyPlayerCheck _playerCheck;
 
     private void OnEnable()
@@ -22,9 +23,15 @@ public class EnemyAttack : MonoBehaviour
         _animator.SetBool(_attackAnimationBoolName, false);
     }
 
-    private void OnPlayerDetected()
+    private void OnPlayerDetected(PlayerHitBox playerHitBox)
     {
         _animator.SetBool(_attackAnimationBoolName, true);
+        PerformAttack(playerHitBox);
+    }
+
+    private void PerformAttack(PlayerHitBox playerHitBox)
+    {
+        playerHitBox.TakeDamage(_damage);
     }
 
     private void OnDisable()

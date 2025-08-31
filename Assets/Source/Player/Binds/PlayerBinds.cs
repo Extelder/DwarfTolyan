@@ -71,6 +71,15 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShieldPickUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""97cc263d-7dad-4700-bfb9-6ae2805c70e1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
                     ""action"": ""SecondaryShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f58ac38-7319-4a21-83e0-503882c99022"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShieldPickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -191,6 +211,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
         m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
         m_Character_MainShoot = m_Character.FindAction("MainShoot", throwIfNotFound: true);
         m_Character_SecondaryShoot = m_Character.FindAction("SecondaryShoot", throwIfNotFound: true);
+        m_Character_ShieldPickUp = m_Character.FindAction("ShieldPickUp", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -257,6 +278,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_Jump;
     private readonly InputAction m_Character_MainShoot;
     private readonly InputAction m_Character_SecondaryShoot;
+    private readonly InputAction m_Character_ShieldPickUp;
     public struct CharacterActions
     {
         private @PlayerBinds m_Wrapper;
@@ -266,6 +288,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Character_Jump;
         public InputAction @MainShoot => m_Wrapper.m_Character_MainShoot;
         public InputAction @SecondaryShoot => m_Wrapper.m_Character_SecondaryShoot;
+        public InputAction @ShieldPickUp => m_Wrapper.m_Character_ShieldPickUp;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -290,6 +313,9 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
             @SecondaryShoot.started += instance.OnSecondaryShoot;
             @SecondaryShoot.performed += instance.OnSecondaryShoot;
             @SecondaryShoot.canceled += instance.OnSecondaryShoot;
+            @ShieldPickUp.started += instance.OnShieldPickUp;
+            @ShieldPickUp.performed += instance.OnShieldPickUp;
+            @ShieldPickUp.canceled += instance.OnShieldPickUp;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -309,6 +335,9 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
             @SecondaryShoot.started -= instance.OnSecondaryShoot;
             @SecondaryShoot.performed -= instance.OnSecondaryShoot;
             @SecondaryShoot.canceled -= instance.OnSecondaryShoot;
+            @ShieldPickUp.started -= instance.OnShieldPickUp;
+            @ShieldPickUp.performed -= instance.OnShieldPickUp;
+            @ShieldPickUp.canceled -= instance.OnShieldPickUp;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -342,5 +371,6 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMainShoot(InputAction.CallbackContext context);
         void OnSecondaryShoot(InputAction.CallbackContext context);
+        void OnShieldPickUp(InputAction.CallbackContext context);
     }
 }
