@@ -215,6 +215,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3378444483535931755, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 136
+      objectReference: {fileID: 0}
+    - target: {fileID: 3378444483535931755, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
       propertyPath: <ExplosionRange>k__BackingField
       value: 0.24
       objectReference: {fileID: 0}
@@ -253,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 7978491357005841835, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978491357005841835, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8272687300266942515, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
       propertyPath: m_LocalPosition.x
