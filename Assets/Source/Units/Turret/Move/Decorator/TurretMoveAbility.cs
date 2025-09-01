@@ -14,6 +14,11 @@ public class TurretMoveAbility : BaseTurretMove
             .Subscribe(_ => { Move?.Invoke(); }).AddTo(disposable);
     }
 
+    public override void StopMoving(ref CompositeDisposable disposable)
+    {
+        disposable.Clear();
+    }
+
     public override void Move()
     {
     }

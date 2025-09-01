@@ -91,6 +91,7 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
 public class PlayerCharacter : MonoBehaviour
 {
     [field: SerializeField] public Transform[] PointsAround { get; private set; }
+    [field: SerializeField] public Turret[] Turrets { get; private set; }
     [field: SerializeField] public Transform PlayerTransform { get; private set; }
     [field: SerializeField] public Rigidbody Rigidbody { get; private set; }
 

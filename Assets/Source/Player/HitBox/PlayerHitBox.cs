@@ -28,7 +28,6 @@ public class PlayerHitBox : MonoBehaviour
     {
         if (!_active)
             return;
-        Debug.Log("player Damage " + damage);
         _health.TakeDamage(damage);
     }
 }

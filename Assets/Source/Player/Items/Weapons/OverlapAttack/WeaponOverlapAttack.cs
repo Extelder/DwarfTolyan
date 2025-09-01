@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponOverlapAttack : WeaponShoot
 {
     public float Damage { get; set; }
-    
+
     [SerializeField] private OverlapSettings _overlapSettings;
 
     private void OnEnable()
@@ -22,7 +22,7 @@ public class WeaponOverlapAttack : WeaponShoot
             _overlapSettings.SphereRadius, _overlapSettings.Colliders,
             _overlapSettings.SearchLayer);
     }
-    
+
     public virtual void OnShootPerformed()
     {
         Damage = DamageCharacterics.Instance.CurrentValue;
@@ -31,6 +31,11 @@ public class WeaponOverlapAttack : WeaponShoot
         {
             if (other == null)
                 continue;
+            if (other.TryGetComponent<TurretHitBox>(out TurretHitBox TurretHitBox))
+            {
+                TurretHitBox.Repare();
+            }
+
             if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor weaponVisitor))
             {
                 Debug.Log("visittttt");

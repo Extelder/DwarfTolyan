@@ -13,11 +13,11 @@ public class EnemyNavMeshMove : EnemyMove
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
-    private Transform _playerPosition;
+    protected Transform targetPosition;
 
     protected override void AwakeVirtual()
     {
-        _playerPosition = Character.PlayerTransform;
+        targetPosition = Character.PlayerTransform;
         StartMove();
     }
 
@@ -25,7 +25,7 @@ public class EnemyNavMeshMove : EnemyMove
     {
         Observable.Interval(TimeSpan.FromSeconds(_updatePositionRate)).Subscribe(_ =>
             {
-                _agent.SetDestination(_playerPosition.position);
+                _agent.SetDestination(targetPosition.position);
             })
             .AddTo(_disposable);
     }

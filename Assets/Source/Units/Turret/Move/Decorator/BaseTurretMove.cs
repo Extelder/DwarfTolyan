@@ -10,6 +10,7 @@ public abstract class BaseTurretMove
 
     
     public abstract void StartMoving(ref CompositeDisposable disposable, Action Move);
+    public abstract void StopMoving(ref CompositeDisposable disposable);
 
     public abstract void Move();
 }

@@ -39,7 +39,6 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(projectile.Damage);
-        Debug.LogError(projectile.Damage + " projectile");
         SpawningDecal(transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
@@ -65,7 +64,6 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(damage);
-        Debug.LogError(damage + " LaserGun");
         SpawningDecal(transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
