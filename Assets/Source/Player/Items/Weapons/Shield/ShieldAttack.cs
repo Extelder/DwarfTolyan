@@ -9,7 +9,7 @@ public class ShieldAttack : WeaponOverlapAttack
     public override void OnShootPerformed()
     {
         Debug.Log("shoot");
-        _playerDash.Dash();   
         base.OnShootPerformed();
+        _playerDash.Dash();
     }
 }
