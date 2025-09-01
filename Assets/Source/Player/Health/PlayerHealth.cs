@@ -37,9 +37,9 @@ public class PlayerHealth : Health
         value *= DamageMultiplier;
 
         base.TakeDamage(value);
+        Debug.Log("PlayerHealth " + CurrentValue);
         if (value > 100)
         {
-            Debug.Log("PlayerHealth " + CurrentValue);
             PlayerDamaged?.Invoke(100);
             return;
         }

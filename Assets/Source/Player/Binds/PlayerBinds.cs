@@ -80,6 +80,15 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenPanel"",
+                    ""type"": ""Button"",
+                    ""id"": ""652d6f4f-964d-4d99-83a2-c490fccad18e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
                     ""action"": ""ShieldPickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aab3f44d-e297-4be3-a237-da0535f6073a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""OpenPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -212,6 +232,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
         m_Character_MainShoot = m_Character.FindAction("MainShoot", throwIfNotFound: true);
         m_Character_SecondaryShoot = m_Character.FindAction("SecondaryShoot", throwIfNotFound: true);
         m_Character_ShieldPickUp = m_Character.FindAction("ShieldPickUp", throwIfNotFound: true);
+        m_Character_OpenPanel = m_Character.FindAction("OpenPanel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -279,6 +300,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
     private readonly InputAction m_Character_MainShoot;
     private readonly InputAction m_Character_SecondaryShoot;
     private readonly InputAction m_Character_ShieldPickUp;
+    private readonly InputAction m_Character_OpenPanel;
     public struct CharacterActions
     {
         private @PlayerBinds m_Wrapper;
@@ -289,6 +311,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
         public InputAction @MainShoot => m_Wrapper.m_Character_MainShoot;
         public InputAction @SecondaryShoot => m_Wrapper.m_Character_SecondaryShoot;
         public InputAction @ShieldPickUp => m_Wrapper.m_Character_ShieldPickUp;
+        public InputAction @OpenPanel => m_Wrapper.m_Character_OpenPanel;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -316,6 +339,9 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
             @ShieldPickUp.started += instance.OnShieldPickUp;
             @ShieldPickUp.performed += instance.OnShieldPickUp;
             @ShieldPickUp.canceled += instance.OnShieldPickUp;
+            @OpenPanel.started += instance.OnOpenPanel;
+            @OpenPanel.performed += instance.OnOpenPanel;
+            @OpenPanel.canceled += instance.OnOpenPanel;
         }
 
         private void UnregisterCallbacks(ICharacterActions instance)
@@ -338,6 +364,9 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
             @ShieldPickUp.started -= instance.OnShieldPickUp;
             @ShieldPickUp.performed -= instance.OnShieldPickUp;
             @ShieldPickUp.canceled -= instance.OnShieldPickUp;
+            @OpenPanel.started -= instance.OnOpenPanel;
+            @OpenPanel.performed -= instance.OnOpenPanel;
+            @OpenPanel.canceled -= instance.OnOpenPanel;
         }
 
         public void RemoveCallbacks(ICharacterActions instance)
@@ -372,5 +401,6 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
         void OnMainShoot(InputAction.CallbackContext context);
         void OnSecondaryShoot(InputAction.CallbackContext context);
         void OnShieldPickUp(InputAction.CallbackContext context);
+        void OnOpenPanel(InputAction.CallbackContext context);
     }
 }
