@@ -15,11 +15,6 @@ public class DefaultWeaponShootState : WeaponShootState
         Animator.Shoot();
     }
 
-    private void Start()
-    {
-        PerformShoot();
-    }
-
     public void PerformShoot()
     {
         ShootPerformed?.Invoke();
