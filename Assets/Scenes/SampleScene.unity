@@ -2985,7 +2985,7 @@ GameObject:
   - component: {fileID: 2001057894}
   - component: {fileID: 2001057895}
   - component: {fileID: 2001057896}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FlyEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
