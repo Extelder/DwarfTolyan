@@ -41,6 +41,11 @@ public class WeaponStateMachine : StateMachine
         StartCoroutine(TryingToExitShoot());
     }
 
+    public void Idle()
+    {
+        ChangeState(_idle);
+    }
+
     private IEnumerator WaitingForTakeUpToShoot()
     {
         while (true)
