@@ -6,15 +6,29 @@ public class TurretHitBox : PlayerHitBox
 {
     [SerializeField] private Turret _turret;
 
+    private float _repairValue = 0;
 
-    public void Repare()
+    private bool _repaired;
+
+
+    public void Repare(float value)
     {
-        _turret.Enable();
+        if (_repaired)
+            return;
+
+        _repairValue += value;
+        if (_repairValue >= 100)
+        {
+            _repaired = true;
+            _turret.Enable();
+            _repairValue = 0;
+        }
     }
-    
+
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        _repaired = false;
         _turret.Disable();
     }
 }

@@ -33,7 +33,7 @@ public class WeaponOverlapAttack : WeaponShoot
                 continue;
             if (other.TryGetComponent<TurretHitBox>(out TurretHitBox TurretHitBox))
             {
-                TurretHitBox.Repare();
+                TurretHitBox.Repare(100);
             }
 
             if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor weaponVisitor))

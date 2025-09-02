@@ -72,8 +72,14 @@ public class Projectile : PoolObject
         if (_onlyPlayerHealth)
             Explode();
 
+        VirtualOnCollisionEnter(other);
         if (!other.gameObject.TryGetComponent<PlayerMovement>(out PlayerMovement movement) && !_onlyPlayerHealth)
             Explode();
+    }
+
+    protected virtual void VirtualOnCollisionEnter(Collision other)
+    {
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -109,6 +115,8 @@ public class Projectile : PoolObject
         {
             if (!other)
                 continue;
+            ExplodeIteration(other);
+            
             if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor visitor))
             {
                 if (_onlyPlayerHealth)
@@ -136,6 +144,11 @@ public class Projectile : PoolObject
         Exploded?.Invoke();
         _projectileGFX.SetActive(false);
         Invoke(nameof(ReturnToPool), ReturnToPoolDelay);
+    }
+
+    protected virtual void ExplodeIteration(Collider other)
+    {
+        
     }
 
 

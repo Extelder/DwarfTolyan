@@ -38,10 +38,10 @@ public class PlayerDash : Dashing
 
         if (inputDirection == Vector3.zero)
         {
-            inputDirection = orientation.forward;
-            direction = inputDirection;
+           
         }
-
+        inputDirection = orientation.forward;
+        direction = inputDirection;
 
         Vector3 forceToApply = (direction * dashSpeed + orientation.up * dashUpwardForce);
         float cooldown = _dashCooldown;
