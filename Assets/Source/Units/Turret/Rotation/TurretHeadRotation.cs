@@ -28,19 +28,22 @@ public class TurretHeadRotation : MonoBehaviour
         {
             if (other == null)
             {
+                _lastHitDistance = Single.MaxValue;
                 continue;
             }
 
-            Debug.Log("Visitopr");
+            Debug.LogError(other);
 
             if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor weaponVisitor))
             {
                 if (Physics.Raycast(transform.position, (other.transform.position - transform.position),
                     out RaycastHit hit, _searchEnemyDistance, ~_ignoreEnemiesRaycastMask))
                 {
+                    Debug.DrawRay(transform.position, (other.transform.position - transform.position) * _searchEnemyDistance);
                     if (hit.collider.TryGetComponent<IWeaponVisitor>(
                         out IWeaponVisitor visitor))
                     {
+                        Debug.LogError(visitor);
                         if (_lastHitDistance > hit.distance)
                         {
                             _lastHitDistance = hit.distance;
@@ -51,6 +54,7 @@ public class TurretHeadRotation : MonoBehaviour
             }
         }
     }
+
 
     private void Start()
     {

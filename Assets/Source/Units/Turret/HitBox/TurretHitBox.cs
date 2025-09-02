@@ -8,7 +8,7 @@ public class TurretHitBox : PlayerHitBox
 
     private float _repairValue = 0;
 
-    private bool _repaired;
+    private bool _repaired = true;
 
 
     public void Repare(float value)
@@ -28,6 +28,7 @@ public class TurretHitBox : PlayerHitBox
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
+        Debug.LogError("TURRET");
         _repaired = false;
         _turret.Disable();
     }

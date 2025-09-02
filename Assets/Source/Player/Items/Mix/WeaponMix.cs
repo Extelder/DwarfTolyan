@@ -23,7 +23,8 @@ public class WeaponMix : MonoBehaviour
     private void OnMainShootStarted(InputAction.CallbackContext obj)
     {
         if (_character.Binds.Character.MainShoot.WasPressedThisFrame() &&
-            _character.Binds.Character.SecondaryShoot.WasPressedThisFrame())
+            _character.Binds.Character.SecondaryShoot.WasPressedThisFrame() || _character.Binds.Character.MainShoot.IsPressed() &&
+            _character.Binds.Character.SecondaryShoot.IsPressed())
         {
             _hammerAnimator.enabled = false;
             _nailgunAnimator.enabled = false;

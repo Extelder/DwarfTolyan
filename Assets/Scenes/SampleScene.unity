@@ -1189,7 +1189,7 @@ GameObject:
   - component: {fileID: 698063812}
   - component: {fileID: 698063811}
   - component: {fileID: 698063813}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1905,7 +1905,7 @@ GameObject:
   - component: {fileID: 1294406226}
   - component: {fileID: 1294406228}
   - component: {fileID: 1294406227}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ProjectileGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2156,6 +2156,14 @@ PrefabInstance:
     - target: {fileID: 1988660228223586789, guid: dcaed3a3e88414243a1d012a3589038d, type: 3}
       propertyPath: m_Name
       value: EnemyRunner
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160769703847014905, guid: dcaed3a3e88414243a1d012a3589038d, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7486073
+      objectReference: {fileID: 0}
+    - target: {fileID: 8160769703847014905, guid: dcaed3a3e88414243a1d012a3589038d, type: 3}
+      propertyPath: m_Center.y
+      value: 0.81252146
       objectReference: {fileID: 0}
     - target: {fileID: 8616041272527741731, guid: dcaed3a3e88414243a1d012a3589038d, type: 3}
       propertyPath: m_RootOrder
@@ -3667,6 +3675,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyKamimaze
       objectReference: {fileID: 0}
+    - target: {fileID: 2723613399100438463, guid: 42ef45ca66ed199428538d3976aa5d12, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3289752262521420816, guid: 42ef45ca66ed199428538d3976aa5d12, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -3980,6 +3992,14 @@ PrefabInstance:
     - target: {fileID: 3867677170257423568, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634617033443032130, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
+      propertyPath: _searchingRange
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5634617033443032130, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
+      propertyPath: _ignoreEnemiesRaycastMask.m_Bits
+      value: 383
       objectReference: {fileID: 0}
     - target: {fileID: 8807599059733197194, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: m_Name
