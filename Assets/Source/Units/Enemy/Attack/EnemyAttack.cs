@@ -6,10 +6,12 @@ using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
+    [field:SerializeField] public float Damage { get; private set; }
+
+    
     [SerializeField] private Animator _animator;
     [SerializeField] private string _attackAnimationBoolName;
 
-    [SerializeField] private float _damage;
     [SerializeField] private EnemyPlayerCheck _playerCheck;
 
     private void OnEnable()
@@ -31,7 +33,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void PerformAttack(PlayerHitBox playerHitBox)
     {
-        playerHitBox.TakeDamage(_damage);
+        playerHitBox.TakeDamage(Damage);
     }
 
     private void OnDisable()

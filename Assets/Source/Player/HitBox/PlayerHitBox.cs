@@ -10,12 +10,20 @@ public class PlayerHitBox : MonoBehaviour
     
     private bool _active;
     private PlayerHealth _health;
-    
+
     private void Start()
     {
         _health = PlayerHealth.Instance;
         StopAllCoroutines();
         StartCoroutine(WaitForDelay());
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent<EnemyTriggerAttack>(out EnemyTriggerAttack enemyTriggerAttack))
+        {
+            _health.TakeDamage(enemyTriggerAttack.Damage);
+        }
     }
 
     private IEnumerator WaitForDelay()
