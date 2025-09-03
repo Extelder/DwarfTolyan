@@ -16,18 +16,9 @@ public class NailGunProjectile : Projectile
         base.Initiate(targetPosition, damage);
     }
 
-    protected override void VirtualOnCollisionEnter(Collision other)
+    protected override void VirtualOnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<TurretHitBox>(out TurretHitBox TurretHitBox))
-        {
-            Debug.Log(TurretHitBox);
-            TurretHitBox.Repare(34);
-        }
-    }
-
-    protected override void ExplodeIteration(Collider other)
-    {
-        if (other.gameObject.TryGetComponent<TurretHitBox>(out TurretHitBox TurretHitBox))
+        if (other.TryGetComponent<TurretHitBox>(out TurretHitBox TurretHitBox))
         {
             Debug.Log(TurretHitBox);
             TurretHitBox.Repare(34);

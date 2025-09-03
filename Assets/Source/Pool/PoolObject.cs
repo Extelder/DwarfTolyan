@@ -11,15 +11,18 @@ public class PoolObject : MonoBehaviour
     private void OnEnable()
     {
         if (_autoreturnToPool)
-            Invoke("ReturnToPool", ReturnToPoolDelay);
+            StartCoroutine(ReturningToPool());
     }
 
-    public virtual void ReturnToPool()
+    private IEnumerator ReturningToPool()
     {
+        yield return new WaitForSeconds(ReturnToPoolDelay);
         gameObject.SetActive(false);
     }
 
-    public virtual void OnCreate()
+    private void OnDisable()
     {
+        if (_autoreturnToPool)
+            StopAllCoroutines();
     }
 }

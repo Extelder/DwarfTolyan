@@ -32,8 +32,6 @@ public class TurretHeadRotation : MonoBehaviour
                 continue;
             }
 
-            Debug.LogError(other);
-
             if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor weaponVisitor))
             {
                 if (Physics.Raycast(transform.position, (other.transform.position - transform.position),
@@ -43,7 +41,6 @@ public class TurretHeadRotation : MonoBehaviour
                     if (hit.collider.TryGetComponent<IWeaponVisitor>(
                         out IWeaponVisitor visitor))
                     {
-                        Debug.LogError(visitor);
                         if (_lastHitDistance > hit.distance)
                         {
                             _lastHitDistance = hit.distance;

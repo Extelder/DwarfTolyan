@@ -6,5 +6,6 @@ using UnityEngine;
 
 public class EnemyHitBox : UnitHitBox
 {
+    
 }
    
