@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672c69756f3f8ed42868bb17b4db68d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Damage>k__BackingField: 0
   _animator: {fileID: 2824110558889879258}
   _attackAnimationBoolName: IsAttacking
-  _damage: 6
   _playerCheck: {fileID: 1732780990213537826}
