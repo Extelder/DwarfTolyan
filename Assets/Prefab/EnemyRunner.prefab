@@ -845,15 +845,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988660228223586789}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.0000004768371}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.5000391, y: 0, z: 6.9044623}
-  m_LocalScale: {x: 0.73026997, y: 0.63090277, z: 0.63090277}
+  m_LocalScale: {x: 0.6057443, y: 0.52037495, z: 0.63090277}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1451590383789192699}
   - {fileID: 5219069902325768216}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &8160769703847014905
 BoxCollider:
@@ -874,8 +874,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 1.6697783, z: 0.5}
-  m_Center: {x: 0, y: 0.8519356, z: 0}
+  m_Size: {x: 0.5, y: 1.7486073, z: 0.5}
+  m_Center: {x: 0, y: 0.81252146, z: 0}
 --- !u!114 &4607148004715323805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -904,6 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 100
+  _coinsDropped: 20
 --- !u!195 &5987474992082833882
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1799,7 +1800,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf78829e63610dc40a8f91c02d4f755f, type: 2}
+  - {fileID: 2100000, guid: 7b63220043af7684290df351f857daf1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -13,24 +13,60 @@ public class WeaponMix : MonoBehaviour
 
     private PlayerCharacter _character;
 
+    private bool _cayout;
+
     private void Start()
     {
         _character = PlayerCharacter.Instance;
-        _character.Binds.Character.MainShoot.performed += OnMainShootStarted;
-        _character.Binds.Character.SecondaryShoot.performed += OnMainShootStarted;
+        _character.Binds.Character.MainShoot.started += OnMainShootStartedOld;
+        _character.Binds.Character.SecondaryShoot.started += OnMainShootStartedOld;
+
+        _character.Binds.Character.MainShoot.canceled += OnMainShootCanceledOld;
+        _character.Binds.Character.SecondaryShoot.canceled += OnSecondaryShootCanceledOld;
     }
 
-    private void OnMainShootStarted(InputAction.CallbackContext obj)
+    private void OnSecondaryShootCanceledOld(InputAction.CallbackContext obj)
     {
-        if ((_character.Binds.Character.MainShoot.WasPressedThisFrame() &&
-            _character.Binds.Character.SecondaryShoot.WasPressedThisFrame()) || (_character.Binds.Character.MainShoot.IsPressed() &&
-            _character.Binds.Character.SecondaryShoot.IsPressed()))
+        if (_cayout == false && _character.Binds.Character.MainShoot.IsPressed())
         {
+            _cayout = true;
             _hammerAnimator.enabled = false;
             _nailgunAnimator.enabled = false;
 
             _animator.SetTrigger("Mix");
         }
+
+        StopAllCoroutines();
+    }
+
+
+    private void OnMainShootCanceledOld(InputAction.CallbackContext obj)
+    {
+        if (_cayout == false &&
+            _character.Binds.Character.SecondaryShoot.IsPressed())
+        {
+            _cayout = true;
+            _hammerAnimator.enabled = false;
+            _nailgunAnimator.enabled = false;
+
+            _animator.SetTrigger("Mix");
+        }
+
+        StopAllCoroutines();
+    }
+
+    private void OnMainShootStartedOld(InputAction.CallbackContext obj)
+    {
+        _cayout = true;
+        StopAllCoroutines();
+        StartCoroutine(WaitingForCayout());
+    }
+
+    private IEnumerator WaitingForCayout()
+    {
+        _cayout = false;
+        yield return new WaitForSeconds(.3f);
+        _cayout = true;
     }
 
     public void AnimationEnd()
@@ -46,7 +82,10 @@ public class WeaponMix : MonoBehaviour
 
     private void OnDisable()
     {
-        _character.Binds.Character.MainShoot.performed -= OnMainShootStarted;
-        _character.Binds.Character.SecondaryShoot.performed -= OnMainShootStarted;
+        _character.Binds.Character.MainShoot.started -= OnMainShootStartedOld;
+        _character.Binds.Character.SecondaryShoot.started -= OnMainShootStartedOld;
+
+        _character.Binds.Character.MainShoot.canceled -= OnMainShootCanceledOld;
+        _character.Binds.Character.SecondaryShoot.canceled -= OnSecondaryShootCanceledOld;
     }
 }

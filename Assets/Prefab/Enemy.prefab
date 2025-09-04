@@ -37,7 +37,7 @@ Transform:
   - {fileID: 8201456533774695584}
   - {fileID: 7010723465645049512}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &4447820857476413289
 BoxCollider:
@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 100
+  _coinsDropped: 4
 --- !u!114 &5508567168551245611
 MonoBehaviour:
   m_ObjectHideFlags: 0

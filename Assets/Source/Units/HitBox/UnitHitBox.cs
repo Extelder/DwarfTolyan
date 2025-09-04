@@ -8,8 +8,8 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
 {
     [SerializeField] private Health _health;
     
-    [SerializeField] private float _damageCooldown;
-    [SerializeField] private float _burnCooldown;
+    [SerializeField] private float _damageCooldown = .1f;
+    [SerializeField] private float _burningTime = 5;
     
     public event Action Hit;
 
@@ -98,7 +98,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
             Debug.LogError(damage + " burn");
             _health.TakeDamage(damage);
         }).AddTo(_disposable);
-        yield return new WaitForSeconds(_burnCooldown);
+        yield return new WaitForSeconds(_burningTime);
         StopAllCoroutines();
         _disposable.Clear();
     }
