@@ -16,15 +16,15 @@ public class WeaponMix : MonoBehaviour
     private void Start()
     {
         _character = PlayerCharacter.Instance;
-        _character.Binds.Character.MainShoot.started += OnMainShootStarted;
-        _character.Binds.Character.SecondaryShoot.started += OnMainShootStarted;
+        _character.Binds.Character.MainShoot.performed += OnMainShootStarted;
+        _character.Binds.Character.SecondaryShoot.performed += OnMainShootStarted;
     }
 
     private void OnMainShootStarted(InputAction.CallbackContext obj)
     {
-        if (_character.Binds.Character.MainShoot.WasPressedThisFrame() &&
-            _character.Binds.Character.SecondaryShoot.WasPressedThisFrame() || _character.Binds.Character.MainShoot.IsPressed() &&
-            _character.Binds.Character.SecondaryShoot.IsPressed())
+        if ((_character.Binds.Character.MainShoot.WasPressedThisFrame() &&
+            _character.Binds.Character.SecondaryShoot.WasPressedThisFrame()) || (_character.Binds.Character.MainShoot.IsPressed() &&
+            _character.Binds.Character.SecondaryShoot.IsPressed()))
         {
             _hammerAnimator.enabled = false;
             _nailgunAnimator.enabled = false;
@@ -46,7 +46,7 @@ public class WeaponMix : MonoBehaviour
 
     private void OnDisable()
     {
-        _character.Binds.Character.MainShoot.started -= OnMainShootStarted;
-        _character.Binds.Character.SecondaryShoot.started -= OnMainShootStarted;
+        _character.Binds.Character.MainShoot.performed -= OnMainShootStarted;
+        _character.Binds.Character.SecondaryShoot.performed -= OnMainShootStarted;
     }
 }

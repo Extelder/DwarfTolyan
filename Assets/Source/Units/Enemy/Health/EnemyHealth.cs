@@ -6,6 +6,7 @@ public class EnemyHealth : Health
 {
     public override void Death()
     {
+        Pools.Instance.CoinPool.GetFreeElement(transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

@@ -12,6 +12,11 @@ public class PoolObject : MonoBehaviour
     {
         if (_autoreturnToPool)
             StartCoroutine(ReturningToPool());
+        OnEnableVirtual();
+    }
+
+    public virtual void OnEnableVirtual()
+    {
     }
 
     private IEnumerator ReturningToPool()
@@ -20,9 +25,14 @@ public class PoolObject : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public virtual void OnDisableVirtual()
+    {
+    }
+
     private void OnDisable()
     {
         if (_autoreturnToPool)
             StopAllCoroutines();
+        OnDisableVirtual();
     }
 }
