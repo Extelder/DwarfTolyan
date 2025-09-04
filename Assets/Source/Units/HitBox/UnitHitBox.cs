@@ -63,6 +63,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
             return;
         if (_health.IsDead())
             return;
+        Debug.LogError(damage + " laser");
         TakeDamage(damage);
         SpawningDecal(transform.position);
         Hit?.Invoke();
