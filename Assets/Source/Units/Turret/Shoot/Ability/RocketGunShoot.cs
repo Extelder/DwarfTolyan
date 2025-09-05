@@ -10,7 +10,6 @@ public class RocketGunShoot : TurretShootAbility
 
     public override void Shoot()
     {
-        Debug.Log("Machine gun shoot ");
         Vector3 direction = _shootOrigin.position + _shootOrigin.forward * _range;
         Projectile projectile = Pools.Instance.TurretRPGProjectilePool.GetFreeElement
             (_shootOrigin.position, Quaternion.FromToRotation(_shootOrigin.position, direction)).

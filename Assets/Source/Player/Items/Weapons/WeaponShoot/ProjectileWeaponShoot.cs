@@ -79,22 +79,36 @@ public class ProjectileWeaponShoot : WeaponShoot
         switch (CurrentShootType)
         {
             case ShootType.Rifle:
+
                 Vector3 directionRifle = Camera.position + Camera.forward * Range;
+                if (GetHitCollider(out Collider collider))
+                {
+                    directionRifle = GetRaycastHit().point;
+                }
+
                 Projectile projectileRifle = _currentPool
                     .GetFreeElement(_muzzle.position, Quaternion.FromToRotation(_muzzle.position, directionRifle))
                     .GetComponent<Projectile>();
-                projectileRifle.Initiate(directionRifle, DamageCharacterics.Instance.CurrentValue);
+                projectileRifle.Initiate(directionRifle, DamageCharacterics.Instance.CurrentValue, true);
                 break;
 
             case ShootType.Shotgun:
                 for (int i = 0; i < _shotgunCharges; i++)
                 {
-                    Vector3 direction = Camera.position + Camera.forward * Range;
-                    direction += Random.insideUnitSphere * _shotgunRandomMultipier;
-                    Projectile projectile = _currentPool
-                        .GetFreeElement(_muzzle.position, Quaternion.FromToRotation(_muzzle.position, direction))
+                    Vector3 random = Random.insideUnitSphere * _shotgunRandomMultipier;
+
+                    Vector3 direction = Camera.position + random + Camera.forward * Range;
+                    if (GetHitCollider(out Collider collider2))
+                    {
+                        direction = GetRaycastHit().point + random;
+                    }
+
+
+                    Projectile projectileShotGun = _currentPool
+                        .GetFreeElement(_muzzle.position + random,
+                            Quaternion.FromToRotation(_muzzle.position, direction))
                         .GetComponent<Projectile>();
-                    projectile.Initiate(direction, DamageCharacterics.Instance.CurrentValue);
+                    projectileShotGun.Initiate(direction, DamageCharacterics.Instance.CurrentValue, true);
                 }
 
                 break;

@@ -8,10 +8,10 @@ public class Wave : MonoBehaviour
 {
     [field: SerializeField] public Vector3 DefaultSpawnRadius { get; private set; }
 
-    [SerializeField] private float _defaultTime;
-    [SerializeField] private float _timeAddible;
+    [SerializeField] private int _defaultTime;
+    [SerializeField] private int _timeAddible;
 
-    private float _currentTime;
+    private int _currentTime;
 
     public int Current { get; private set; }
 
@@ -38,16 +38,33 @@ public class Wave : MonoBehaviour
 
     public void StartWave()
     {
+        Time.timeScale = 1;
+        Current++;
         Started?.Invoke(Current);
         _currentTime = _currentTime + _timeAddible * Current;
-        Observable.Timer(TimeSpan.FromSeconds(_currentTime)).Subscribe(_ => { TimerCounted?.Invoke(_); })
-            .AddTo(_disposable);
+
+        int timePassed = 1;
+
+        Observable.Interval(TimeSpan.FromSeconds(1)).TakeWhile(time => time <= _currentTime)
+            .Subscribe(time =>
+            {
+                timePassed++;
+                long delta = (int) _currentTime - timePassed;
+
+                TimerCounted?.Invoke(delta);
+
+                if (timePassed >= _currentTime)
+                {
+                    StopWave();
+                }
+            }).AddTo(_disposable);
     }
 
     public void StopWave()
     {
         _disposable?.Clear();
         Ended?.Invoke(Current);
+        Time.timeScale = 0;
     }
 
     private void OnDisable()

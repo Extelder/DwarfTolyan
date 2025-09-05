@@ -24,6 +24,8 @@ public class WaveSpawner : MonoBehaviour
 
     private float _currentRate;
 
+    private List<GameObject> _spawned = new List<GameObject>();
+
     private void Start()
     {
         _currentRate = _defaultRate;
@@ -45,6 +47,8 @@ public class WaveSpawner : MonoBehaviour
 
     private IEnumerator Spawning()
     {
+        _spawned.Clear();
+
         while (true)
         {
             yield return new WaitForSeconds(_currentRate);
@@ -56,7 +60,7 @@ public class WaveSpawner : MonoBehaviour
                         new Vector3(Random.Range(-_wave.DefaultSpawnRadius.x, _wave.DefaultSpawnRadius.x),
                             _wave.DefaultSpawnRadius.y,
                             Random.Range(-_wave.DefaultSpawnRadius.z, _wave.DefaultSpawnRadius.z));
-                    Instantiate(_spawnable[i].Prefab, spawnPosition, Quaternion.identity);
+                    _spawned.Add(Instantiate(_spawnable[i].Prefab, spawnPosition, Quaternion.identity));
                 }
             }
         }
@@ -72,6 +76,14 @@ public class WaveSpawner : MonoBehaviour
     {
         if (value >= _waveToStart)
         {
+            StopAllCoroutines();
+
+            for (int i = 0; i < _spawned.Count; i++)
+            {
+                if (_spawned[i] == null)
+                    continue;
+                Destroy(_spawned[i]);
+            }
         }
     }
 }

@@ -33,23 +33,21 @@ public class Projectile : PoolObject
 
     protected virtual void VirtualOnTriggerEnter(Collider other)
     {
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
         if (other.material.bounciness >= 0.95f)
             return;
         if (other.TryGetComponent<Projectile>(out Projectile projectile))
             return;
-
-        VirtualOnTriggerEnter(other);
-
         if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor visitor))
         {
             Accept(visitor);
         }
 
         gameObject.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        VirtualOnTriggerEnter(other);
     }
 
 

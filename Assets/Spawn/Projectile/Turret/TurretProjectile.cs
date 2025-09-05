@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UniRx;
 using UnityEngine;
 
-public class NailGunProjectile : Projectile
+public class TurretProjectile : Projectile
 {
     public override void Initiate(Vector3 targetPosition, bool use = true)
     {
@@ -18,10 +16,11 @@ public class NailGunProjectile : Projectile
 
     protected override void VirtualOnTriggerEnter(Collider other)
     {
-        base.VirtualOnTriggerEnter(other);
         if (other.TryGetComponent<TurretHitBox>(out TurretHitBox TurretHitBox))
         {
-            TurretHitBox.Repare(34);
+            return;
         }
+
+        base.VirtualOnTriggerEnter(other);
     }
 }

@@ -6,15 +6,19 @@ using UnityEngine;
 
 public class Coin : PoolObject, ITriggerInteractable
 {
+    [SerializeField] private Collider _collider;
+
     [SerializeField] private float _moveToPlayerSpeed;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     private bool _moving;
+    
 
     public override void OnEnableVirtual()
     {
         _moving = false;
+        _collider.enabled = true;
         base.OnEnableVirtual();
     }
 
@@ -24,6 +28,9 @@ public class Coin : PoolObject, ITriggerInteractable
             return;
 
         _moving = true;
+
+        _collider.enabled = false;
+
 
         Observable.EveryUpdate().Subscribe(_ =>
         {

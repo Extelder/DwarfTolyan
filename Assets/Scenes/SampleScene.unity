@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,6 +227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pools
       objectReference: {fileID: 0}
+    - target: {fileID: 78423584892628481, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: _prefabPoolObject
+      value: 
+      objectReference: {fileID: 996523703}
     - target: {fileID: 2537617937669693081, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
       propertyPath: <CoinPool>k__BackingField
       value: 
@@ -275,19 +279,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3378444483535931755, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: _speed
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3542786890356455856, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: _prefabPoolObject
+      value: 
+      objectReference: {fileID: 578027724}
+    - target: {fileID: 6545809679975331133, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6545809679975331133, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
       propertyPath: m_Force.y
-      value: 7
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978491357005841835, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2118736780066410355, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
     - {fileID: 7099375717917219312, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+    - {fileID: 2734168023352050760, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+    - {fileID: 264120086088906179, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+    - {fileID: 1268296637984305416, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+    - {fileID: 537925541158408454, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2920157139785860534, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 20860544}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1981656568263195900, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 996523703}
+    - targetCorrespondingSourceObject: {fileID: 3548511048451703687, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 578027724}
   m_SourcePrefab: {fileID: 100100000, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
 --- !u!1 &258023850
 GameObject:
@@ -360,6 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ReturnToPoolDelay>k__BackingField: 2
   _autoreturnToPool: 0
+  _collider: {fileID: 258023851}
   _moveToPlayerSpeed: 10
 --- !u!54 &258023854
 Rigidbody:
@@ -701,6 +732,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 41ffeaf5f0cb674458192d697a8a7ef4, type: 3}
   m_PrefabInstance: {fileID: 447918248}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &578027718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3548511048451703687, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+  m_PrefabInstance: {fileID: 249246666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &578027722 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8459328913338502732, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+  m_PrefabInstance: {fileID: 249246666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &578027724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578027718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a343ad033b6a05e419c15ff6bebca6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ReturnToPoolDelay>k__BackingField: 15
+  _autoreturnToPool: 1
+  <Damage>k__BackingField: 100
+  _speed: 15
+  <Rigidbody>k__BackingField: {fileID: 578027722}
 --- !u!114 &591251704 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4033759107663562974, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
@@ -1496,6 +1554,7 @@ GameObject:
   - component: {fileID: 958254764}
   - component: {fileID: 958254765}
   - component: {fileID: 958254766}
+  - component: {fileID: 958254767}
   m_Layer: 0
   m_Name: WaveSpawner
   m_TagString: Untagged
@@ -1531,7 +1590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <DefaultSpawnRadius>k__BackingField: {x: 25.56, y: 0.3, z: 25.95}
-  _defaultTime: 60
+  _defaultTime: 10
   _timeAddible: 1
 --- !u!114 &958254766
 MonoBehaviour:
@@ -1553,6 +1612,49 @@ MonoBehaviour:
   _defaultRate: 1
   _rateDecreasePerMinute: 0.01
   _waveToStart: 0
+--- !u!114 &958254767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958254763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41ab246c571123c4b8dd30b0d52daa0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveBreak: {fileID: 1181031722}
+  _waveText: {fileID: 1303835541}
+  _waveNumberText: {fileID: 1799609689}
+  _wave: {fileID: 958254765}
+--- !u!1 &996523699 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1981656568263195900, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+  m_PrefabInstance: {fileID: 249246666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &996523701 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 5717419090410162191, guid: f08b4c0cef51ef944b6dc87954e5a7d1, type: 3}
+  m_PrefabInstance: {fileID: 249246666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &996523703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996523699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a343ad033b6a05e419c15ff6bebca6fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ReturnToPoolDelay>k__BackingField: 15
+  _autoreturnToPool: 1
+  <Damage>k__BackingField: 100
+  _speed: 15
+  <Rigidbody>k__BackingField: {fileID: 996523701}
 --- !u!1 &999224441
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1897,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1120728322}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1181031722 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3050026499745257076, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+  m_PrefabInstance: {fileID: 3213682960001165448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1303835541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4649876726423501509, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+  m_PrefabInstance: {fileID: 3213682960001165448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1405688828 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4033759107663562974, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
@@ -2390,6 +2508,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0916d9491f9806c46ad6305dec9ea028, type: 3}
   m_PrefabInstance: {fileID: 1788545125}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1799609689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2004720583017749465, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+  m_PrefabInstance: {fileID: 3213682960001165448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1965754348
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,7 +2890,7 @@ PrefabInstance:
       objectReference: {fileID: 338771970}
     - target: {fileID: 8625185071005310916, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.1
+      value: -0.246
       objectReference: {fileID: 0}
     - target: {fileID: 8625185071005310916, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2769,7 +2898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8625185071005310916, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.952
+      value: 1.99
       objectReference: {fileID: 0}
     - target: {fileID: 8807599059733197194, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: m_Name
@@ -3123,6 +3252,10 @@ PrefabInstance:
       propertyPath: <Turrets>k__BackingField.Array.data[0]
       value: 
       objectReference: {fileID: 220961867}
+    - target: {fileID: 7606519581241274965, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 958254765}
     - target: {fileID: 8516029412702529320, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
       propertyPath: m_RootOrder
       value: 0
