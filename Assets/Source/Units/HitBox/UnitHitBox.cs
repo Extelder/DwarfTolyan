@@ -39,7 +39,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(projectile.Damage);
-        SpawningDecal(transform.position);
+        SpawningDecal(projectile.transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }
@@ -64,7 +64,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(damage);
-        SpawningDecal(transform.position);
+        SpawningDecal(laserGunShoot.CurrentHit.point);
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }
@@ -83,7 +83,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
     
     public virtual void SpawningDecal(Vector3 spawnPoint)
     {
-        //var currentObject = Pools.Instance.BloodExplodeDecalPool.GetFreeElement(spawnPoint, Quaternion.identity);
+        Pools.Instance.BloodExplodeDecalPool.GetFreeElement(spawnPoint, Quaternion.identity);
     }
     
     public virtual void TakeDamage(float damage)

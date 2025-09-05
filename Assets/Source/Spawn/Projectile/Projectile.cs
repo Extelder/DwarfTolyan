@@ -37,6 +37,8 @@ public class Projectile : PoolObject
             return;
         if (other.TryGetComponent<Projectile>(out Projectile projectile))
             return;
+        Rigidbody.velocity = new Vector3(0, 0, 0);
+
         if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor visitor))
         {
             Accept(visitor);

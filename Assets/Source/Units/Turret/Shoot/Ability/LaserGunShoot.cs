@@ -10,7 +10,9 @@ public class LaserGunShoot : TurretShootAbility
     [SerializeField] protected Turret _turret;
 
     private RaycastHit[] _hits;
-    
+
+    public RaycastHit CurrentHit { get; private set; }
+
     public override void Shoot()
     {
         Vector3 direction = _shootOrigin.position + _shootOrigin.forward * _range;
@@ -22,6 +24,8 @@ public class LaserGunShoot : TurretShootAbility
             {
                 continue;
             }
+
+            CurrentHit = hit;
             if (hit.collider.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor visitor))
             {
                 visitor.Visit(this, _turret.Damage);
