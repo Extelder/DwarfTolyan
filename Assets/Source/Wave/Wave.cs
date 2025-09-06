@@ -10,12 +10,14 @@ public class Wave : MonoBehaviour
 
     [SerializeField] private int _defaultTime;
     [SerializeField] private int _timeAddible;
+    [SerializeField] private int _timeCap;
 
     private int _currentTime;
 
     public int Current { get; private set; }
 
     public event Action<int> Started;
+    public event Action<int> PreStarted;
     public event Action<int> Ended;
     public event Action<long> TimerCounted;
 
@@ -40,10 +42,16 @@ public class Wave : MonoBehaviour
     {
         Time.timeScale = 1;
         Current++;
+        PreStarted?.Invoke(Current);
         Started?.Invoke(Current);
         _currentTime = _currentTime + _timeAddible * Current;
+        if (_currentTime > _timeCap)
+        {
+            _currentTime = _timeCap;
+        }
 
-        int timePassed = 1;
+        TimerCounted?.Invoke(_currentTime);
+        int timePassed = 0;
 
         Observable.Interval(TimeSpan.FromSeconds(1)).TakeWhile(time => time <= _currentTime)
             .Subscribe(time =>

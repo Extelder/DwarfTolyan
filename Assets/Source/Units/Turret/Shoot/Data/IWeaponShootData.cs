@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IWeaponShootData 
+public interface IWeaponShootData
 {
-    int GetDamage();
     float GetRate();
 }

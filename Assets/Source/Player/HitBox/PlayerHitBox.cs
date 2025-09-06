@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class PlayerHitBox : MonoBehaviour
 {
     [SerializeField] private float _notActiveDelayAfterSpawn;
-    
+
     private bool _active;
     private PlayerHealth _health;
 
@@ -17,12 +17,12 @@ public class PlayerHitBox : MonoBehaviour
         StopAllCoroutines();
         StartCoroutine(WaitForDelay());
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<EnemyTriggerAttack>(out EnemyTriggerAttack enemyTriggerAttack))
         {
-            _health.TakeDamage(enemyTriggerAttack.Damage);
+            _health.TakeDamage(enemyTriggerAttack.Damage.GetDamage());
         }
     }
 

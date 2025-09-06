@@ -16,16 +16,18 @@ public class Turret : MonoBehaviour
     [field: SerializeReferenceButton]
     public BaseTurretMove TurretMove { get; set; }
 
-    [SerializeField] private float _multiplier;
-    
+    [SerializeField] private float _damageMultiplier;
+
     private WeaponShootData _shootData;
     private TurretMoveData _turretMoveData;
     private CompositeDisposable _shootingDisposable = new CompositeDisposable();
     private CompositeDisposable _movingDisposable = new CompositeDisposable();
 
+    public event Action Shooted;
+
     private void OnDamageValueChanged(float value)
     {
-        Damage = value * _multiplier;
+        Damage = value * _damageMultiplier;
     }
 
     public void Start()
@@ -43,7 +45,11 @@ public class Turret : MonoBehaviour
 
     public void Enable()
     {
-        ShootAbility.StartShooting(ref _shootingDisposable, () => { ShootAbility.Shoot(); });
+        ShootAbility.StartShooting(ref _shootingDisposable, () =>
+        {
+            ShootAbility.Shoot();
+            Shooted?.Invoke();
+        });
         TurretMove.StartMoving(ref _movingDisposable, () => { TurretMove.Move(); });
     }
 
@@ -53,7 +59,7 @@ public class Turret : MonoBehaviour
         DamageCharacterics.Instance.ValueChanged -= OnDamageValueChanged;
         StopAllCoroutines();
     }
-    
+
     public void ModifyShoot(TurretShootAbilityModificator modificator)
     {
         var type = modificator.GetType();

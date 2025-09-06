@@ -38,7 +38,6 @@ public class WeaponOverlapAttack : WeaponShoot
 
             if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor weaponVisitor))
             {
-                Debug.Log("visittttt");
                 weaponVisitor.Visit(this);
             }
         }

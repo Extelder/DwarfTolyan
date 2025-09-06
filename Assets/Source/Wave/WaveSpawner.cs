@@ -19,7 +19,7 @@ public class WaveSpawner : MonoBehaviour
 
     [SerializeField] private Spawnable[] _spawnable;
     [SerializeField] private float _defaultRate;
-    [SerializeField] private float _rateDecreasePerMinute;
+    [SerializeField] private float _rateDecreasePerWave;
     [SerializeField] private int _waveToStart;
 
     private float _currentRate;
@@ -41,6 +41,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if (value >= _waveToStart)
         {
+            _currentRate -= _rateDecreasePerWave;
             StartCoroutine(Spawning());
         }
     }

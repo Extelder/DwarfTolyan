@@ -710,6 +710,7 @@ GameObject:
   - component: {fileID: 4051518753099259197}
   - component: {fileID: 1889350357050430562}
   - component: {fileID: 8893293422504575350}
+  - component: {fileID: 4106588161447464819}
   m_Layer: 7
   m_Name: EnemyKamimaze
   m_TagString: Untagged
@@ -732,7 +733,7 @@ Transform:
   - {fileID: 6324007918947302694}
   - {fileID: 3954478137573234215}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &732778134194486754
 BoxCollider:
@@ -769,7 +770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: {fileID: 2382932513451208015}
   _damageCooldown: 0.1
-  _burnCooldown: 5
+  _burningTime: 5
 --- !u!114 &2382932513451208015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +783,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b766ceb51b953f64e8ee212f04d39cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxValue>k__BackingField: 100
+  <MaxValue>k__BackingField: 20
+  _coinsDropped: 5
 --- !u!114 &4051518753099259197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +809,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.38
-  m_Speed: 3.5
+  m_Speed: 3.6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -839,6 +841,19 @@ MonoBehaviour:
     <CheckPoint>k__BackingField: {fileID: 3954478137573234215}
   _checkRate: 0.1
   _colliderCount: 2
+--- !u!114 &4106588161447464819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723613399100438463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb1581be57d49d4fae9aa256c312639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 20
 --- !u!1 &2828821311590672515
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,7 +956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _parent: {fileID: 2723613399100438463}
-  _damage: 10
+  _damage: {fileID: 4106588161447464819}
   _playerCheck: {fileID: 8893293422504575350}
 --- !u!1 &3261262921659267561
 GameObject:

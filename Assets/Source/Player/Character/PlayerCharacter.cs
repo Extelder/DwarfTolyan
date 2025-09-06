@@ -20,6 +20,8 @@ public abstract class PlayerCharacteristicBase : MonoBehaviour
 
 public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T : MonoBehaviour
 {
+    public string Name;
+
     [field: SerializeField] public override float MinValue { get; set; }
     [field: SerializeField] public override float MaxValue { get; set; }
     [field: SerializeField] public override float CurrentValue { get; set; }

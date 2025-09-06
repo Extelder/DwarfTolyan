@@ -8,6 +8,12 @@ public class EnemyHealth : Health
 
     private bool _spawned;
 
+    public override void VirtualStart()
+    {
+        MaxValue *= WaveMultipliers.CurrentHPMultilier;
+        base.VirtualStart();
+    }
+
     public override void Death()
     {
         if (_spawned)

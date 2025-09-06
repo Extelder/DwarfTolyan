@@ -12,6 +12,8 @@ public enum ShootType
 
 public class ProjectileWeaponShoot : WeaponShoot
 {
+    [SerializeField] private AudioSource _shotGunSound;
+
     [SerializeField] private WeaponStateMachine _weaponStateMachine;
     [SerializeField] private DefaultWeaponShootState _defaultWeaponShootState;
 
@@ -93,6 +95,8 @@ public class ProjectileWeaponShoot : WeaponShoot
                 break;
 
             case ShootType.Shotgun:
+                _shotGunSound.Play();
+
                 for (int i = 0; i < _shotgunCharges; i++)
                 {
                     Vector3 random = Random.insideUnitSphere * _shotgunRandomMultipier;

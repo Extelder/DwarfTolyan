@@ -6,13 +6,15 @@ using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [field:SerializeField] public float Damage { get; private set; }
+    [field: SerializeField] public EnemyDamage Damage { get; private set; }
 
-    
+
     [SerializeField] private Animator _animator;
     [SerializeField] private string _attackAnimationBoolName;
 
     [SerializeField] private EnemyPlayerCheck _playerCheck;
+
+    private PlayerHitBox _hitBox;
 
     private void OnEnable()
     {
@@ -28,12 +30,12 @@ public class EnemyAttack : MonoBehaviour
     private void OnPlayerDetected(PlayerHitBox playerHitBox)
     {
         _animator.SetBool(_attackAnimationBoolName, true);
-        PerformAttack(playerHitBox);
+        _hitBox = playerHitBox;
     }
 
-    private void PerformAttack(PlayerHitBox playerHitBox)
+    private void PerformAttack()
     {
-        playerHitBox.TakeDamage(Damage);
+        _hitBox.TakeDamage(Damage.GetDamage());
     }
 
     private void OnDisable()

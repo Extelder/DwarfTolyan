@@ -1,0 +1,27 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class BuyableBuffBase : MonoBehaviour
+{
+    public abstract Item CurrentItem { get; protected set; }
+
+    public event Action Bootstrapped;
+    public event Action Bought;
+
+    public void SetItem(Item item)
+    {
+        CurrentItem = item;
+        Bootstrapped?.Invoke();
+    }
+
+    public void Buy()
+    {
+        OnBought();
+        Bought?.Invoke();
+        Destroy(gameObject);
+    }
+
+    public abstract void OnBought();
+}

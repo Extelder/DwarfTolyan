@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyKamikzaeAttack : MonoBehaviour
 {
     [SerializeField] private GameObject _parent;
-    [SerializeField] private float _damage;
+    [SerializeField] private EnemyDamage _damage;
     [SerializeField] private EnemyPlayerCheck _playerCheck;
 
     private void OnEnable()
@@ -16,7 +16,7 @@ public class EnemyKamikzaeAttack : MonoBehaviour
 
     private void OnPlayerDetected(PlayerHitBox hitBox)
     {
-        hitBox.TakeDamage(_damage);
+        hitBox.TakeDamage(_damage.GetDamage());
         Pools.Instance.ExplodeKamikzaePool.GetFreeElement(transform.position, Quaternion.identity);
         Destroy(_parent);
     }

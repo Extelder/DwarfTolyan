@@ -5,8 +5,8 @@ using UnityEngine;
 
 public abstract class Health : MonoBehaviour
 {
-    [field: SerializeField] public float MaxValue { get; private set; }
-    protected float CurrentValue { get; private set; }
+    [field: SerializeField] public float MaxValue { get; set; }
+    protected float CurrentValue { get; set; }
 
     public event Action<float> HealthValueChanged;
     public event Action<float> OnHealedToMax;
@@ -15,6 +15,11 @@ public abstract class Health : MonoBehaviour
     public event Action Dead;
 
     private void Start()
+    {
+        VirtualStart();
+    }
+
+    public virtual void VirtualStart()
     {
         CurrentValue = MaxValue;
     }

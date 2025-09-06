@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class WeaponMix : MonoBehaviour
 {
+    [SerializeField] private AudioSource _mixSound;
+    
     [SerializeField] private ProjectileWeaponShoot _weaponShoot;
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _hammerAnimator;
@@ -77,6 +79,7 @@ public class WeaponMix : MonoBehaviour
 
     public void PerformMix()
     {
+        _mixSound.Play();
         _weaponShoot.ChangeShootType();
     }
 

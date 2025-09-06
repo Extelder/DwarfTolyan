@@ -25,7 +25,7 @@ public class EnemyProjectile : PoolObject
 
         if (other.gameObject.TryGetComponent<PlayerHitBox>(out PlayerHitBox PlayerHitBox))
         {
-            PlayerHitBox.TakeDamage(_damage);
+            PlayerHitBox.TakeDamage(_damage * WaveMultipliers.CurrentDamageMultilier);
         }
 
         gameObject.SetActive(false);

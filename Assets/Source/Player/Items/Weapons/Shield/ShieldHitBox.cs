@@ -8,7 +8,6 @@ public class ShieldHitBox : PlayerHitBox
 
     public override void TakeDamage(float damage)
     {
-         Debug.Log("player shield Damage " + damage);
         damage /= _damageResist;
         base.TakeDamage(damage);
     }

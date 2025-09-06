@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EnemyTriggerAttack : MonoBehaviour
 {
-    [field:SerializeField] public float Damage { get; private set; }
+    [field:SerializeField] public EnemyDamage Damage { get; private set; }
 }

@@ -51,7 +51,6 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(weaponOverlapAttack.Damage);
-        Debug.LogError(weaponOverlapAttack.Damage + " melee");
         SpawningDecal(transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
@@ -95,7 +94,6 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
     {
         Observable.Interval(TimeSpan.FromSeconds(_damageCooldown)).Subscribe(_ =>
         {
-            Debug.LogError(damage + " burn");
             _health.TakeDamage(damage);
         }).AddTo(_disposable);
         yield return new WaitForSeconds(_burningTime);

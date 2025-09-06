@@ -10,6 +10,9 @@ public class TurretHitBox : PlayerHitBox
 
     private bool _repaired = true;
 
+    [SerializeField] private AudioSource _broke;
+    [SerializeField] private AudioSource _repair;
+
 
     public void Repare(float value)
     {
@@ -21,6 +24,7 @@ public class TurretHitBox : PlayerHitBox
         {
             _repaired = true;
             _turret.Enable();
+            _repair.Play();
             _repairValue = 0;
         }
     }
@@ -28,7 +32,10 @@ public class TurretHitBox : PlayerHitBox
     public override void TakeDamage(float damage)
     {
         base.TakeDamage(damage);
-        Debug.LogError("TURRET");
+        if (!_repaired)
+            return;
+
+        _broke.Play();
         _repaired = false;
         _turret.Disable();
     }

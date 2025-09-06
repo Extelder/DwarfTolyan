@@ -43,7 +43,6 @@ public class EnemyRandomMoveToObstacle : EnemyMove
 
     private void NavMeshMove(Vector3 targetPos)
     {
-        Debug.Log("move");
         _agent.SetDestination(targetPos);
         DestinatedCheck();
     }
@@ -54,7 +53,6 @@ public class EnemyRandomMoveToObstacle : EnemyMove
         {
             if (_agent.remainingDistance <= _minRemainingDistance)
             {
-                Debug.Log("destinated");
                 ChooseRandomObstacle();
             }
         }).AddTo(_moveDisposable);

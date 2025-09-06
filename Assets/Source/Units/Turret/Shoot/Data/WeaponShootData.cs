@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class WeaponShootData : MonoBehaviour, IWeaponShootData
 {
-    [SerializeField] private int _damage;
     [SerializeField] private float _rate;
 
     public WeaponShootData(IWeaponShootData weaponShootData)
     {
-        _damage = weaponShootData.GetDamage();
-    }
-    
-    public int GetDamage()
-    {
-        return _damage;
+        _rate = weaponShootData.GetRate();
     }
 
     public float GetRate()
