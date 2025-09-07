@@ -733,7 +733,7 @@ Transform:
   - {fileID: 6324007918947302694}
   - {fileID: 3954478137573234215}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!65 &732778134194486754
 BoxCollider:
@@ -955,9 +955,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca60c1683b20b2146ad4f1bdef0c15ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Damage>k__BackingField: {fileID: 4106588161447464819}
+  <PlayerCheck>k__BackingField: {fileID: 8893293422504575350}
   _parent: {fileID: 2723613399100438463}
-  _damage: {fileID: 4106588161447464819}
-  _playerCheck: {fileID: 8893293422504575350}
 --- !u!1 &3261262921659267561
 GameObject:
   m_ObjectHideFlags: 0

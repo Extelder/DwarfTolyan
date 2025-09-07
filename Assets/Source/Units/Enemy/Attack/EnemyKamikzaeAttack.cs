@@ -3,26 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyKamikzaeAttack : MonoBehaviour
+public class EnemyKamikzaeAttack : EnemyMeleeAttack
 {
     [SerializeField] private GameObject _parent;
-    [SerializeField] private EnemyDamage _damage;
-    [SerializeField] private EnemyPlayerCheck _playerCheck;
 
-    private void OnEnable()
+    public override void OnPlayerDetected(PlayerHitBox hitBox)
     {
-        _playerCheck.PlayerDetected += OnPlayerDetected;
-    }
-
-    private void OnPlayerDetected(PlayerHitBox hitBox)
-    {
-        hitBox.TakeDamage(_damage.GetDamage());
+        base.OnPlayerDetected(hitBox);
+        PerformAttack();
         Pools.Instance.ExplodeKamikzaePool.GetFreeElement(transform.position, Quaternion.identity);
         Destroy(_parent);
     }
 
-    private void OnDisable()
+    public override void PerformAttack()
     {
-        _playerCheck.PlayerDetected -= OnPlayerDetected;
+        base.PerformAttack();
+        Debug.Log("damageKamikadze");
+    }
+
+    public override void OnPlayerLost()
+    {
     }
 }

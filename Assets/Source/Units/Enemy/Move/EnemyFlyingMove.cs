@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class EnemyFlyingMove : EnemyMove
 {
+    [field:SerializeField] public float Speed { get; set; }
+
     [SerializeField] private float _stopDistance;
-
-    [SerializeField] private float _speed;
-
+    
     [SerializeField] private Rigidbody _rigidbody;
 
     private void Update()
@@ -18,7 +18,7 @@ public class EnemyFlyingMove : EnemyMove
         transform.position = _newPosition;
 
         if (Vector3.Distance(transform.position, Character.PlayerTransform.position) > _stopDistance)
-            _rigidbody.velocity = transform.forward.normalized * _speed;
+            _rigidbody.velocity = transform.forward.normalized * Speed;
         else
             _rigidbody.velocity = new Vector3(0, 0 , 0);
     }
