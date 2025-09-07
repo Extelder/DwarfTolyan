@@ -4,16 +4,29 @@ using UnityEngine;
 
 public class MachineGunShoot : TurretShootAbility
 {
+    [SerializeField] private bool _instance;
+
     [SerializeField] protected Transform _shootOrigin;
     [SerializeField] protected float _range;
     [SerializeField] protected Turret _turret;
+
+    public static MachineGunShoot Instance { get; private set; }
+
+    public MachineGunShoot()
+    {
+        if (_instance)
+        {
+            Instance = this;
+            return;
+        }
+    }
 
     public override void Shoot()
     {
         Vector3 direction = _shootOrigin.position + _shootOrigin.forward * _range;
         Projectile projectile = Pools.Instance.TurretMachineGunProjectilePool.GetFreeElement
-                (_shootOrigin.position, Quaternion.FromToRotation(_shootOrigin.position, direction)).
-            GetComponent<Projectile>();
+                (_shootOrigin.position, Quaternion.FromToRotation(_shootOrigin.position, direction))
+            .GetComponent<Projectile>();
         projectile.Initiate(direction, _turret.Damage);
     }
 }

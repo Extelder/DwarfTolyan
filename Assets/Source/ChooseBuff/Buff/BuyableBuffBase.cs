@@ -22,7 +22,7 @@ public abstract class BuyableBuffBase : MonoBehaviour
     public void LockUnlock(TextMeshProUGUI text)
     {
         Locked = !Locked;
-
+        text.text = Locked ? "Locked" : "Lock";
     }
 
     public void Buy()
