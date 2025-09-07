@@ -10,6 +10,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
     
     [SerializeField] private float _damageCooldown = .1f;
     [SerializeField] private float _burningTime = 5;
+    [SerializeField] private float _stunDuration;
     
     public event Action Hit;
 
@@ -56,6 +57,18 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         UnitHitted?.Invoke();
     }
 
+    public void Visit(ShieldAttack shieldAttack)
+    {
+        if (!_health)
+            return;
+        if (_health.IsDead())
+            return;
+        TakeDamage(shieldAttack.Damage);
+        SpawningDecal(transform.position);
+        Hit?.Invoke();
+        UnitHitted?.Invoke();
+    }
+
     public void Visit(LaserGunShoot laserGunShoot, float damage)
     {
         if (!_health)
@@ -80,17 +93,17 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         UnitHitted?.Invoke();
     }
     
-    public virtual void SpawningDecal(Vector3 spawnPoint)
+    private void SpawningDecal(Vector3 spawnPoint)
     {
         Pools.Instance.BloodExplodeDecalPool.GetFreeElement(spawnPoint, Quaternion.identity);
     }
     
-    public virtual void TakeDamage(float damage)
+    private void TakeDamage(float damage)
     {
         _health.TakeDamage(damage);
     }
     
-    public virtual IEnumerator TakeDamageWithCooldown(float damage)
+    private IEnumerator TakeDamageWithCooldown(float damage)
     {
         Observable.Interval(TimeSpan.FromSeconds(_damageCooldown)).Subscribe(_ =>
         {
@@ -99,5 +112,10 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         yield return new WaitForSeconds(_burningTime);
         StopAllCoroutines();
         _disposable.Clear();
+    }
+
+    public virtual IEnumerator Stunning()
+    {
+        yield return new WaitForSeconds(_stunDuration);
     }
 }
