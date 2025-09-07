@@ -6,9 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
-    [SerializeField] private float _jetpackVelocity;
     [SerializeField] private GroundChecker _groundChecker;
-    [SerializeField] private float _jumpMaxTime;
 
     private Rigidbody _rigidbody;
     private PlayerBinds _binds;
@@ -21,20 +19,11 @@ public class PlayerJump : MonoBehaviour
         _rigidbody = PlayerCharacter.Instance.Rigidbody;
 
         _binds.Character.Jump.started += JumpKeyDowned;
-        _binds.Character.Jump.canceled += JumpKeyUpped;
     }
 
     private void OnDisable()
     {
-        StopAllCoroutines();
         _binds.Character.Jump.started -= JumpKeyDowned;
-        _binds.Character.Jump.canceled -= JumpKeyUpped;
-    }
-
-    private void JumpKeyUpped(InputAction.CallbackContext obj)
-    {
-        StopAllCoroutines();
-        _jumping = false;
     }
 
     private void JumpKeyDowned(InputAction.CallbackContext obj)
@@ -45,30 +34,9 @@ public class PlayerJump : MonoBehaviour
 
     private void Jump()
     {
-        _jumping = true;
-
-        StopAllCoroutines();
         float jumpForce = JumpCharacteristic.Instance.CurrentValue;
 
-        _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-
-        StartCoroutine(Jumping());
-        StartCoroutine(CancelingJump());
-    }
-
-    private IEnumerator Jumping()
-    {
-        while (_jumping)
-        {
-            yield return new WaitForSeconds(0.02f);
-            _rigidbody.AddForce(transform.up * _jetpackVelocity, ForceMode.VelocityChange);
-        }
-    }
-
-    private IEnumerator CancelingJump()
-    {
-        yield return new WaitForSeconds(_jumpMaxTime);
-        _jumping = false;
-        StopAllCoroutines();
+        if (_groundChecker.Detected)
+            _rigidbody.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 }

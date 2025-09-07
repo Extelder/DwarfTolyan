@@ -7,11 +7,6 @@ public class WeaponAnimator : UnitAnimator
 {
     [SerializeField] private string _shootAnimationTriggerName;
 
-    private void OnEnable()
-    {
-        AttackSpeedCharacteristic.Instance.ValueChanged += OnValueChanged;
-    }
-
     private void OnValueChanged(float value)
     {
         Animator.speed = value;
@@ -24,6 +19,7 @@ public class WeaponAnimator : UnitAnimator
 
     private void Start()
     {
+        AttackSpeedCharacteristic.Instance.ValueChanged += OnValueChanged;
         Idle();
     }
 

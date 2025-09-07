@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public abstract class BuyableBuffBase : MonoBehaviour
@@ -10,10 +11,18 @@ public abstract class BuyableBuffBase : MonoBehaviour
     public event Action Bootstrapped;
     public event Action Bought;
 
+    public bool Locked { get; private set; }
+
     public void SetItem(Item item)
     {
         CurrentItem = item;
         Bootstrapped?.Invoke();
+    }
+
+    public void LockUnlock(TextMeshProUGUI text)
+    {
+        Locked = !Locked;
+
     }
 
     public void Buy()
