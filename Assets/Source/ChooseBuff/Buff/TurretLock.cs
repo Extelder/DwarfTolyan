@@ -23,6 +23,13 @@ public class TurretLock : MonoBehaviour
     {
         if (_buff.CurrentItem is TurretBuyItem)
         {
+        }
+    }
+
+    private void Start()
+    {
+        if (_buff.CurrentItem is TurretBuyItem)
+        {
             CheckForOverflow(TurretItemSpawner.Instance.CurrentCount);
             TurretItemSpawner.Instance.CountChanged += OnCountChanged;
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MachineGunShoot : TurretShootAbility
 {
-    [SerializeField] private bool _instance;
+    [SerializeField] public bool _instance;
 
     [SerializeField] protected Transform _shootOrigin;
     [SerializeField] protected float _range;
@@ -12,17 +12,28 @@ public class MachineGunShoot : TurretShootAbility
 
     public static MachineGunShoot Instance { get; private set; }
 
-    public MachineGunShoot()
+    public void SetInstance()
     {
-        if (_instance)
-        {
-            Instance = this;
-            return;
-        }
+        _instance = true;
+        Instance = this;
+    }
+
+    public virtual void Bootstrap(Transform shootOrigin, float range, Turret turret)
+    {
+        _shootOrigin = shootOrigin;
+        _range = range;
+        _turret = turret;
     }
 
     public override void Shoot()
     {
+        if (_instance == false)
+        {
+            Instance.Bootstrap(_shootOrigin, _range, _turret);
+            Instance.Shoot();
+            return;
+        }
+
         Vector3 direction = _shootOrigin.position + _shootOrigin.forward * _range;
         Projectile projectile = Pools.Instance.TurretMachineGunProjectilePool.GetFreeElement
                 (_shootOrigin.position, Quaternion.FromToRotation(_shootOrigin.position, direction))

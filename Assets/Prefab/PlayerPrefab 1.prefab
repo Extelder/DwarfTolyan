@@ -80743,13 +80743,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8460178519191514192}
   - {fileID: 4807503775253991684}
   - {fileID: 7020996485535501044}
   - {fileID: 2134683649261124258}
   - {fileID: 4708962661911201606}
   - {fileID: 2589646908691762683}
   - {fileID: 262194430607006000}
-  - {fileID: 8460178519191514192}
   m_Father: {fileID: 1341714774296986730}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
