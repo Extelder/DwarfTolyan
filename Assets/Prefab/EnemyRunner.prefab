@@ -829,6 +829,7 @@ GameObject:
   - component: {fileID: 7120755614950962628}
   - component: {fileID: 2483930603089224277}
   - component: {fileID: 3726035239598708597}
+  - component: {fileID: 5237271001446384123}
   - component: {fileID: 4607148004715323805}
   - component: {fileID: 7838285614336875146}
   - component: {fileID: 5987474992082833882}
@@ -895,6 +896,7 @@ MonoBehaviour:
   _startState: {fileID: 3726035239598708597}
   _move: {fileID: 3726035239598708597}
   <StunState>k__BackingField: {fileID: 2483930603089224277}
+  <UnStunState>k__BackingField: {fileID: 5237271001446384123}
 --- !u!114 &2483930603089224277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -930,6 +932,20 @@ MonoBehaviour:
       m_Bits: 256
     <RayOrigin>k__BackingField: {fileID: 5219069902325768216}
   _agent: {fileID: 5987474992082833882}
+--- !u!114 &5237271001446384123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988660228223586789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e3443c9d118b64e93dfdefb6b77573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _stunState: {fileID: 2483930603089224277}
 --- !u!114 &4607148004715323805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -942,7 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stunnable: {fileID: 2483930603089224277}
+  _stunnable: {fileID: 7120755614950962628}
   _health: {fileID: 7838285614336875146}
   _damageCooldown: 0.1
   _burningTime: 5

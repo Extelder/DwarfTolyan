@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7276972509973798896}
   - component: {fileID: 4447820857476413289}
-  - component: {fileID: 7228893142914899261}
+  - component: {fileID: 4898743783865364303}
+  - component: {fileID: 5852105886587490905}
+  - component: {fileID: 7987919593615189168}
   - component: {fileID: 1876342443481334310}
   - component: {fileID: 581328466693582500}
   - component: {fileID: 4126871502223468415}
@@ -62,7 +64,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.6697783, z: 0.5}
   m_Center: {x: 0, y: 0.8519356, z: 0}
---- !u!114 &7228893142914899261
+--- !u!114 &4898743783865364303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,13 +73,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 468411716437244839}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77399853120bf842bee4c17a8f4900a, type: 3}
+  m_Script: {fileID: 11500000, guid: d55a8b090e8fdfd4781ec2fb104e773c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _notStartOnEnable: 0
   _startState: {fileID: 1876342443481334310}
   _move: {fileID: 1876342443481334310}
   _attack: {fileID: 8323920057287634023}
+  <StunState>k__BackingField: {fileID: 5852105886587490905}
+  <UnStunState>k__BackingField: {fileID: 7987919593615189168}
+--- !u!114 &5852105886587490905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468411716437244839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78923e687b5b7c34dbf9bf38c3738c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _agent: {fileID: 4126871502223468415}
+--- !u!114 &7987919593615189168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468411716437244839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e3443c9d118b64e93dfdefb6b77573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _stunState: {fileID: 5852105886587490905}
 --- !u!114 &1876342443481334310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2470606687174a9c555766b580b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachine: {fileID: 7228893142914899261}
+  _stateMachine: {fileID: 4898743783865364303}
   _overlappSettings:
     <CheckLayerMask>k__BackingField:
       serializedVersion: 2
@@ -175,9 +207,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stunnable: {fileID: 4898743783865364303}
   _health: {fileID: 581328466693582500}
   _damageCooldown: 0.1
   _burningTime: 5
+  _stunCooldown: 2
 --- !u!1 &3604964795300513107
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +345,6 @@ MonoBehaviour:
   CanChanged: 1
   <Damage>k__BackingField: {fileID: 7356594496345412925}
   <PlayerCheck>k__BackingField: {fileID: 1732780990213537826}
-  _stateMachine: {fileID: 7228893142914899261}
+  _stateMachine: {fileID: 4898743783865364303}
   _animator: {fileID: 2824110558889879258}
   _attackAnimationBoolName: IsAttacking

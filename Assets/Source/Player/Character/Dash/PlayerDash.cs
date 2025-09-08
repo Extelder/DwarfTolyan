@@ -35,11 +35,7 @@ public class PlayerDash : Dashing
             _binds.Character.Vertical.ReadValue<float>());
 
         Vector3 direction = orientation.TransformDirection(inputDirection);
-
-        if (inputDirection == Vector3.zero)
-        {
-           
-        }
+        
         inputDirection = orientation.forward;
         direction = inputDirection;
 

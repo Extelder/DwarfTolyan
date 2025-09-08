@@ -7,27 +7,27 @@ public class WeaponOverlapAttack : WeaponShoot
 {
     public float Damage { get; set; }
 
-    [SerializeField] private OverlapSettings _overlapSettings;
+    [field :SerializeField] public OverlapSettings OverlapSettings { get; private set; }
 
     private void OnEnable()
     {
         WeaponShootState.ShootPerformed += OnShootPerformed;
     }
 
-    private void Overlap()
+    protected void Overlap()
     {
-        _overlapSettings.Colliders = new Collider[10];
-        _overlapSettings.Size = Physics.OverlapSphereNonAlloc(
-            _overlapSettings.OverlapPoint.position + _overlapSettings.PositionOffset,
-            _overlapSettings.SphereRadius, _overlapSettings.Colliders,
-            _overlapSettings.SearchLayer);
+        OverlapSettings.Colliders = new Collider[10];
+        OverlapSettings.Size = Physics.OverlapSphereNonAlloc(
+            OverlapSettings.OverlapPoint.position + OverlapSettings.PositionOffset,
+            OverlapSettings.SphereRadius, OverlapSettings.Colliders,
+            OverlapSettings.SearchLayer);
     }
 
     public virtual void OnShootPerformed()
     {
         Damage = DamageCharacterics.Instance.CurrentValue;
         Overlap();
-        foreach (var other in _overlapSettings.Colliders)
+        foreach (var other in OverlapSettings.Colliders)
         {
             if (other == null)
                 continue;
@@ -45,7 +45,7 @@ public class WeaponOverlapAttack : WeaponShoot
     
     public void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(_overlapSettings.OverlapPoint.position, _overlapSettings.SphereRadius);
+        Gizmos.DrawWireSphere(OverlapSettings.OverlapPoint.position, OverlapSettings.SphereRadius);
     }
 
     private void OnDisable()

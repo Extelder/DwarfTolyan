@@ -5,9 +5,16 @@ using UnityEngine;
 public class EnemyStunnableAttackStateMachine : EnemyAttackStateMachine, IStunnableStateMachine
 {
     [field: SerializeField] public State StunState { get; set; }
+    [field: SerializeField] public State UnStunState { get; set; }
 
     public void Stun()
     {
         ChangeState(StunState);
+    }
+
+    public void UnStun()
+    {
+        StunState.CanChanged = true;
+        ChangeState(UnStunState);
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public abstract class Dashing : MonoBehaviour
 {
+    public ReactiveProperty<bool> IsDashing = new ReactiveProperty<bool>();
+    
     [SerializeField] protected float dashSpeed;
     [SerializeField] protected float dashUpwardForce;
     [SerializeField] protected Transform orientation;
@@ -54,9 +56,11 @@ public abstract class Dashing : MonoBehaviour
             time += Time.deltaTime * boostFactor;
 
             Debug.LogError("DASHING");
+            IsDashing.Value = true;
             yield return null;
         }
 
+        IsDashing.Value = false;
         Debug.LogError("STOPDASHING");
 
         dashSpeed = startValue;

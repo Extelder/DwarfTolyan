@@ -8,7 +8,6 @@ public class EnemyProjectileShootAttackState : State
     [SerializeField] private float _burstRate;
     [SerializeField] private int _burst;
     [SerializeField] private Transform _spawnPlace;
-    [SerializeField] private EnemyStunnableStateMachine _enemyStunnableStateMachine;
     
     public override void Enter()
     {
