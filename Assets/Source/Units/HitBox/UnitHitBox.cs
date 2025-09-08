@@ -3,20 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using Object = System.Object;
 
 public class UnitHitBox : MonoBehaviour, IWeaponVisitor
 {
+    [SerializeField] private MonoBehaviour _stunnable;
     [SerializeField] private Health _health;
     
     [SerializeField] private float _damageCooldown = .1f;
     [SerializeField] private float _burningTime = 5;
-    [SerializeField] private float _stunDuration;
+    [SerializeField] private float _stunCooldown = 2;
+
+    public IStunnableStateMachine StunnableStateMachine { get; private set; }
     
     public event Action Hit;
 
     public static event Action UnitHitted;
     
     private CompositeDisposable _disposable = new CompositeDisposable();
+
+    private void Awake()
+    {
+        StunnableStateMachine = (IStunnableStateMachine)_stunnable;
+    }
+
     public void Visit(WeaponShoot weaponShoot)
     {
     }
@@ -114,8 +124,8 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         _disposable.Clear();
     }
 
-    public virtual IEnumerator Stunning()
+    public virtual IEnumerator Stun()
     {
-        yield return new WaitForSeconds(_stunDuration);
+        yield return new WaitForSeconds(_stunCooldown);
     }
 }

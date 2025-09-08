@@ -705,9 +705,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3289752262521420816}
   - component: {fileID: 732778134194486754}
+  - component: {fileID: 4146601933310145308}
+  - component: {fileID: 7775067759187398923}
   - component: {fileID: 2272894414266486623}
   - component: {fileID: 2382932513451208015}
-  - component: {fileID: 4051518753099259197}
   - component: {fileID: 1889350357050430562}
   - component: {fileID: 8893293422504575350}
   - component: {fileID: 4106588161447464819}
@@ -756,6 +757,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.6697783, z: 0.5}
   m_Center: {x: 0, y: 0.8519356, z: 0}
+--- !u!114 &4146601933310145308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723613399100438463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77399853120bf842bee4c17a8f4900a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notStartOnEnable: 0
+  _startState: {fileID: 7775067759187398923}
+  _move: {fileID: 7775067759187398923}
+  _attack: {fileID: 7647261181370876783}
+--- !u!114 &7775067759187398923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723613399100438463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883cc8979775858488944821ef12c08b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _updatePositionRate: 0.1
+  _agent: {fileID: 1889350357050430562}
 --- !u!114 &2272894414266486623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,20 +817,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 20
   _coinsDropped: 5
---- !u!114 &4051518753099259197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2723613399100438463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 310f460950a848942ade36893e911f6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _updatePositionRate: 0.1
-  _agent: {fileID: 1889350357050430562}
 --- !u!195 &1889350357050430562
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -833,6 +851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2470606687174a9c555766b580b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateMachine: {fileID: 4146601933310145308}
   _overlappSettings:
     <CheckLayerMask>k__BackingField:
       serializedVersion: 2
@@ -896,7 +915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6324007918947302694}
   - component: {fileID: 3265329749667473743}
-  - component: {fileID: 5330354169727800691}
+  - component: {fileID: 7647261181370876783}
   m_Layer: 0
   m_Name: EnemyTestMove
   m_TagString: Untagged
@@ -943,7 +962,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5330354169727800691
+--- !u!114 &7647261181370876783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -952,9 +971,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3152920199936142425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca60c1683b20b2146ad4f1bdef0c15ce, type: 3}
+  m_Script: {fileID: 11500000, guid: a1055bab8cd766a4e92749b4bc7fc94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanChanged: 1
   <Damage>k__BackingField: {fileID: 4106588161447464819}
   <PlayerCheck>k__BackingField: {fileID: 8893293422504575350}
   _parent: {fileID: 2723613399100438463}

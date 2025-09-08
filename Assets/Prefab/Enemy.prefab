@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7276972509973798896}
   - component: {fileID: 4447820857476413289}
+  - component: {fileID: 7228893142914899261}
+  - component: {fileID: 1876342443481334310}
   - component: {fileID: 581328466693582500}
-  - component: {fileID: 5508567168551245611}
   - component: {fileID: 4126871502223468415}
   - component: {fileID: 1732780990213537826}
   - component: {fileID: 7356594496345412925}
@@ -61,6 +62,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.6697783, z: 0.5}
   m_Center: {x: 0, y: 0.8519356, z: 0}
+--- !u!114 &7228893142914899261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468411716437244839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f77399853120bf842bee4c17a8f4900a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notStartOnEnable: 0
+  _startState: {fileID: 1876342443481334310}
+  _move: {fileID: 1876342443481334310}
+  _attack: {fileID: 8323920057287634023}
+--- !u!114 &1876342443481334310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468411716437244839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecf745ca04087554583ddd04bded8edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _updatePositionRate: 0.2
+  _agent: {fileID: 4126871502223468415}
 --- !u!114 &581328466693582500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,20 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 40
   _coinsDropped: 4
---- !u!114 &5508567168551245611
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468411716437244839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbc331a1c3b36eb4191dad5748c51a26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _updatePositionRate: 0.2
-  _agent: {fileID: 4126871502223468415}
 --- !u!195 &4126871502223468415
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -123,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2470606687174a9c555766b580b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stateMachine: {fileID: 7228893142914899261}
   _overlappSettings:
     <CheckLayerMask>k__BackingField:
       serializedVersion: 2
@@ -159,7 +178,6 @@ MonoBehaviour:
   _health: {fileID: 581328466693582500}
   _damageCooldown: 0.1
   _burningTime: 5
-  _stunDuration: 2
 --- !u!1 &3604964795300513107
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +279,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b838152199570c343ac4ac81555c8352, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3063743198317317582}
+      addedObject: {fileID: 8323920057287634023}
   m_SourcePrefab: {fileID: 100100000, guid: b838152199570c343ac4ac81555c8352, type: 3}
 --- !u!95 &2824110558889879258 stripped
 Animator:
@@ -278,7 +296,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b838152199570c343ac4ac81555c8352, type: 3}
   m_PrefabInstance: {fileID: 8528643685713124171}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3063743198317317582
+--- !u!114 &8323920057287634023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,10 +305,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8834582454087067162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c8bd4b0bfda4a47b7276e5faf11334, type: 3}
+  m_Script: {fileID: 11500000, guid: d60f77d81305a8e4c9ccb4f4cc5e9d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanChanged: 1
   <Damage>k__BackingField: {fileID: 7356594496345412925}
   <PlayerCheck>k__BackingField: {fileID: 1732780990213537826}
+  _stateMachine: {fileID: 7228893142914899261}
   _animator: {fileID: 2824110558889879258}
   _attackAnimationBoolName: IsAttacking

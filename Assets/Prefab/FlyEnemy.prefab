@@ -152,8 +152,6 @@ GameObject:
   - component: {fileID: 4349982431315903307}
   - component: {fileID: 1570735881702374300}
   - component: {fileID: 559212801731760444}
-  - component: {fileID: 6266057964517018634}
-  - component: {fileID: 2533545142460549907}
   m_Layer: 7
   m_Name: FlyEnemy
   m_TagString: Untagged
@@ -176,7 +174,7 @@ Transform:
   - {fileID: 7031272424548963985}
   - {fileID: 5755516793577915149}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &607063150083072138
 MeshFilter:
@@ -318,34 +316,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
---- !u!114 &6266057964517018634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4150187635358145921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9bff3f5d4da619408dae0148467f898, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rate: 1
-  _burstRate: 0.2
-  _burst: 3
-  _spawnPlace: {fileID: 5755516793577915149}
---- !u!114 &2533545142460549907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4150187635358145921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19bf93ebe653edb498e384e0d234e8dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stopDistance: 8
-  _speed: 5
-  _rigidbody: {fileID: 1471773073528594743}
