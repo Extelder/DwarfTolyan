@@ -779,6 +779,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6329358f5e3d94428a7320d2db2e585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDashing:
+    value: 0
   dashSpeed: 10
   dashUpwardForce: 0
   orientation: {fileID: 9048044202930074070}
@@ -6569,7 +6571,7 @@ MonoBehaviour:
   <WeaponShootState>k__BackingField: {fileID: 7999536289419291393}
   <Weapon>k__BackingField: {fileID: 0}
   CurrentShootOffset: {x: 0, y: 0, z: 0}
-  _overlapSettings: {fileID: 3194671846892268840}
+  <OverlapSettings>k__BackingField: {fileID: 4022779808206278542}
 --- !u!114 &3194671846892268840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24274,7 +24276,7 @@ MonoBehaviour:
   <WeaponShootState>k__BackingField: {fileID: 389174298675212470}
   <Weapon>k__BackingField: {fileID: 0}
   CurrentShootOffset: {x: 0, y: 0, z: 0}
-  _overlapSettings: {fileID: 4022779808206278542}
+  <OverlapSettings>k__BackingField: {fileID: 4022779808206278542}
   _playerDash: {fileID: 1982171242692686338}
 --- !u!95 &1435207345536743091
 Animator:

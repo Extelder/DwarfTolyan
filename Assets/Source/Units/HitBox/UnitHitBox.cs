@@ -74,6 +74,8 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(shieldAttack.Damage);
+        Debug.Log("Shield");
+        StartCoroutine(Stun());
         SpawningDecal(transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
@@ -126,6 +128,9 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
 
     public virtual IEnumerator Stun()
     {
+        StunnableStateMachine.Stun();
         yield return new WaitForSeconds(_stunCooldown);
+        Debug.Log("Try exit");
+        StunnableStateMachine.UnStun();
     }
 }

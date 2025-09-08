@@ -705,7 +705,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3289752262521420816}
   - component: {fileID: 732778134194486754}
-  - component: {fileID: 4146601933310145308}
+  - component: {fileID: 3910054003169394088}
+  - component: {fileID: 2323603514542791737}
+  - component: {fileID: 2874531575325264001}
   - component: {fileID: 7775067759187398923}
   - component: {fileID: 2272894414266486623}
   - component: {fileID: 2382932513451208015}
@@ -757,7 +759,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.6697783, z: 0.5}
   m_Center: {x: 0, y: 0.8519356, z: 0}
---- !u!114 &4146601933310145308
+--- !u!114 &3910054003169394088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -766,13 +768,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 2723613399100438463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f77399853120bf842bee4c17a8f4900a, type: 3}
+  m_Script: {fileID: 11500000, guid: d55a8b090e8fdfd4781ec2fb104e773c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _notStartOnEnable: 0
   _startState: {fileID: 7775067759187398923}
   _move: {fileID: 7775067759187398923}
   _attack: {fileID: 7647261181370876783}
+  <StunState>k__BackingField: {fileID: 2874531575325264001}
+  <UnStunState>k__BackingField: {fileID: 2323603514542791737}
+--- !u!114 &2323603514542791737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723613399100438463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79e3443c9d118b64e93dfdefb6b77573, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _stunState: {fileID: 2874531575325264001}
+--- !u!114 &2874531575325264001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723613399100438463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78923e687b5b7c34dbf9bf38c3738c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanChanged: 1
+  _agent: {fileID: 1889350357050430562}
 --- !u!114 &7775067759187398923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,9 +832,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stunnable: {fileID: 2874531575325264001}
   _health: {fileID: 2382932513451208015}
   _damageCooldown: 0.1
   _burningTime: 5
+  _stunCooldown: 2
 --- !u!114 &2382932513451208015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,7 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2470606687174a9c555766b580b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachine: {fileID: 4146601933310145308}
+  _stateMachine: {fileID: 3910054003169394088}
   _overlappSettings:
     <CheckLayerMask>k__BackingField:
       serializedVersion: 2

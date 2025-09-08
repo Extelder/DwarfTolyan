@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,13 +10,15 @@ public class EnemyStunState : State
     
     public override void Enter()
     {
+        Debug.Log("Stunned");
         CanChanged = false;
         _agent.isStopped = true;
     }
 
-    public override void Exit()
+    public void UnStun()
     {
-        base.Exit();
+        CanChanged = true;
         _agent.isStopped = false;
+        Debug.Log("exit");
     }
 }

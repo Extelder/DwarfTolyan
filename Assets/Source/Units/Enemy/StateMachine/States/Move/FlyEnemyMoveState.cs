@@ -32,6 +32,11 @@ public class FlyEnemyMoveState : EnemyMoveState
         }).AddTo(_moveDisposable);
     }
 
+    public void StopMove()
+    {
+        _moveDisposable?.Clear();
+    }
+
     private void OnDisable()
     {
         _moveDisposable.Clear();
