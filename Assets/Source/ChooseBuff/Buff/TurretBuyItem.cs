@@ -9,7 +9,7 @@ public class TurretBuyItem : Item
 
     public override void Buy()
     {
-        TurretSpawner.Instance.SpawnItem(this);
+        TurretItemSpawner.Instance.SpawnItem(this);
         Instantiate(_turret,
             PlayerCharacter.Instance.PointsAround[Random.Range(0, PlayerCharacter.Instance.PointsAround.Length)]
                 .position, Quaternion.identity);

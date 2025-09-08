@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,7 +13,7 @@ public class BuffSpawner : MonoBehaviour
 
     [SerializeField] private BuyableBuffBase _buyableBuffBase;
 
-    private List<BuyableBuffBase> _buyableBuffBases = new List<BuyableBuffBase>();
+    private BuyableBuffBase[] _buyableBuffBases = new BuyableBuffBase[4];
 
     private void OnEnable()
     {
@@ -21,23 +22,30 @@ public class BuffSpawner : MonoBehaviour
 
     public void Reroll()
     {
-        if (_buyableBuffBases.Count > 0)
+        for (int i = 0; i < _buyableBuffBases.Length; i++)
         {
-            for (int i = 0; i < _buyableBuffBases.Count; i++)
+            if (_buyableBuffBases[i] == null)
             {
-                if (_buyableBuffBases[i] == null)
-                    continue;
-                Destroy(_buyableBuffBases[i].gameObject);
+                continue;
             }
 
-            _buyableBuffBases?.Clear();
+            if (!_buyableBuffBases[i].Locked)
+            {
+                Destroy(_buyableBuffBases[i].gameObject);
+                _buyableBuffBases[i] = null;
+            }
         }
 
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < _buyableBuffBases.Length; i++)
         {
-            BuyableBuffBase BuyableBuffBase = Instantiate(_buyableBuffBase, _parent);
-            BuyableBuffBase.SetItem(_items[Random.Range(0, _items.Length)]);
-            _buyableBuffBases.Add(BuyableBuffBase);
+
+            if (_buyableBuffBases[i])
+                if (_buyableBuffBases[i].gameObject != null)
+                    continue;
+
+            BuyableBuffBase BuffBase = Instantiate(_buyableBuffBase, _parent);
+            BuffBase.SetItem(_items[Random.Range(0, _items.Length)]);
+            _buyableBuffBases[i] = BuffBase;
         }
     }
 }

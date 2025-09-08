@@ -1,13 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretSpawner : MonoBehaviour
+public class TurretItemSpawner : MonoBehaviour
 {
     [SerializeField] private BoughtItem _prefab;
     [SerializeField] private Transform _parent;
 
-    public static TurretSpawner Instance { get; private set; }
+    public static TurretItemSpawner Instance { get; private set; }
+
+    public BoughtItem[] _BoughtItems = new BoughtItem[6];
+
+    public int CurrentCount { get; private set; }
+
+    public event Action<int> CountChanged;
 
     private void Awake()
     {
@@ -22,6 +29,8 @@ public class TurretSpawner : MonoBehaviour
 
     public void SpawnItem(Item item)
     {
+        CurrentCount++;
+        CountChanged?.Invoke(CurrentCount);
         BoughtItem instance = Instantiate(_prefab, _parent);
         instance.Bootstrap(item);
     }
