@@ -16,6 +16,7 @@ public class MachineGunInstance : MonoBehaviour
             Instance = this;
             CurrentMachineGunShoot = new MachineGunShoot();
             CurrentMachineGunShoot = new MegaMachineGunShoot(CurrentMachineGunShoot);
+            CurrentMachineGunShoot.SetInstance();CurrentMachineGunShoot = new MegaMachineGunShoot(CurrentMachineGunShoot);
             CurrentMachineGunShoot.SetInstance();
             CurrentMachineGunShoot.Shoot();
         }
