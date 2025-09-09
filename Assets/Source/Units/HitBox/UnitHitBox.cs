@@ -130,7 +130,6 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
     {
         StunnableStateMachine.Stun();
         yield return new WaitForSeconds(_stunCooldown);
-        Debug.Log("Try exit");
         StunnableStateMachine.UnStun();
     }
 }

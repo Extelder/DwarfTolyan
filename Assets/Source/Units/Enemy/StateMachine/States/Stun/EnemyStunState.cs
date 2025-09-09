@@ -10,7 +10,6 @@ public class EnemyStunState : State
     
     public override void Enter()
     {
-        Debug.Log("Stunned");
         CanChanged = false;
         _agent.isStopped = true;
     }
@@ -19,6 +18,5 @@ public class EnemyStunState : State
     {
         CanChanged = true;
         _agent.isStopped = false;
-        Debug.Log("exit");
     }
 }

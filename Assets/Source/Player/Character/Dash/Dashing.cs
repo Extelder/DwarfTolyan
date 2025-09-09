@@ -55,13 +55,11 @@ public abstract class Dashing : MonoBehaviour
 
             time += Time.deltaTime * boostFactor;
 
-            Debug.LogError("DASHING");
             IsDashing.Value = true;
             yield return null;
         }
 
         IsDashing.Value = false;
-        Debug.LogError("STOPDASHING");
 
         dashSpeed = startValue;
     }

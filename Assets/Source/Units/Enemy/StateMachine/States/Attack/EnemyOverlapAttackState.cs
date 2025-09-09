@@ -27,7 +27,6 @@ public class EnemyOverlapAttackState : EnemyAttackState
     public override void PerformAttack()
     {
         base.PerformAttack();
-        Debug.Log("damageDef");
     }
 
     private void OnPlayerLost()

@@ -6098,7 +6098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771696567671552953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11572,6 +11572,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8516029412702529320}
   - component: {fileID: 3069915642981202036}
+  - component: {fileID: 5990595471035278520}
+  - component: {fileID: 4280780089359966301}
   - component: {fileID: 7738236629312649470}
   - component: {fileID: 3690323568510361345}
   - component: {fileID: 241496974125639032}
@@ -11629,6 +11631,39 @@ MonoBehaviour:
   - {fileID: 0}
   <PlayerTransform>k__BackingField: {fileID: 1825554507636943989}
   <Rigidbody>k__BackingField: {fileID: 6269837153413099428}
+--- !u!114 &5990595471035278520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514378123597883034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f195631b2009840ad532cdff7aae40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Attack Speed
+  <MinValue>k__BackingField: 0
+  <MaxValue>k__BackingField: 0
+  <CurrentValue>k__BackingField: 1
+--- !u!114 &4280780089359966301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514378123597883034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f052128a082874eae444d464908922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Health
+  <MinValue>k__BackingField: 0
+  <MaxValue>k__BackingField: 0
+  <CurrentValue>k__BackingField: 100
+  _health: {fileID: 8214429142432141952}
 --- !u!114 &7738236629312649470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24252,7 +24287,7 @@ MonoBehaviour:
   SphereRadius: 1
   SearchLayer:
     serializedVersion: 2
-    m_Bits: 137
+    m_Bits: 129
   OverlapPoint: {fileID: 7657916703484435326}
   BoxSize: {x: 0, y: 0, z: 0}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -80920,7 +80955,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5310667387942455642}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BuffSpawner, Assembly-CSharp
         m_MethodName: Reroll
         m_Mode: 1
