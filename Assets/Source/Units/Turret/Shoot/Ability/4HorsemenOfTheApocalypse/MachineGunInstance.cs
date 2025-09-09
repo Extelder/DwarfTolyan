@@ -9,16 +9,22 @@ public class MachineGunInstance : MonoBehaviour
 
     public static MachineGunInstance Instance { get; private set; }
 
+    public void ModifyShoot(MachineGunShoot modificator)
+    {
+        var type = modificator.GetType();
+
+        var newInstance = Activator.CreateInstance(type, CurrentMachineGunShoot);
+        CurrentMachineGunShoot = (MachineGunShoot) newInstance;
+        CurrentMachineGunShoot.SetInstance();
+    }
+
     private void Awake()
     {
         if (!Instance)
         {
             Instance = this;
             CurrentMachineGunShoot = new MachineGunShoot();
-            CurrentMachineGunShoot = new MegaMachineGunShoot(CurrentMachineGunShoot);
-            CurrentMachineGunShoot.SetInstance();CurrentMachineGunShoot = new MegaMachineGunShoot(CurrentMachineGunShoot);
             CurrentMachineGunShoot.SetInstance();
-            CurrentMachineGunShoot.Shoot();
         }
     }
 }

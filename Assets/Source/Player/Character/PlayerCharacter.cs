@@ -49,6 +49,7 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
 
     private void Start()
     {
+        AudioListener.volume = 0.3f;
         ValueChanged?.Invoke(CurrentValue);
         OnValueChanged(CurrentValue);
     }

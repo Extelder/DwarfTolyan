@@ -12,6 +12,11 @@ public class MegaMachineGunShoot : MachineGunShoot
         _machineGunShoot._instance = true;
     }
 
+    public MegaMachineGunShoot()
+    {
+        
+    }
+
     public override void Bootstrap(Transform shootOrigin, float range, Turret turret)
     {
         base.Bootstrap(shootOrigin, range, turret);

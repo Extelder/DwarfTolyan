@@ -11,6 +11,11 @@ public class MegaLaserGunShoot : LaserGunShoot
         _laserGunShoot = laserGunShoot;
         _laserGunShoot._instance = true;
     }
+    
+    public MegaLaserGunShoot()
+    {
+    
+    }
 
     public override void Bootstrap(Transform shootOrigin, float range, Turret turret, LayerMask layerMask)
     {

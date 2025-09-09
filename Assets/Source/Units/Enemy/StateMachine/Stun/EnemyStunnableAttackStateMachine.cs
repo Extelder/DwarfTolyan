@@ -9,6 +9,8 @@ public class EnemyStunnableAttackStateMachine : EnemyAttackStateMachine, IStunna
 
     public void Stun()
     {
+        if (CurrentState != StunState)
+            CurrentState.CanChanged = true;
         ChangeState(StunState);
     }
 

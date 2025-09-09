@@ -832,7 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stunnable: {fileID: 2874531575325264001}
+  _stunnable: {fileID: 3910054003169394088}
   _health: {fileID: 2382932513451208015}
   _damageCooldown: 0.1
   _burningTime: 5
