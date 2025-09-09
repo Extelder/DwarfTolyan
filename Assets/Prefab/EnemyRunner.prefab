@@ -910,6 +910,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanChanged: 1
+  _animator: {fileID: 8038001636122290291}
+  _boolName: IsStunning
   _agent: {fileID: 5987474992082833882}
 --- !u!114 &3726035239598708597
 MonoBehaviour:

@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CanChanged: 1
+  _animator: {fileID: 2824110558889879258}
+  _boolName: IsStunning
   _agent: {fileID: 4126871502223468415}
 --- !u!114 &7987919593615189168
 MonoBehaviour:
@@ -303,6 +305,16 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d4f49caa3666ccb4a88d032c7ab72b1b, type: 2}
+    - target: {fileID: 5866666021909216657, guid: b838152199570c343ac4ac81555c8352, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'Stun'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: b838152199570c343ac4ac81555c8352, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
