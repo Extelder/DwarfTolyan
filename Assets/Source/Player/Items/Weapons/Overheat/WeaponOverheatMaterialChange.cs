@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WeaponOverheatMaterialChange : MonoBehaviour
 {
+    [SerializeField] private int _materialIndex = 1;
+    
     [SerializeField] private WeaponOverheat _overheat;
 
     [SerializeField] private MeshRenderer _meshRenderer;
@@ -20,7 +22,7 @@ public class WeaponOverheatMaterialChange : MonoBehaviour
 
     private void Start()
     {
-        _material = _meshRenderer.materials[1];
+        _material = _meshRenderer.materials[_materialIndex];
         _emmisionColor = _material.GetColor("_EmissionColor");
     }
 

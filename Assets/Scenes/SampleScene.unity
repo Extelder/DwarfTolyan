@@ -523,6 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198f75a0d4aee8d448f35b5ee74d90b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _materialIndex: 1
   _overheat: {fileID: 1114181693}
   _meshRenderer: {fileID: 607862590}
 --- !u!1 &705507993
@@ -1227,6 +1228,31 @@ MonoBehaviour:
   _damageBuff: 5
   _weaponAnimator: {fileID: 2055551942}
   _overheat: {fileID: 1114181693}
+--- !u!1 &1146470188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 998200124215186553, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+  m_PrefabInstance: {fileID: 3213682960001165448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &1146470190 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6594490460615813406, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+  m_PrefabInstance: {fileID: 3213682960001165448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1146470192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146470188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198f75a0d4aee8d448f35b5ee74d90b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _materialIndex: 0
+  _overheat: {fileID: 1114181693}
+  _meshRenderer: {fileID: 1146470190}
 --- !u!1 &1181031722 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3050026499745257076, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
@@ -2316,6 +2342,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2951559744584505287, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
       insertIndex: -1
       addedObject: {fileID: 607862592}
+    - targetCorrespondingSourceObject: {fileID: 998200124215186553, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1146470192}
   m_SourcePrefab: {fileID: 100100000, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
 --- !u!4 &3215792297959638375
 Transform:
