@@ -172,7 +172,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e37a8b20-75a4-4a65-83e3-9f94604c4b98"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -183,7 +183,7 @@ public partial class @PlayerBinds: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eb58251f-1e85-4108-b546-0229c8b24c40"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

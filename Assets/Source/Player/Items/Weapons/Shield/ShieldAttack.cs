@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class ShieldAttack : WeaponOverlapAttack
 {
+    [SerializeField] private float _checkRate;
+
     [SerializeField] private PlayerDash _playerDash;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
+
     private void Start()
     {
         _playerDash.IsDashing.Subscribe(dash =>
@@ -20,6 +23,11 @@ public class ShieldAttack : WeaponOverlapAttack
         }).AddTo(_disposable);
     }
 
+    protected override void VirtualOnDisable()
+    {
+        StopAllCoroutines();
+    }
+
     public override void OnShootPerformed()
     {
         _playerDash.Dash();
@@ -29,7 +37,7 @@ public class ShieldAttack : WeaponOverlapAttack
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(_checkRate);
             Damage = DamageCharacterics.Instance.CurrentValue;
             Overlap();
             foreach (var other in OverlapSettings.Colliders)

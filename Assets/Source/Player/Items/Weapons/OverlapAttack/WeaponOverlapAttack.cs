@@ -48,8 +48,14 @@ public class WeaponOverlapAttack : WeaponShoot
         Gizmos.DrawWireSphere(OverlapSettings.OverlapPoint.position, OverlapSettings.SphereRadius);
     }
 
+    protected virtual void VirtualOnDisable()
+    {
+        
+    }
+    
     private void OnDisable()
     {
         WeaponShootState.ShootPerformed -= OnShootPerformed;
+        VirtualOnDisable();
     }
 }

@@ -1,30 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UniRx;
 using UnityEngine;
 using Object = System.Object;
 
 public class UnitHitBox : MonoBehaviour, IWeaponVisitor
 {
-    [SerializeField] private MonoBehaviour _stunnable;
     [SerializeField] private Health _health;
-    
+
     [SerializeField] private float _damageCooldown = .1f;
     [SerializeField] private float _burningTime = 5;
     [SerializeField] private float _stunCooldown = 2;
 
+    [SerializeField] private bool _notStun;
+
+    [HideIf(nameof(_notStun))] [SerializeField]
+    private MonoBehaviour _stunnable;
+
     public IStunnableStateMachine StunnableStateMachine { get; private set; }
-    
+
     public event Action Hit;
 
     public static event Action UnitHitted;
-    
+
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     private void Awake()
     {
-        StunnableStateMachine = (IStunnableStateMachine)_stunnable;
+        if (_notStun)
+            StunnableStateMachine = (IStunnableStateMachine) _stunnable;
     }
 
     public void Visit(WeaponShoot weaponShoot)
@@ -104,23 +110,21 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }
-    
+
     private void SpawningDecal(Vector3 spawnPoint)
     {
         Pools.Instance.BloodExplodeDecalPool.GetFreeElement(spawnPoint, Quaternion.identity);
     }
-    
+
     private void TakeDamage(float damage)
     {
         _health.TakeDamage(damage);
     }
-    
+
     private IEnumerator TakeDamageWithCooldown(float damage)
     {
-        Observable.Interval(TimeSpan.FromSeconds(_damageCooldown)).Subscribe(_ =>
-        {
-            _health.TakeDamage(damage);
-        }).AddTo(_disposable);
+        Observable.Interval(TimeSpan.FromSeconds(_damageCooldown)).Subscribe(_ => { _health.TakeDamage(damage); })
+            .AddTo(_disposable);
         yield return new WaitForSeconds(_burningTime);
         StopAllCoroutines();
         _disposable.Clear();

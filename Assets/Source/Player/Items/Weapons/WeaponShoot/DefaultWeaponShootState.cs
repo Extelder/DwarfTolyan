@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class DefaultWeaponShootState : WeaponShootState
 {
     public event Action ShootPerformed;
 
-    protected bool _alreadyShooting;
+    public ReactiveProperty<bool> AlreadyShooting = new ReactiveProperty<bool>();
 
     public override void Enter()
     {
@@ -22,7 +23,7 @@ public class DefaultWeaponShootState : WeaponShootState
 
     public void AnimationEndStartChecking()
     {
-        _alreadyShooting = false;
+        AlreadyShooting.Value = false;
         StopAllCoroutines();
         StartCoroutine(AnimationEndChecking());
     }
@@ -38,7 +39,7 @@ public class DefaultWeaponShootState : WeaponShootState
     {
         StopAllCoroutines();
 
-        if (_alreadyShooting)
+        if (AlreadyShooting.Value)
             return;
 
         CanChanged = true;
@@ -53,10 +54,10 @@ public class DefaultWeaponShootState : WeaponShootState
                 CanChanged = true;
                 yield break;
             }
-            
+
             if (PlayerCharacter.Instance.Binds.Character.MainShoot.inProgress)
             {
-                _alreadyShooting = true;
+                AlreadyShooting.Value = true;
                 Animator.Shoot();
                 yield break;
             }

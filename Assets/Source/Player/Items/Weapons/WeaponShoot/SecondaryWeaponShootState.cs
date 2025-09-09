@@ -14,10 +14,10 @@ public class SecondaryWeaponShootState : DefaultWeaponShootState
                 CanChanged = true;
                 yield break;
             }
-            
+
             if (PlayerCharacter.Instance.Binds.Character.SecondaryShoot.inProgress)
             {
-                _alreadyShooting = true;
+                AlreadyShooting.Value = true;
                 Animator.Shoot();
                 yield break;
             }
