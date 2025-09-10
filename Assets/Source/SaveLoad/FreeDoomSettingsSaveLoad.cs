@@ -5,20 +5,20 @@ using UnityEngine;
 [Serializable]
 public class PlayerConfigData
 {
-    public float lookSensitivity = 1.0f;
-    public float movementSpeed = 5.0f;
-    public KeyCode interactKey = KeyCode.E;
+    public float lookSensitivity = 0.1f;
     public float masterVolume = 0.8f;
+    public float musicVolume = 0.8f;
+    public float effectsVolume = 0.8f;
 }
 
 public static class FreeDoomSettingsSaveLoad
 {
     private static string configDir = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-        "FreeDoomAlbum"
+        "Dwarf"
     );
 
-    private static string configPath = Path.Combine(configDir, "player_config.json");
+    private static string configPath = Path.Combine(configDir, "dwarf_config.json");
 
     public static void Save(PlayerConfigData data)
     {
@@ -36,9 +36,6 @@ public static class FreeDoomSettingsSaveLoad
             string json = File.ReadAllText(configPath);
             return JsonUtility.FromJson<PlayerConfigData>(json);
         }
-        else
-        {
-            return new PlayerConfigData(); // default fallback
-        }
+        return new PlayerConfigData(); // default fallback
     }
 }
