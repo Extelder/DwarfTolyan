@@ -2,17 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TurretItemSpawner : MonoBehaviour
 {
-    [SerializeField] private BoughtItem _prefab;
+    [SerializeField] private TurretItem _prefab;
     [SerializeField] private Transform _parent;
 
     public static TurretItemSpawner Instance { get; private set; }
 
-    public BoughtItem[] _BoughtItems = new BoughtItem[6];
-
     public int CurrentCount { get; private set; }
+
+    public TurretItem[] TurretItems = new TurretItem[6];
 
     public event Action<int> CountChanged;
 
@@ -27,11 +28,24 @@ public class TurretItemSpawner : MonoBehaviour
         Debug.LogError("One more ItemSpawner");
     }
 
-    public void SpawnItem(Item item)
+    public void SpawnItem(TurretBuyItem item, Turret spawnedTurret)
     {
         CurrentCount++;
         CountChanged?.Invoke(CurrentCount);
-        BoughtItem instance = Instantiate(_prefab, _parent);
-        instance.Bootstrap(item);
+        Turret instanceTurret = Instantiate(spawnedTurret,
+            PlayerCharacter.Instance.PointsAround[Random.Range(0, PlayerCharacter.Instance.PointsAround.Length)]
+                .position, Quaternion.identity).GetComponent<Turret>();
+
+        TurretItem instance = Instantiate(_prefab, _parent);
+        instance.Bootstrap(item, instanceTurret);
+
+        for (int i = 0; i < TurretItems.Length; i++)
+        {
+            if (TurretItems[i] == null)
+            {
+                TurretItems[i] = instance;
+                return;
+            }
+        }
     }
 }

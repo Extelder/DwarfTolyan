@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    [field: SerializeField] public int Level { get; private set; }
+
     public float Damage { get; private set; }
 
     [field: SerializeReference]
@@ -25,6 +27,8 @@ public class Turret : MonoBehaviour
 
     public event Action Shooted;
 
+    public event Action<int> LevelChanged;
+
     private void OnDamageValueChanged(float value)
     {
         Damage = value * _damageMultiplier;
@@ -35,6 +39,12 @@ public class Turret : MonoBehaviour
         OnDamageValueChanged(DamageCharacterics.Instance.CurrentValue);
         DamageCharacterics.Instance.ValueChanged += OnDamageValueChanged;
         Enable();
+    }
+
+    public void IncreaseLevel()
+    {
+        Level++;
+        LevelChanged?.Invoke(Level);
     }
 
     public void Disable()

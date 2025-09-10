@@ -82,6 +82,7 @@ public class ProjectileWeaponShoot : WeaponShoot
         {
             case ShootType.Rifle:
 
+                BulletSpawned?.Invoke();
                 Vector3 directionRifle = Camera.position + Camera.forward * Range;
                 if (GetHitCollider(out Collider collider))
                 {
@@ -99,6 +100,7 @@ public class ProjectileWeaponShoot : WeaponShoot
 
                 for (int i = 0; i < _shotgunCharges; i++)
                 {
+                    BulletSpawned?.Invoke();
                     Vector3 random = Random.insideUnitSphere * _shotgunRandomMultipier;
 
                     Vector3 direction = Camera.position + random + Camera.forward * Range;

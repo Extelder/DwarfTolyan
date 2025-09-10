@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: _damageMultiplier
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 5977676210258757961, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
+      propertyPath: <Level>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7098143326339579990, guid: e5d2be9b464ba5548b450ef8a8de1f49, type: 3}
       propertyPath: _speed
       value: 3.5

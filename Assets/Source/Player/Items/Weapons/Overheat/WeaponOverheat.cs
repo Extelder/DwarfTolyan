@@ -34,7 +34,7 @@ public class WeaponOverheat : MonoBehaviour
 
     private void OnEnable()
     {
-        _weaponShoot.ShootPerformed += OnShootPerformed;
+        _weaponShoot.BulletSpawned += OnShootPerformed;
     }
 
     private IEnumerator StartDecreasing()
@@ -95,6 +95,6 @@ public class WeaponOverheat : MonoBehaviour
     private void OnDisable()
     {
         _disposable?.Clear();
-        _weaponShoot.ShootPerformed -= OnShootPerformed;
+        _weaponShoot.BulletSpawned -= OnShootPerformed;
     }
 }

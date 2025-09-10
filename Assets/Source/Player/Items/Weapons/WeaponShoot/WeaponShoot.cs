@@ -12,6 +12,7 @@ public class WeaponShoot : RaycastBehaviour
 
     public Vector3 CurrentShootOffset;
 
+    public Action BulletSpawned;
     public event Action ShootPerformed;
     public event Action CameraShake;
 

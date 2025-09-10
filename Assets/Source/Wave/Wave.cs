@@ -72,7 +72,7 @@ public class Wave : MonoBehaviour
     {
         _disposable?.Clear();
         Ended?.Invoke(Current);
-        Time.timeScale = 0;
+        Time.timeScale = 0.1f;
     }
 
     private void OnDisable()
