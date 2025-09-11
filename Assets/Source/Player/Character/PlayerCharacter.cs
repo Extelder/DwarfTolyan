@@ -107,8 +107,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (!Instance)
         {
-            Binds = new PlayerBinds();
-
+            Binds = InputManager.inputActions;
             Binds.Enable();
 
             Instance = this;

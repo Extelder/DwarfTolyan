@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] private GameObject _settingsCanvas;
-    
+    [SerializeField] private Canvas _settingsCanvas;
+
     private PlayerBinds _binds;
 
     private void Start()
@@ -19,14 +19,16 @@ public class Settings : MonoBehaviour
 
     private void OnPanelOpened(InputAction.CallbackContext obj)
     {
-        _settingsCanvas.SetActive(!_settingsCanvas.activeSelf);
-        if (_settingsCanvas.activeSelf)
+        _settingsCanvas.enabled = !_settingsCanvas.enabled;
+        if (_settingsCanvas.enabled)
         {
             Time.timeScale = 0;
+            GameCursor.Instance.Show();
             StopAllCoroutines();
         }
         else
         {
+            GameCursor.Instance.Hide();
             Time.timeScale = 1;
         }
     }
