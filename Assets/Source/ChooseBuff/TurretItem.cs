@@ -44,10 +44,11 @@ public class TurretItem : BoughtItem
                 SpawnedTurret.ShootAbility.GetType())
             {
                 if (TurretItemSpawner.Instance.TurretItems[i].SpawnedTurret.Level != SpawnedTurret.Level)
-                    return;
+                    continue;
 
                 SpawnedTurret.IncreaseLevel();
 
+                TurretItemSpawner.Instance.DecreseCount();
                 Destroy(TurretItemSpawner.Instance.TurretItems[i].SpawnedTurret.gameObject);
                 Destroy(TurretItemSpawner.Instance.TurretItems[i].gameObject);
 

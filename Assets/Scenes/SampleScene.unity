@@ -1184,6 +1184,11 @@ MonoBehaviour:
   _minObjectsCapacity: 100
   _maxObjectsCapacity: 2147483647
   _autoExpand: 1
+--- !u!1 &1263500329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2350461452990137774, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+  m_PrefabInstance: {fileID: 3213682960001165448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1303835541 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4649876726423501509, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
@@ -2157,6 +2162,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 998521043885061201, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+      propertyPath: _trigger
+      value: 
+      objectReference: {fileID: 1263500329}
     - target: {fileID: 1499704948097244196, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2293,6 +2302,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6493518278083792027, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.076
+      objectReference: {fileID: 0}
     - target: {fileID: 6611245689793115195, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2413,7 +2426,8 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3690323568510361345, guid: 368427a1ad57a48499b3bce1379f7272, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
