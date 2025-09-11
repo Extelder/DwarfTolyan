@@ -8,6 +8,7 @@ using UnityEngine;
 public class GroundChecker : MonoBehaviour
 {
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _trigger;
 
     public bool Detected { get; private set; }
 
@@ -17,6 +18,8 @@ public class GroundChecker : MonoBehaviour
     {
         if (other.gameObject == _player)
             return;
+        if (other.gameObject == _trigger)
+            return;
         GroundDetected?.Invoke();
         Detected = true;
     }
@@ -24,6 +27,8 @@ public class GroundChecker : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == _player)
+            return;
+        if (other.gameObject == _trigger)
             return;
         Detected = false;
     }

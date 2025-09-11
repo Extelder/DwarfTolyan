@@ -19,13 +19,18 @@ public class BuyableBuffUI : MonoBehaviour
         _buyableBuff.Bootstrapped += OnBoostrapped;
     }
 
+    private void Start()
+    {
+        _costText.text = _buyableBuff.Cost.ToString();
+    }
+
     private void OnBoostrapped()
     {
         _nameText.text = _buyableBuff.CurrentItem.name;
         _descText.text = _buyableBuff.CurrentItem.Desc;
 
         _iconImage.sprite = _buyableBuff.CurrentItem.Icon;
-        _costText.text = _buyableBuff.CurrentItem.Cost.ToString();
+        _costText.text = _buyableBuff.Cost.ToString();
     }
 
     private void OnDisable()

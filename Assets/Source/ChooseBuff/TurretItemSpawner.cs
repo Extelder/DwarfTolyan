@@ -11,7 +11,7 @@ public class TurretItemSpawner : MonoBehaviour
 
     public static TurretItemSpawner Instance { get; private set; }
 
-    public int CurrentCount { get; private set; }
+    public int CurrentCount { get; set; }
 
     public TurretItem[] TurretItems = new TurretItem[6];
 
@@ -26,6 +26,12 @@ public class TurretItemSpawner : MonoBehaviour
         }
 
         Debug.LogError("One more ItemSpawner");
+    }
+
+    public void DecreseCount()
+    {
+        CurrentCount--;
+        CountChanged?.Invoke(CurrentCount);
     }
 
     public void SpawnItem(TurretBuyItem item, Turret spawnedTurret)

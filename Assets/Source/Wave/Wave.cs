@@ -16,12 +16,25 @@ public class Wave : MonoBehaviour
 
     public int Current { get; private set; }
 
+    public float CostMultiplier { get; private set; } = 1f;
+
     public event Action<int> Started;
     public event Action<int> PreStarted;
     public event Action<int> Ended;
     public event Action<long> TimerCounted;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
+
+    public static Wave Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (!Instance)
+        {
+            Instance = this;
+            return;
+        }
+    }
 
     private void Start()
     {
@@ -44,6 +57,8 @@ public class Wave : MonoBehaviour
         Current++;
         PreStarted?.Invoke(Current);
         Started?.Invoke(Current);
+        if (Current > 1)
+            CostMultiplier *= 1.2f;
         _currentTime = _currentTime + _timeAddible * Current;
         if (_currentTime > _timeCap)
         {

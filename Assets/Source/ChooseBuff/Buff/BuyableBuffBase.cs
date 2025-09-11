@@ -11,12 +11,30 @@ public abstract class BuyableBuffBase : MonoBehaviour
     public event Action Bootstrapped;
     public event Action Bought;
 
+    [field: SerializeField] public float Cost { get; private set; }
+
     public bool Locked { get; private set; }
+
+    private bool _bootstrap;
 
     public void SetItem(Item item)
     {
         CurrentItem = item;
+        Cost = item.Cost;
+        Cost *= Wave.Instance.CostMultiplier;
+        _bootstrap = true;
         Bootstrapped?.Invoke();
+    }
+
+    private void OnEnable()
+    {
+        Debug.LogError(Wave.Instance.CostMultiplier);
+
+        if (_bootstrap)
+        {
+            Debug.LogError(Wave.Instance.CostMultiplier);
+            Cost *= Wave.Instance.CostMultiplier;
+        }
     }
 
     public void LockUnlock(TextMeshProUGUI text)
