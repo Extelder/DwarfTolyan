@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98610ade0bd67245bdae0f130ccbdec, type: 3}
   m_Name: TestAttackSpeedeItem
   m_EditorClassIdentifier: 
-  <Cost>k__BackingField: 1
+  <Cost>k__BackingField: 10
   <Icon>k__BackingField: {fileID: 21300000, guid: d7360aa04b8cd0349baad4bc0a2623c3, type: 3}
   <Desc>k__BackingField: Movement Speed Increase
-  <AddValue>k__BackingField: 20
+  <AddValue>k__BackingField: 1
   <BuffType>k__BackingField: 3
