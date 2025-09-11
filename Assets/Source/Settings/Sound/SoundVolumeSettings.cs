@@ -7,27 +7,31 @@ using UnityEngine.UI;
 
 public class SoundVolumeSettings : MonoBehaviour
 {
-    [SerializeField] private Slider _slider;
-    [SerializeField] private AudioMixer _mixer;
-    [SerializeField] private string _mixerKey;
+    [field :SerializeField] public AudioMixer Mixer { get; private set; }
+    [field :SerializeField] public string MixerKey { get; private set; }
+    [field :SerializeField] public Slider Slider { get; private set; }
     
-    private PlayerConfigData _config;
+    public PlayerConfig Config { get; private set; }
 
     private void Start()
     {
-        _config = PlayerConfig.Instance.ConfigData;
-        _mixer.GetFloat(_mixerKey + "Volume", out _config.masterVolume);
+        Config = PlayerConfig.Instance;
+        StartVirtual();
     }
 
-    public void ChangeSoundVolume(float value)
+    public virtual void StartVirtual()
+    { }
+
+    public virtual void ChangeSoundVolume(float value)
     {
+        Debug.Log(value+ "value");
         if (value == 0)
         {
-            _mixer.SetFloat("MasterVolume", -80);
+            Mixer.SetFloat( MixerKey+ "Volume", -80);
         }
         else
         {
-            _mixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
+            Mixer.SetFloat(MixerKey + "Volume", Mathf.Log10(value) * 20);
         }
     }
 }

@@ -15,7 +15,6 @@ public class PlayerConfig : MonoBehaviour
             Instance = this;
             ConfigData = new PlayerConfigData();
             ConfigData = FreeDoomSettingsSaveLoad.Load();
-            Debug.Log(FreeDoomSettingsSaveLoad.Load());
             return;
         }
         Debug.LogError("Theres one more PlayerConfig");

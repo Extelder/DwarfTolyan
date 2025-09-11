@@ -5,10 +5,18 @@ using UnityEngine;
 [Serializable]
 public class PlayerConfigData
 {
+    [Header("Sensitivity")]
     public float lookSensitivity = 0.1f;
+    
+    [Header("Volumes")]
     public float masterVolume = 0.8f;
     public float musicVolume = 0.8f;
     public float effectsVolume = 0.8f;
+
+    [Header("Screen")] 
+    public bool fullScreen = true;
+    public int width;
+    public int height;
 }
 
 public static class FreeDoomSettingsSaveLoad
