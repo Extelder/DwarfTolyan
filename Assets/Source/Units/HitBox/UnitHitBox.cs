@@ -29,7 +29,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
 
     private void Awake()
     {
-        if (_notStun)
+        if (!_notStun)
             StunnableStateMachine = (IStunnableStateMachine) _stunnable;
     }
 
@@ -130,7 +130,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         _disposable.Clear();
     }
 
-    public virtual IEnumerator Stun()
+    private IEnumerator Stun()
     {
         StunnableStateMachine.Stun();
         yield return new WaitForSeconds(_stunCooldown);
