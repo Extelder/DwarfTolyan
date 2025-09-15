@@ -117,6 +117,7 @@ public class PlayerCharacter : MonoBehaviour
         Debug.LogError("There`s one more PlayerCharacter");
     }
 
+
     private void OnDisable()
     {
         Binds.Dispose();

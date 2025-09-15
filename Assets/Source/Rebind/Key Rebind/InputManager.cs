@@ -101,6 +101,9 @@ public class InputManager : MonoBehaviour
 
     public static void LoadBindingOverride(string actionName)
     {
+        if (actionName == null)
+            return; 
+        
         if (inputActions == null)
             inputActions = new PlayerBinds();
 

@@ -28,11 +28,8 @@ public abstract class BuyableBuffBase : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.LogError(Wave.Instance.CostMultiplier);
-
         if (_bootstrap)
         {
-            Debug.LogError(Wave.Instance.CostMultiplier);
             Cost *= Wave.Instance.CostMultiplier;
         }
     }
