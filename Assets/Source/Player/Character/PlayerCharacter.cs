@@ -5,6 +5,7 @@ using NaughtyAttributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
 public abstract class PlayerCharacteristicBase : MonoBehaviour
 {
     public abstract float MinValue { get; set; }
@@ -16,9 +17,10 @@ public abstract class PlayerCharacteristicBase : MonoBehaviour
     public abstract void Generate();
 
     public abstract event Action<float> ValueChanged;
+
 }
 
-public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T : MonoBehaviour
+public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T : PlayerCharacteristicBase
 {
     public string Name;
 
@@ -38,8 +40,6 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
     {
         if (Instance != null && Instance != this)
         {
-            // Destroy duplicate instances
-            Debug.LogWarning($"Multiple instances of {typeof(T).Name} detected. Destroying duplicate.");
             return;
         }
 
@@ -49,6 +49,10 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
 
     private void Start()
     {
+        if (Instance != this)
+        {
+            return;
+        }
         AudioListener.volume = 0.3f;
         ValueChanged?.Invoke(CurrentValue);
         OnValueChanged(CurrentValue);
@@ -56,6 +60,11 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
 
     public override void SetValue(float value)
     {
+        if (Instance != this)
+        {
+            Instance.SetValue(value);
+            return;
+        }
         CurrentValue = value;
         ValueChanged?.Invoke(CurrentValue);
         OnValueChanged(value);
@@ -63,6 +72,11 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
 
     public override void AddValue(float value)
     {
+        if (Instance != this)
+        {
+            Instance.AddValue(value);
+            return;
+        }
         SetValue(CurrentValue + value);
     }
 
@@ -80,6 +94,11 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
 
     public override void RemoveValue(float value)
     {
+        if (Instance != this)
+        {
+            Instance.RemoveValue(value);
+            return;
+        }
         SetValue(CurrentValue - value);
     }
 

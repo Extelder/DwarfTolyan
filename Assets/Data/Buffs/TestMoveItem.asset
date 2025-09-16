@@ -15,5 +15,9 @@ MonoBehaviour:
   <Cost>k__BackingField: 10
   <Icon>k__BackingField: {fileID: 21300000, guid: d7360aa04b8cd0349baad4bc0a2623c3, type: 3}
   <Desc>k__BackingField: Movement Speed Increase
+  _playerCharactersicBuff:
+  - _divisionFactorForEach: 0.2
+    <AddValue>k__BackingField: 20
+    <Characteristic>k__BackingField: {fileID: 6682383909444828581, guid: d14f4abfbef93c84bbf2077c0cdbca87, type: 3}
   <AddValue>k__BackingField: 20
   <BuffType>k__BackingField: 2
