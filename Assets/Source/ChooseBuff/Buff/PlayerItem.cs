@@ -24,7 +24,7 @@ public struct PlayerCharactersicBuff
     {
         float addValue = AddValue;
         if (spawned != 0)
-            addValue = AddValue / _divisionFactorForEach * spawned;
+            addValue = AddValue / (_divisionFactorForEach * spawned);
 
         Characteristic.AddValue(addValue);
     }
@@ -39,10 +39,6 @@ public class PlayerItem : Item
     }
 
     [SerializeField] private PlayerCharactersicBuff[] _playerCharactersicBuff;
-
-    [field: SerializeField] public int AddValue { get; private set; }
-
-    [field: SerializeField] public PlayerBuffType BuffType { get; private set; }
 
     private int _spawned = 0;
 

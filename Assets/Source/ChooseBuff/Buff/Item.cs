@@ -8,7 +8,7 @@ public class Item : ScriptableObject
 {
     [field: SerializeField] public int Cost { get; protected set; }
     [field: SerializeField] public Sprite Icon { get; protected set; }
-    [field: SerializeField] public string Desc { get; protected set; }
+    [field: SerializeField][field: TextArea] public string Desc { get; protected set; }
 
     public virtual void Buy()
     {
