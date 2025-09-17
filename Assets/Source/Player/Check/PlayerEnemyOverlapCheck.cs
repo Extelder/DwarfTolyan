@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class EnemyOverlapCheck : EnemyCheck
+public class PlayerEnemyOverlapCheck : EnemyCheck
 {
     [SerializeField] private OverlappSettings _overlappSettings;
     [SerializeField] private float _checkRate;

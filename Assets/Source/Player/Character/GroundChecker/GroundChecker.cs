@@ -7,29 +7,22 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class GroundChecker : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
-    [SerializeField] private GameObject _trigger;
-
     public bool Detected { get; private set; }
 
     public event Action GroundDetected;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == _player)
-            return;
-        if (other.gameObject == _trigger)
-            return;
-        GroundDetected?.Invoke();
-        Detected = true;
+        if (other.TryGetComponent<Ground>(out Ground ground))
+        {
+            GroundDetected?.Invoke();
+            Detected = true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject == _player)
-            return;
-        if (other.gameObject == _trigger)
-            return;
-        Detected = false;
+        if (other.TryGetComponent<Ground>(out Ground ground))
+            Detected = false;
     }
 }

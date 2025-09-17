@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyBuffAttackState : State
 {
-    [SerializeField] private EnemyOverlapCheck _check;
+    [SerializeField] private PlayerEnemyOverlapCheck _check;
     [SerializeField] private Animator _animator;
     [SerializeField] private string _animatorBoolName;
     [SerializeField] private RaycastSettings _raycastSettings;
