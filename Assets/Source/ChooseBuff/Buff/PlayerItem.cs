@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public enum PlayerBuffType
@@ -15,6 +16,9 @@ public enum PlayerBuffType
 [Serializable]
 public struct PlayerCharactersicBuff
 {
+    [SerializeReference] [SerializeReferenceButton] [SerializeField]
+    private CallBack[] _buffsChangeByGlobalEvent;
+
     [SerializeField] private float _divisionFactorForEach;
 
     [field: SerializeField] public int AddValue { get; private set; }
@@ -22,11 +26,24 @@ public struct PlayerCharactersicBuff
 
     public void OnBought(int spawned)
     {
+        for (int i = 0; i < _buffsChangeByGlobalEvent.Length; i++)
+        {
+            _buffsChangeByGlobalEvent[i].SubscribeToEvent();
+        }
+
         float addValue = AddValue;
         if (spawned != 0)
             addValue = AddValue / (_divisionFactorForEach * spawned);
 
         Characteristic.AddValue(addValue);
+    }
+
+    public void OnDisable()
+    {
+        for (int i = 0; i < _buffsChangeByGlobalEvent.Length; i++)
+        {
+            _buffsChangeByGlobalEvent[i].UncribeToEvent();
+        }
     }
 }
 
@@ -35,6 +52,11 @@ public class PlayerItem : Item
 {
     private void OnDisable()
     {
+        for (int i = 0; i < _playerCharactersicBuff.Length; i++)
+        {
+            _playerCharactersicBuff[i].OnDisable();
+        }
+
         _spawned = 0;
     }
 
@@ -42,6 +64,10 @@ public class PlayerItem : Item
 
     private int _spawned = 0;
 
+    public void WaveStarted()
+    {
+        Debug.LogError("Wave");
+    }
 
     public override void Buy()
     {

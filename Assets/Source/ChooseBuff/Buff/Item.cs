@@ -13,6 +13,5 @@ public class Item : ScriptableObject
     public virtual void Buy()
     {
         ItemSpawner.Instance.SpawnItem(this);
-        Debug.LogError(name + "bought");
     }
 }
