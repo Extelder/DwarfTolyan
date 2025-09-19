@@ -24,7 +24,7 @@ MonoBehaviour:
     - rid: 6209198766036615168
     _divisionFactorForEach: 1.1
     <AddValue>k__BackingField: 10
-    <Characteristic>k__BackingField: {fileID: 128441096011227822, guid: ef44aa822961d6f42aa0b37a051ebb5b, type: 3}
+    <Characteristic>k__BackingField: {fileID: 4770215318319953900, guid: 2ed42cd557a05264c8ec74b26963bed9, type: 3}
   - _buffsChangeByGlobalEvent: []
     _divisionFactorForEach: 1
     <AddValue>k__BackingField: -2
@@ -39,13 +39,17 @@ MonoBehaviour:
     - rid: 6209198766036615168
       type: {class: WaveCallBack, ns: , asm: Assembly-CSharp}
       data:
+        _value:
+          rate: 1
+          duration: 2
+          value: 1
         Event:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 11400000}
-              m_TargetAssemblyTypeName: PlayerItem, Assembly-CSharp
-              m_MethodName: WaveStarted
-              m_Mode: 1
+            - m_Target: {fileID: 4770215318319953900, guid: 2ed42cd557a05264c8ec74b26963bed9, type: 3}
+              m_TargetAssemblyTypeName: PlayerCharacteristicBase, Assembly-CSharp
+              m_MethodName: AddValueByRateForDuration
+              m_Mode: 0
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

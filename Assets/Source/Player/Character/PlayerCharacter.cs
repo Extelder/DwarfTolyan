@@ -2,12 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 
+[Serializable]
+public struct ValueChangable
+{
+    public float rate;
+    public float duration;
+    public float value;
+}
+
 public abstract class PlayerCharacteristicBase : MonoBehaviour
 {
+    private CompositeDisposable _disposable = new CompositeDisposable();
+
+    private List<CompositeDisposable> _list = new List<CompositeDisposable>();
+
     public abstract float MinValue { get; set; }
     public abstract float MaxValue { get; set; }
     public abstract float CurrentValue { get; set; }
@@ -16,8 +29,27 @@ public abstract class PlayerCharacteristicBase : MonoBehaviour
     public abstract void RemoveValue(float value);
     public abstract void Generate();
 
+    public virtual void AddValueByRateForDuration(ValueChangable ValueChangable)
+    {
+        CompositeDisposable disposable = new CompositeDisposable();
+        _list.Add(disposable);
+
+        Observable.Timer(TimeSpan.FromSeconds(ValueChangable.duration)).Subscribe(_ =>
+        {
+            _list.Remove(disposable);
+            disposable.Clear();
+        }).AddTo(disposable);
+
+        Observable.Interval(TimeSpan.FromSeconds(ValueChangable.rate)).Subscribe(_ => { AddValue(ValueChangable.value); }).AddTo(disposable);
+    }
+
     public abstract event Action<float> ValueChanged;
 
+
+    private void OnDisable()
+    {
+        _disposable?.Clear();
+    }
 }
 
 public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T : PlayerCharacteristicBase
@@ -53,6 +85,7 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
         {
             return;
         }
+
         AudioListener.volume = 0.3f;
         ValueChanged?.Invoke(CurrentValue);
         OnValueChanged(CurrentValue);
@@ -65,6 +98,7 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
             Instance.SetValue(value);
             return;
         }
+
         CurrentValue = value;
         ValueChanged?.Invoke(CurrentValue);
         OnValueChanged(value);
@@ -77,6 +111,7 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
             Instance.AddValue(value);
             return;
         }
+
         SetValue(CurrentValue + value);
     }
 
@@ -99,6 +134,7 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
             Instance.RemoveValue(value);
             return;
         }
+
         SetValue(CurrentValue - value);
     }
 

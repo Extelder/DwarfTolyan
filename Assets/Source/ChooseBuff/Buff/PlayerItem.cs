@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -46,6 +48,53 @@ public struct PlayerCharactersicBuff
         }
     }
 }
+
+public enum ChangeType
+{
+    Permanently,
+    ByDelay,
+    ByRateForDuration
+}
+
+[Serializable]
+public class CharacteristicValueChange
+{
+    [field: SerializeField] public PlayerCharacteristicBase Characteristic { get; private set; }
+    [field: SerializeField] public float Addible { get; private set; }
+    [field: SerializeField] public ChangeType ChangeType { get; private set; }
+
+    private bool _byDelay => ChangeType == ChangeType.ByDelay;
+    private bool _byRate => ChangeType == ChangeType.ByRateForDuration;
+
+    [ShowIf(nameof(_byDelay))] [SerializeField]
+    private double _delay;
+
+    [ShowIf(nameof(_byRate))] [SerializeField]
+    private double _rate;
+
+    private CompositeDisposable _disposable = new CompositeDisposable();
+
+    public void BeginValueChanging()
+    {
+        switch (ChangeType)
+        {
+            case ChangeType.Permanently:
+                Characteristic.AddValue(Addible);
+                break;
+            case ChangeType.ByDelay:
+                Observable.Timer(TimeSpan.FromSeconds(_delay)).Subscribe(_ => { Characteristic.AddValue(Addible); })
+                    .AddTo(_disposable);
+                break;
+            case ChangeType.ByRateForDuration:
+                Observable.Timer(TimeSpan.FromSeconds(_delay)).Subscribe(_ => { _disposable.Clear(); })
+                    .AddTo(_disposable);
+                Observable.Interval(TimeSpan.FromSeconds(_rate)).Subscribe(_ => { Characteristic.AddValue(Addible); })
+                    .AddTo(_disposable);
+                break;
+        }
+    }
+}
+
 
 [CreateAssetMenu(fileName = "Buff/PlayerItem")]
 public class PlayerItem : Item

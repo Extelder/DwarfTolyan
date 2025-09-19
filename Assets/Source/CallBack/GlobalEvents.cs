@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -52,7 +53,9 @@ public abstract class GlobalCallBack<T> : CallBack where T : CallBack
 [Serializable]
 public class WaveCallBack : GlobalCallBack<WaveCallBack>
 {
-    public UnityEvent Event;
+    [SerializeField] private ValueChangable _value;
+
+    public UnityEvent<ValueChangable> Event;
 
     public override void SetInstance()
     {
@@ -61,9 +64,11 @@ public class WaveCallBack : GlobalCallBack<WaveCallBack>
 
     public override void EventInvoked()
     {
-        Event?.Invoke();
+        Debug.LogError(_value);
+        Event?.Invoke(_value);
     }
 }
+
 
 public class GlobalEvents : MonoBehaviour
 {
