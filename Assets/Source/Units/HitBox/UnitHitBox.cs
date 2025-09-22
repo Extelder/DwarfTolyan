@@ -80,7 +80,6 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         if (_health.IsDead())
             return;
         TakeDamage(shieldAttack.Damage);
-        Debug.Log("Shield");
         StartCoroutine(Stun());
         SpawningDecal(transform.position);
         Hit?.Invoke();

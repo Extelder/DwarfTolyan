@@ -17,7 +17,6 @@ public class SensitivitySettings : MonoBehaviour
     {
         _config = PlayerConfig.Instance;
             
-        Debug.Log(_config.ConfigData);
         _cinemachinePOV = _cinemachineVirtualCamera.GetCinemachineComponent<CinemachinePOV>();
         _cinemachinePOV.m_HorizontalAxis.m_MaxSpeed = _config.ConfigData.lookSensitivity;
         _cinemachinePOV.m_VerticalAxis.m_MaxSpeed = _config.ConfigData.lookSensitivity;

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7987919593615189168}
   - component: {fileID: 1876342443481334310}
   - component: {fileID: 581328466693582500}
+  - component: {fileID: 2890549334706529736}
   - component: {fileID: 4126871502223468415}
   - component: {fileID: 1732780990213537826}
   - component: {fileID: 7356594496345412925}
@@ -78,7 +79,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notStartOnEnable: 0
   _startState: {fileID: 1876342443481334310}
+  _canIdle: 0
   _move: {fileID: 1876342443481334310}
+  _idle: {fileID: 0}
   _attack: {fileID: 8323920057287634023}
   <StunState>k__BackingField: {fileID: 5852105886587490905}
   <UnStunState>k__BackingField: {fileID: 7987919593615189168}
@@ -141,6 +144,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MaxValue>k__BackingField: 40
   _coinsDropped: 4
+--- !u!114 &2890549334706529736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468411716437244839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc2115f3a8e739b47a8900a2ec696a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 4126871502223468415}
 --- !u!195 &4126871502223468415
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -175,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2470606687174a9c555766b580b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachine: {fileID: 4898743783865364303}
+  <StateMachine>k__BackingField: {fileID: 4898743783865364303}
   _overlappSettings:
     <CheckLayerMask>k__BackingField:
       serializedVersion: 2

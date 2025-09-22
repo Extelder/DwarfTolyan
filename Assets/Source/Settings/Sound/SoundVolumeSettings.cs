@@ -24,7 +24,6 @@ public class SoundVolumeSettings : MonoBehaviour
 
     public virtual void ChangeSoundVolume(float value)
     {
-        Debug.Log(value+ "value");
         if (value == 0)
         {
             Mixer.SetFloat( MixerKey+ "Volume", -80);

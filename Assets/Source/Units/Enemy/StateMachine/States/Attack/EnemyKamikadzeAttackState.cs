@@ -21,6 +21,5 @@ public class EnemyKamikadzeAttackState : EnemyAttackState
     public override void PerformAttack()
     {
         base.PerformAttack();
-        Debug.Log("damageKamikadze");
     }
 }

@@ -14,7 +14,7 @@ public struct OverlappSettings
 
 public class EnemyOverlapPlayerCheck : EnemyPlayerCheck
 {
-    [SerializeField] private EnemyAttackStateMachine _stateMachine;
+    [field :SerializeField] public EnemyAttackStateMachine StateMachine { get; private set; }
     [SerializeField] private OverlappSettings _overlappSettings;
     [SerializeField] private float _checkRate;
     [SerializeField] private int _colliderCount;
@@ -49,20 +49,25 @@ public class EnemyOverlapPlayerCheck : EnemyPlayerCheck
                 if (_others[i].TryGetComponent<ShieldHitBox>(out ShieldHitBox shieldHitBox))
                 {
                     PlayerDetected?.Invoke(shieldHitBox);
-                    _stateMachine.Attack();
+                    OnPlayerDetected();
                     return;
                 }
                 
                 if (_others[i].TryGetComponent<PlayerHitBox>(out PlayerHitBox playerHitBox))
                 {
                     PlayerDetected?.Invoke(playerHitBox);
-                    _stateMachine.Attack();
+                    OnPlayerDetected();
                     return;
                 }
             }
 
             PlayerLost?.Invoke();
         }).AddTo(_disposable);
+    }
+
+    public virtual void OnPlayerDetected()
+    {
+        StateMachine.Attack();
     }
 
     private void OnDrawGizmosSelected()

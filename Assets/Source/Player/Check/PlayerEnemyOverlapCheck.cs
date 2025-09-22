@@ -7,17 +7,24 @@ using UnityEngine;
 public class PlayerEnemyOverlapCheck : EnemyCheck
 {
     [SerializeField] private OverlappSettings _overlappSettings;
+    [SerializeField] private RaycastSettings _raycastSettings;
     [SerializeField] private float _checkRate;
     [SerializeField] private int _colliderCount;
     [SerializeField] private EnemyAttackStateMachine _stateMachine;
     [SerializeField] private Collider _enemyCollider;
     
     private Collider[] _others;
+    
     private CompositeDisposable _disposable = new CompositeDisposable();
     
-    public override event Action EnemyDetected;
+    public override event Action<EnemyHitBox> EnemyDetected;
     public override event Action EnemyLost;
-    
+
+    private void OnEnable()
+    {
+        StartChecking();
+    }
+
     public override void StartChecking()
     {
         Observable.Interval(TimeSpan.FromSeconds(_checkRate)).Subscribe(_ =>
@@ -38,11 +45,20 @@ public class PlayerEnemyOverlapCheck : EnemyCheck
                     continue;
                 }
                 
-                if (_others[i].TryGetComponent<EnemyHitBox>(out EnemyHitBox enemyHitBox))
+                if (_others[i].TryGetComponent<EnemyHitBox>(out EnemyHitBox EnemyHitBox))
                 {
-                    EnemyDetected?.Invoke();
-                    _stateMachine.Attack();
-                    return;
+                    Debug.DrawRay(_raycastSettings.RayOrigin.position, (EnemyHitBox.transform.position - _raycastSettings.RayOrigin.position) * _raycastSettings.MaxDistance, Color.blue, 2f);
+                    if (Physics.Raycast(_raycastSettings.RayOrigin.position, (EnemyHitBox.transform.position - _raycastSettings.RayOrigin.position),
+                        out RaycastHit hit, _raycastSettings.MaxDistance, _raycastSettings.LayerMask))
+                    {
+                        if (hit.collider.TryGetComponent<EnemyHitBox>(out EnemyHitBox enemyHitBox))
+                        {
+                            enemyHitBox.Distance = hit.distance;
+                            _stateMachine.Attack();
+                            EnemyDetected?.Invoke(enemyHitBox);
+                            return;
+                        }
+                    }
                 }
             }
 

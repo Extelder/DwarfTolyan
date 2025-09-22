@@ -773,7 +773,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notStartOnEnable: 0
   _startState: {fileID: 7775067759187398923}
+  _canIdle: 0
   _move: {fileID: 7775067759187398923}
+  _idle: {fileID: 0}
   _attack: {fileID: 7647261181370876783}
   <StunState>k__BackingField: {fileID: 2874531575325264001}
   <UnStunState>k__BackingField: {fileID: 2323603514542791737}
@@ -834,11 +836,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stunnable: {fileID: 3910054003169394088}
   _health: {fileID: 2382932513451208015}
   _damageCooldown: 0.1
   _burningTime: 5
   _stunCooldown: 2
+  _notStun: 0
+  _stunnable: {fileID: 3910054003169394088}
 --- !u!114 &2382932513451208015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,7 +890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea2470606687174a9c555766b580b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stateMachine: {fileID: 3910054003169394088}
+  <StateMachine>k__BackingField: {fileID: 3910054003169394088}
   _overlappSettings:
     <CheckLayerMask>k__BackingField:
       serializedVersion: 2

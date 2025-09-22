@@ -27,17 +27,18 @@ public class EnemyAvoidPlayerMoveState : EnemyMoveState
     private void OnPlayerLost()
     {
         _disposable?.Clear();
-        _stateMachine.Idle();
+        if (_agent.remainingDistance <= 1)
+        {
+            _stateMachine.CurrentState.CanChanged = true;
+            _stateMachine.Idle();
+        }
     }
 
     private void OnPlayerDetected(PlayerHitBox hitBox)
     {
         _forwardRay = new Ray(_raycastSettings.RayOrigin.position,   _raycastSettings.RayOrigin.position + transform.forward - Character.PlayerTransform.position);
-        Debug.DrawRay(_raycastSettings.RayOrigin.position,
-            (_raycastSettings.RayOrigin.position + transform.forward - Character.PlayerTransform.position) * _raycastSettings.MaxDistance, Color.yellow, 2f);
         Vector3 hitPoint = _forwardRay.GetPoint(_raycastSettings.MaxDistance);
         _downRay = new Ray(hitPoint, -transform.up);
-        Debug.DrawRay(hitPoint, -transform.up * _raycastSettings.MaxDistance, Color.red, 2f);
         if (Physics.Raycast(_forwardRay, out RaycastHit forwardHit, _raycastSettings.MaxDistance, _raycastSettings.LayerMask))
         {
             if (forwardHit.collider.TryGetComponent<Wall>(out Wall wall))
@@ -67,14 +68,16 @@ public class EnemyAvoidPlayerMoveState : EnemyMoveState
     private void SetDestination(Vector3 destination)
     {
         _disposable.Clear();
-        Observable.Interval(TimeSpan.FromSeconds(_updatePositionRate)).Subscribe(_ =>
+        if (destination != null)
         {
-            _agent.SetDestination(destination);
-        }).AddTo(_disposable);
+            Observable.Interval(TimeSpan.FromSeconds(_updatePositionRate))
+                .Subscribe(_ => { _agent.SetDestination(destination); }).AddTo(_disposable);
+        }
     }
 
     public override void Enter()
     {
+        _stateMachine.CurrentState.CanChanged = false;
     }
 
     private void OnDisable()

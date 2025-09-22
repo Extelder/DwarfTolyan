@@ -11,7 +11,6 @@ public class FullScreenSettings : MonoBehaviour
     {
         _config = PlayerConfig.Instance;
         Screen.fullScreen = _config.ConfigData.fullScreen;
-        Debug.Log(_config.ConfigData.fullScreen);
     }
 
     public void SwitchFullScreenSettings()
@@ -19,6 +18,5 @@ public class FullScreenSettings : MonoBehaviour
         Screen.fullScreen = !Screen.fullScreen;
         _config.ConfigData.fullScreen = Screen.fullScreen;
         _config.Save();
-        Debug.Log(_config.ConfigData.fullScreen);
     }
 }

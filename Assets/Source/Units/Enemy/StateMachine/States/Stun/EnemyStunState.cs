@@ -14,14 +14,12 @@ public class EnemyStunState : State
     {
         CanChanged = false;
         _agent.isStopped = true;
-        Debug.Log("Stun");
         _animator.SetBool(_boolName, true);
     }
 
     public void UnStun()
     {
         CanChanged = true;
-        Debug.Log("UnStun");
         _animator.SetBool(_boolName, false);
         _agent.isStopped = false;
     }

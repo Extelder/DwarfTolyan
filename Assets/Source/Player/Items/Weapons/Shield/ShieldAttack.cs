@@ -44,10 +44,8 @@ public class ShieldAttack : WeaponOverlapAttack
             {
                 if (other == null)
                     continue;
-                Debug.Log(other.name + "collider");
                 if (other.TryGetComponent<IWeaponVisitor>(out IWeaponVisitor weaponVisitor))
                 {
-                    Debug.Log(weaponVisitor + "visitor");
                     weaponVisitor.Visit(this);
                 }
             }

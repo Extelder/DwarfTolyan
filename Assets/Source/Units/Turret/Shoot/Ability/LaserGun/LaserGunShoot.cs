@@ -45,7 +45,6 @@ public class LaserGunShoot : TurretShootAbility
 
         Vector3 direction = _shootOrigin.position + _shootOrigin.forward * _range;
         _hits = Physics.RaycastAll(_shootOrigin.position, direction, _layerMask);
-        Debug.Log("shoot");
         Pools.Instance.TrailPool.GetFreeElement(_shootOrigin.position, _shootOrigin.rotation);
         for (int i = 0; i < _hits.Length; i++)
         {
