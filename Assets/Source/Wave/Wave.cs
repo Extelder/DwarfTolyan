@@ -23,6 +23,7 @@ public class Wave : MonoBehaviour
     public event Action<int> Ended;
     public event Action<long> TimerCounted;
 
+
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     public static Wave Instance { get; private set; }
@@ -57,6 +58,9 @@ public class Wave : MonoBehaviour
         Current++;
         PreStarted?.Invoke(Current);
         Started?.Invoke(Current);
+
+        WaveCallBack.Instance.InstanceReceived?.Invoke();
+
         if (Current > 1)
             CostMultiplier *= 1.2f;
         _currentTime = _currentTime + _timeAddible * Current;
