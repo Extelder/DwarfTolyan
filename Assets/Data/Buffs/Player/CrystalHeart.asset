@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98610ade0bd67245bdae0f130ccbdec, type: 3}
+  m_Name: CrystalHeart
+  m_EditorClassIdentifier: 
+  <Cost>k__BackingField: 10
+  <Icon>k__BackingField: {fileID: 21300000, guid: 8d9e1742881918846a64509bd1f30202, type: 3}
+  <Desc>k__BackingField: '+20 MAX HP
+
+    Next WAVE start with 20HP'
+  _playerCharactersicBuff:
+  - _buffsChangeByGlobalEvent:
+    - rid: 241497287730659332
+    _divisionFactorForEach: 1
+    <AddValue>k__BackingField: 20
+    <Characteristic>k__BackingField: {fileID: 3959729346251278889, guid: b9f24a2fd0a4c6d41aabb4e472ca2779, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 241497287730659332
+      type: {class: WaveCallBack, ns: , asm: Assembly-CSharp}
+      data:
+        <EventIterations>k__BackingField: 1
+        _value:
+          rate: 0
+          duration: 0
+          value: 0
+        Event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1097177587174705226, guid: 3a2746af0ca4c6241a6bce3d18aace17, type: 3}
+              m_TargetAssemblyTypeName: PlayerCharacteristic`1[[CurrentHealthCharacteristics,
+                Assembly-CSharp
+              m_MethodName: SetValue
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 20
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2

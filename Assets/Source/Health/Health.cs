@@ -75,12 +75,22 @@ public abstract class Health : MonoBehaviour
 
     public abstract void Death();
 
-    public virtual void ChangeHealthValue(float value)
+    protected virtual void ChangeHealthValue(float value)
     {
         if (CurrentValue > 0)
         {
             CurrentValue = value;
             HealthValueChanged?.Invoke(CurrentValue);
         }
+    }
+
+    public void SetCurrentValue(float value)
+    {
+        CurrentValue = value;
+        if (value > MaxValue)
+            CurrentValue = MaxValue;
+        if (value <= 0)
+            CurrentValue = 0;
+        HealthValueChanged?.Invoke(CurrentValue);
     }
 }

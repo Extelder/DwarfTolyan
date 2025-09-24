@@ -22,9 +22,9 @@ public class PlayerStatUi : MonoBehaviour
                 ValueChanged(PlayerCharacteristic<DamageCharacterics>.Instance.CurrentValue);
                 break;
             case PlayerBuffType.Hp:
-                _nameText.text = PlayerCharacteristic<HealthCharacteristic>.Instance.Name;
-                PlayerCharacteristic<HealthCharacteristic>.Instance.ValueChanged += ValueChanged;
-                ValueChanged(PlayerCharacteristic<HealthCharacteristic>.Instance.CurrentValue);
+                _nameText.text = PlayerCharacteristic<MaxHealthCharacteristic>.Instance.Name;
+                PlayerCharacteristic<MaxHealthCharacteristic>.Instance.ValueChanged += ValueChanged;
+                ValueChanged(PlayerCharacteristic<MaxHealthCharacteristic>.Instance.CurrentValue);
                 break;
             case PlayerBuffType.MovementSpeed:
                 _nameText.text = PlayerCharacteristic<MoveCharacteristic>.Instance.Name;
@@ -52,7 +52,7 @@ public class PlayerStatUi : MonoBehaviour
                 PlayerCharacteristic<DamageCharacterics>.Instance.ValueChanged -= ValueChanged;
                 break;
             case PlayerBuffType.Hp:
-                PlayerCharacteristic<HealthCharacteristic>.Instance.ValueChanged -= ValueChanged;
+                PlayerCharacteristic<MaxHealthCharacteristic>.Instance.ValueChanged -= ValueChanged;
                 break;
             case PlayerBuffType.MovementSpeed:
                 PlayerCharacteristic<MoveCharacteristic>.Instance.ValueChanged -= ValueChanged;

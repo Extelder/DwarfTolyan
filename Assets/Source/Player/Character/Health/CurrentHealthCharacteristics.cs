@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthCharacteristic : PlayerCharacteristic<HealthCharacteristic>
+public class CurrentHealthCharacteristics : PlayerCharacteristic<CurrentHealthCharacteristics>
 {
     [SerializeField] private PlayerHealth _health;
-    
     public override void OnValueChanged(float value)
     {
-        _health.MaxValue = value;
+        _health.SetCurrentValue(CurrentValue);
     }
 }

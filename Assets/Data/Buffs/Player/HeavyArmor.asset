@@ -18,9 +18,14 @@ MonoBehaviour:
 
     -10 MOVE SPEED'
   _playerCharactersicBuff:
-  - _divisionFactorForEach: 1.2
+  - _buffsChangeByGlobalEvent: []
+    _divisionFactorForEach: 1
     <AddValue>k__BackingField: 20
     <Characteristic>k__BackingField: {fileID: 3959729346251278889, guid: b9f24a2fd0a4c6d41aabb4e472ca2779, type: 3}
-  - _divisionFactorForEach: 1
+  - _buffsChangeByGlobalEvent: []
+    _divisionFactorForEach: 1
     <AddValue>k__BackingField: -10
     <Characteristic>k__BackingField: {fileID: 6682383909444828581, guid: d14f4abfbef93c84bbf2077c0cdbca87, type: 3}
+  references:
+    version: 2
+    RefIds: []

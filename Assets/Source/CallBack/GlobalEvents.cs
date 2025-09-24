@@ -15,7 +15,7 @@ public abstract class CallBack
 
     public virtual void InvokeIfActive()
     {
-        InstanceReceived.Invoke();
+        InstanceReceived?.Invoke();
     }
 
     public virtual void SubscribeToEvent()
@@ -34,10 +34,15 @@ public abstract class CallBack
 [Serializable]
 public abstract class GlobalCallBack<T> : CallBack where T : CallBack
 {
+    [field: SerializeField] public int EventIterations { get; private set; } = -1; 
     public static T Instance { get; protected set; }
+
+    protected int iterations = 0;
+    protected int defaultIterations = 0;
 
     public override void SubscribeToEvent()
     {
+        defaultIterations = EventIterations;
         Instance.InstanceReceived += EventInvoked;
     }
 
@@ -64,11 +69,16 @@ public class WaveCallBack : GlobalCallBack<WaveCallBack>
 
     public override void EventInvoked()
     {
+        if (iterations > EventIterations && EventIterations != -1)
+        {
+            iterations = EventIterations;
+            return;
+        }
+        iterations++;
         Debug.LogError(_value);
         Event?.Invoke(_value);
     }
 }
-
 
 public class GlobalEvents : MonoBehaviour
 {

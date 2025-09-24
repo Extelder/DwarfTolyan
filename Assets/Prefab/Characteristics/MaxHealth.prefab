@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2562155340807489656}
   - component: {fileID: 3959729346251278889}
   m_Layer: 6
-  m_Name: Health
+  m_Name: MaxHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3959729346251278889
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f052128a082874eae444d464908922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Name: Health
+  Name: Max Health
   <MinValue>k__BackingField: 0
   <MaxValue>k__BackingField: 0
   <CurrentValue>k__BackingField: 100
