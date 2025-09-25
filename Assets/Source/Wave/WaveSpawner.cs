@@ -16,32 +16,46 @@ public struct Spawnable
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Wave _wave;
+    [SerializeField] private string _name;
 
     [SerializeField] private Spawnable[] _spawnable;
     [SerializeField] private float _defaultRate;
     [SerializeField] private float _rateDecreasePerWave;
     [SerializeField] private int _waveToStart;
 
-    private float _currentRate;
-
+    private float _startRate;
+    private WaveSpawnRateCharacteristics _waveSpawnRateCharacteristics;
     private List<GameObject> _spawned = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
     {
-        _currentRate = _defaultRate;
+        _waveSpawnRateCharacteristics = WaveSpawnRateCharacteristics.Instance;
+        _startRate = _defaultRate;
+        _defaultRate = _waveSpawnRateCharacteristics.CurrentValue * _startRate;
+    }
+
+    private void Update()
+    {
+        Debug.Log(_defaultRate + _name);
     }
 
     private void OnEnable()
     {
+        _waveSpawnRateCharacteristics.ValueChanged += OnValueChanged;
         _wave.Started += OnStarted;
         _wave.Ended += OnEnded;
+    }
+
+    private void OnValueChanged(float value)
+    {
+        _defaultRate = value * _startRate;
     }
 
     private void OnStarted(int value)
     {
         if (value >= _waveToStart)
         {
-            _currentRate -= _rateDecreasePerWave;
+            _defaultRate -= _rateDecreasePerWave;
             StartCoroutine(Spawning());
         }
     }
@@ -52,7 +66,7 @@ public class WaveSpawner : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(_currentRate);
+            yield return new WaitForSeconds(_defaultRate);
             for (int i = 0; i < _spawnable.Length; i++)
             {
                 for (int j = 0; j < Random.Range(_spawnable[i].MinToSpawn, _spawnable[i].MaxToSpawn); j++)
@@ -69,12 +83,15 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnDisable()
     {
+        _defaultRate = _startRate;
+        _waveSpawnRateCharacteristics.ValueChanged -= OnValueChanged;
         _wave.Started -= OnStarted;
         _wave.Ended -= OnEnded;
     }
 
     private void OnEnded(int value)
     {
+        _defaultRate = _startRate;
         if (value >= _waveToStart)
         {
             StopAllCoroutines();

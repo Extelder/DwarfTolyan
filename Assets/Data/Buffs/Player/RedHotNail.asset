@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98610ade0bd67245bdae0f130ccbdec, type: 3}
+  m_Name: RedHotNail
+  m_EditorClassIdentifier: 
+  <Cost>k__BackingField: 10
+  <Icon>k__BackingField: {fileID: 21300000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+  <Desc>k__BackingField: 'Every SHOT gets 10% chance to
+
+    Give 1.5x Damage
+
+    +0,1x
+    to DAMAGE scale with new item'
+  _playerCharactersicBuff:
+  - _buffsChangeByGlobalEvent:
+    - rid: 241497313705721856
+    _divisionFactorForEach: 1
+    <AddValue>k__BackingField: 0.1
+    <Characteristic>k__BackingField: {fileID: 3566094811673400746, guid: bfc502ce90a0e8941a99a39208efb2d4, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 241497313705721856
+      type: {class: WaveCallBack, ns: , asm: Assembly-CSharp}
+      data:
+        <EventIterations>k__BackingField: -1
+        _value:
+          rate: 0
+          duration: 0
+          value: 0
+        Event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3566094811673400746, guid: bfc502ce90a0e8941a99a39208efb2d4, type: 3}
+              m_TargetAssemblyTypeName: PlayerCharacteristic`1[[CriticalDamageCharacteristics,
+                Assembly-CSharp
+              m_MethodName: MultiplyValue
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 1.1
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2

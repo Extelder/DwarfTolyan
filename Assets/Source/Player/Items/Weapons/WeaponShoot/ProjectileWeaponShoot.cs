@@ -13,6 +13,7 @@ public enum ShootType
 public class ProjectileWeaponShoot : WeaponShoot
 {
     [SerializeField] private AudioSource _shotGunSound;
+    [SerializeField] private float _percentToCrit;
 
     [SerializeField] private WeaponStateMachine _weaponStateMachine;
     [SerializeField] private DefaultWeaponShootState _defaultWeaponShootState;
@@ -30,11 +31,29 @@ public class ProjectileWeaponShoot : WeaponShoot
 
     public event Action<ShootType> CurrentShootTypeChanged;
 
+    private DamageCharacterics _damageCharacterics;
+    private float _defaultDamage;
+    private float _defaultCrit;
+    private CriticalDamageCharacteristics _critDamageCharacterics;
     private Pool _currentPool;
+
+    public override void OnEnableVirtual()
+    {
+        _damageCharacterics = DamageCharacterics.Instance;
+        _critDamageCharacterics = CriticalDamageCharacteristics.Instance;
+        _critDamageCharacterics.ValueChanged += OnValueChanged;
+    }
+
+    private void OnValueChanged(float value)
+    {
+        _defaultCrit *= value;
+    }
 
     private void Start()
     {
         Initiate();
+        _defaultDamage = _damageCharacterics.CurrentValue;
+        _defaultCrit = _critDamageCharacterics.CurrentValue;
     }
 
     public virtual void Initiate()
@@ -77,6 +96,12 @@ public class ProjectileWeaponShoot : WeaponShoot
     {
         base.OnShootPerformed();
 
+        if (Random.value <= _percentToCrit)
+        {
+            _damageCharacterics.MultiplyValue(_defaultCrit);
+            Debug.Log(_damageCharacterics.CurrentValue + " damage");
+            Debug.Log(_defaultCrit + " crit");
+        }
         CameraShakeInvoke();
         switch (CurrentShootType)
         {
@@ -92,7 +117,7 @@ public class ProjectileWeaponShoot : WeaponShoot
                 Projectile projectileRifle = _currentPool
                     .GetFreeElement(_muzzle.position, Quaternion.FromToRotation(_muzzle.position, directionRifle))
                     .GetComponent<Projectile>();
-                projectileRifle.Initiate(directionRifle, DamageCharacterics.Instance.CurrentValue, true);
+                projectileRifle.Initiate(directionRifle, _damageCharacterics.CurrentValue, true);
                 break;
 
             case ShootType.Shotgun:
@@ -114,10 +139,17 @@ public class ProjectileWeaponShoot : WeaponShoot
                         .GetFreeElement(_muzzle.position + random,
                             Quaternion.FromToRotation(_muzzle.position, direction))
                         .GetComponent<Projectile>();
-                    projectileShotGun.Initiate(direction, DamageCharacterics.Instance.CurrentValue, true);
+                    projectileShotGun.Initiate(direction, _damageCharacterics.CurrentValue, true);
                 }
 
                 break;
         }
+        _damageCharacterics.CurrentValue = _defaultDamage;
+    }
+
+    public override void OnDisableVirtual()
+    {
+        _critDamageCharacterics.ValueChanged -= OnValueChanged;
+        _damageCharacterics.CurrentValue = _defaultDamage;
     }
 }

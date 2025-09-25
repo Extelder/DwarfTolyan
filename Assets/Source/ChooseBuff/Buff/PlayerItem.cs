@@ -23,7 +23,7 @@ public struct PlayerCharactersicBuff
 
     [SerializeField] private float _divisionFactorForEach;
 
-    [field: SerializeField] public int AddValue { get; private set; }
+    [field: SerializeField] public float AddValue { get; private set; }
     [field: SerializeField] public PlayerCharacteristicBase Characteristic { get; private set; }
 
     public void OnBought(int spawned)

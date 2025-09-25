@@ -26,6 +26,7 @@ public abstract class PlayerCharacteristicBase : MonoBehaviour
     public abstract float CurrentValue { get; set; }
     public abstract void SetValue(float value);
     public abstract void AddValue(float value);
+    public abstract void MultiplyValue(float value);
     public abstract void RemoveValue(float value);
     public abstract void Generate();
 
@@ -100,6 +101,19 @@ public abstract class PlayerCharacteristic<T> : PlayerCharacteristicBase where T
         }
 
         CurrentValue = value;
+        ValueChanged?.Invoke(CurrentValue);
+        OnValueChanged(value);
+    }
+
+    public override void MultiplyValue(float value)
+    {
+        if (Instance != this)
+        {
+            Instance.SetValue(value);
+            return;
+        }
+
+        CurrentValue *= value;
         ValueChanged?.Invoke(CurrentValue);
         OnValueChanged(value);
     }

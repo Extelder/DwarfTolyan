@@ -19,12 +19,20 @@ public class WeaponShoot : RaycastBehaviour
     private void OnEnable()
     {
         WeaponShootState.ShootPerformed += OnShootPerformed;
+        OnEnableVirtual();
     }
+
+    public virtual void OnEnableVirtual()
+    {}
 
     private void OnDisable()
     {
         WeaponShootState.ShootPerformed -= OnShootPerformed;
+        OnDisableVirtual();
     }
+
+    public virtual void OnDisableVirtual()
+    {}
 
     public virtual void OnShootPerformed()
     {
