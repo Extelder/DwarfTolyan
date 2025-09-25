@@ -37,13 +37,6 @@ public class ProjectileWeaponShoot : WeaponShoot
     private CriticalDamageCharacteristics _critDamageCharacterics;
     private Pool _currentPool;
 
-    public override void OnEnableVirtual()
-    {
-        _damageCharacterics = DamageCharacterics.Instance;
-        _critDamageCharacterics = CriticalDamageCharacteristics.Instance;
-        _critDamageCharacterics.ValueChanged += OnValueChanged;
-    }
-
     private void OnValueChanged(float value)
     {
         _defaultCrit *= value;
@@ -52,8 +45,13 @@ public class ProjectileWeaponShoot : WeaponShoot
     private void Start()
     {
         Initiate();
+        _damageCharacterics = DamageCharacterics.Instance;
+        _critDamageCharacterics = CriticalDamageCharacteristics.Instance;
+
         _defaultDamage = _damageCharacterics.CurrentValue;
         _defaultCrit = _critDamageCharacterics.CurrentValue;
+
+        _critDamageCharacterics.ValueChanged += OnValueChanged;
     }
 
     public virtual void Initiate()
@@ -102,6 +100,7 @@ public class ProjectileWeaponShoot : WeaponShoot
             Debug.Log(_damageCharacterics.CurrentValue + " damage");
             Debug.Log(_defaultCrit + " crit");
         }
+
         CameraShakeInvoke();
         switch (CurrentShootType)
         {
@@ -144,6 +143,7 @@ public class ProjectileWeaponShoot : WeaponShoot
 
                 break;
         }
+
         _damageCharacterics.CurrentValue = _defaultDamage;
     }
 

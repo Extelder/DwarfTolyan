@@ -27,11 +27,13 @@ public class WaveSpawner : MonoBehaviour
     private WaveSpawnRateCharacteristics _waveSpawnRateCharacteristics;
     private List<GameObject> _spawned = new List<GameObject>();
 
-    private void Awake()
+
+    private void Start()
     {
         _waveSpawnRateCharacteristics = WaveSpawnRateCharacteristics.Instance;
         _startRate = _defaultRate;
         _defaultRate = _waveSpawnRateCharacteristics.CurrentValue * _startRate;
+        _waveSpawnRateCharacteristics.ValueChanged += OnValueChanged;
     }
 
     private void Update()
@@ -41,7 +43,6 @@ public class WaveSpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        _waveSpawnRateCharacteristics.ValueChanged += OnValueChanged;
         _wave.Started += OnStarted;
         _wave.Ended += OnEnded;
     }
