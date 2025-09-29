@@ -894,7 +894,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _notStartOnEnable: 0
   _startState: {fileID: 3726035239598708597}
+  _canIdle: 0
   _move: {fileID: 3726035239598708597}
+  _idle: {fileID: 0}
   <StunState>k__BackingField: {fileID: 2483930603089224277}
   <UnStunState>k__BackingField: {fileID: 5237271001446384123}
 --- !u!114 &2483930603089224277
@@ -960,11 +962,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stunnable: {fileID: 7120755614950962628}
+  _damageTextData: {fileID: 11400000, guid: 7b78e326a655a354883eb6f3a36070e7, type: 2}
   _health: {fileID: 7838285614336875146}
   _damageCooldown: 0.1
   _burningTime: 5
   _stunCooldown: 2
+  _notStun: 0
+  _stunnable: {fileID: 7120755614950962628}
 --- !u!114 &7838285614336875146
 MonoBehaviour:
   m_ObjectHideFlags: 0

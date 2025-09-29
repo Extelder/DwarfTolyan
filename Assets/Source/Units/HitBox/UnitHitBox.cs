@@ -5,9 +5,12 @@ using NaughtyAttributes;
 using UniRx;
 using UnityEngine;
 using Object = System.Object;
+using Random = UnityEngine.Random;
 
 public class UnitHitBox : MonoBehaviour, IWeaponVisitor
 {
+    [SerializeField] private DynamicTextData _damageTextData;
+
     [SerializeField] private Health _health;
 
     [SerializeField] private float _damageCooldown = .1f;
@@ -45,8 +48,29 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
             return;
         Debug.LogError(raycastWeaponShoot.Weapon.DamagePerHit + " raycastDamage");
         TakeDamage(raycastWeaponShoot.Weapon.DamagePerHit);
+        Debug.LogError(hit);
+        DamageTextFromHit(raycastWeaponShoot.Weapon.DamagePerHit, hit);
         Hit?.Invoke();
         UnitHitted?.Invoke();
+    }
+
+    private void DamageTextFromHit(float damage, RaycastHit hit)
+    {
+        Vector3 destination =
+            hit.point + (transform.position - hit.point) / Vector3.Distance(hit.point, transform.position);
+        destination.x += (Random.value - 0.5f) / 3f;
+        destination.y += Random.value;
+        destination.z += (Random.value - 0.5f) / 3f;
+        DynamicTextManager.CreateText(destination, damage.ToString(), _damageTextData);
+    }
+
+    private void DamageTextFromPoint(float damage, Vector3 point)
+    {
+        Vector3 destination = point + (transform.position - point) / Vector3.Distance(point, transform.position);
+        destination.x += (Random.value - 0.5f);
+        destination.y += 3 * Random.value;
+        destination.z += (Random.value - 0.5f);
+        DynamicTextManager.CreateText(destination, damage.ToString(), _damageTextData);
     }
 
     public void Visit(Projectile projectile)
@@ -57,6 +81,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
             return;
         TakeDamage(projectile.Damage);
         SpawningDecal(projectile.transform.position);
+        DamageTextFromPoint(projectile.Damage, projectile.transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }
@@ -69,6 +94,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
             return;
         TakeDamage(weaponOverlapAttack.Damage);
         SpawningDecal(transform.position);
+        DamageTextFromPoint(weaponOverlapAttack.Damage, transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }
@@ -82,6 +108,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
         TakeDamage(shieldAttack.Damage);
         StartCoroutine(Stun());
         SpawningDecal(transform.position);
+        DamageTextFromPoint(shieldAttack.Damage, transform.position);
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }
@@ -94,6 +121,7 @@ public class UnitHitBox : MonoBehaviour, IWeaponVisitor
             return;
         TakeDamage(damage);
         SpawningDecal(laserGunShoot.CurrentHit.point);
+        DamageTextFromHit(damage, laserGunShoot.CurrentHit);
         Hit?.Invoke();
         UnitHitted?.Invoke();
     }

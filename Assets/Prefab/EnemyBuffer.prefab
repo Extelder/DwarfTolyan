@@ -160,7 +160,6 @@ MonoBehaviour:
   _colliderCount: 10
   _stateMachine: {fileID: 8362413567942731167}
   _enemyCollider: {fileID: 7177611244503866648}
-  _maxClosestEnemyCapacity: 3
 --- !u!195 &8949829615580094389
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -230,6 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce9583cd3a85ba4185a770b1e820da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageTextData: {fileID: 11400000, guid: 7b78e326a655a354883eb6f3a36070e7, type: 2}
   _health: {fileID: 6499431906796645239}
   _damageCooldown: 0.1
   _burningTime: 5
@@ -678,6 +678,9 @@ MonoBehaviour:
       m_Bits: 128
     <RayOrigin>k__BackingField: {fileID: 3489968573213929666}
   _addibleCharacteristicValue: 10
+  _maxClosestEnemyCapacity: 0
+  _enemyHitBoxes: []
+  _closestEnemyHitBoxes: []
 --- !u!4 &5713680354548598312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b838152199570c343ac4ac81555c8352, type: 3}
