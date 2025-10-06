@@ -36,11 +36,6 @@ public class WaveSpawner : MonoBehaviour
         _waveSpawnRateCharacteristics.ValueChanged += OnValueChanged;
     }
 
-    private void Update()
-    {
-        Debug.Log(_defaultRate + _name);
-    }
-
     private void OnEnable()
     {
         _wave.Started += OnStarted;

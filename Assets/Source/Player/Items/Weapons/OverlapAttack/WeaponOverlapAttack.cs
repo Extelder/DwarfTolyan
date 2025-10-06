@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class WeaponOverlapAttack : WeaponShoot
 {
+    [SerializeField] private GameObject _trail;
+    
     public float Damage { get; set; }
 
     [field :SerializeField] public OverlapSettings OverlapSettings { get; private set; }
@@ -25,6 +27,8 @@ public class WeaponOverlapAttack : WeaponShoot
 
     public virtual void OnShootPerformed()
     {
+        _trail.SetActive(true);
+        CameraShakeInvoke();
         Damage = DamageCharacterics.Instance.CurrentValue;
         Overlap();
         foreach (var other in OverlapSettings.Colliders)
@@ -51,6 +55,11 @@ public class WeaponOverlapAttack : WeaponShoot
     protected virtual void VirtualOnDisable()
     {
         
+    }
+
+    public void OffTrailView()
+    {
+        _trail.SetActive(false);
     }
     
     private void OnDisable()
