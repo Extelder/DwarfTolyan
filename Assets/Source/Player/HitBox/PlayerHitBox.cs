@@ -38,4 +38,11 @@ public class PlayerHitBox : MonoBehaviour
             return;
         _health.TakeDamage(damage);
     }
+    
+    public virtual void TakeDamage(float damage, IReflectionable reflectionable)
+    {
+        if (!_active)
+            return;
+        _health.TakeDamage(damage);
+    }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -32,7 +33,6 @@ public class ProjectileWeaponShoot : WeaponShoot
     public event Action<ShootType> CurrentShootTypeChanged;
 
     private DamageCharacterics _damageCharacterics;
-    private float _defaultDamage;
     private float _defaultCrit;
     private CriticalDamageCharacteristics _critDamageCharacterics;
     private Pool _currentPool;
@@ -48,7 +48,6 @@ public class ProjectileWeaponShoot : WeaponShoot
         _damageCharacterics = DamageCharacterics.Instance;
         _critDamageCharacterics = CriticalDamageCharacteristics.Instance;
 
-        _defaultDamage = _damageCharacterics.CurrentValue;
         _defaultCrit = _critDamageCharacterics.CurrentValue;
 
         _critDamageCharacterics.ValueChanged += OnValueChanged;
@@ -94,11 +93,10 @@ public class ProjectileWeaponShoot : WeaponShoot
     {
         base.OnShootPerformed();
 
+        float damage = _damageCharacterics.CurrentValue;
         if (Random.value <= _percentToCrit)
         {
-            _damageCharacterics.MultiplyValue(_defaultCrit);
-            Debug.Log(_damageCharacterics.CurrentValue + " damage");
-            Debug.Log(_defaultCrit + " crit");
+            damage *= _defaultCrit;
         }
 
         CameraShakeInvoke();
@@ -116,7 +114,7 @@ public class ProjectileWeaponShoot : WeaponShoot
                 Projectile projectileRifle = _currentPool
                     .GetFreeElement(_muzzle.position, Quaternion.FromToRotation(_muzzle.position, directionRifle))
                     .GetComponent<Projectile>();
-                projectileRifle.Initiate(directionRifle, _damageCharacterics.CurrentValue, true);
+                projectileRifle.Initiate(directionRifle, damage, true);
                 break;
 
             case ShootType.Shotgun:
@@ -138,18 +136,15 @@ public class ProjectileWeaponShoot : WeaponShoot
                         .GetFreeElement(_muzzle.position + random,
                             Quaternion.FromToRotation(_muzzle.position, direction))
                         .GetComponent<Projectile>();
-                    projectileShotGun.Initiate(direction, _damageCharacterics.CurrentValue, true);
+                    projectileShotGun.Initiate(direction, damage, true);
                 }
 
                 break;
         }
-
-        _damageCharacterics.CurrentValue = _defaultDamage;
     }
 
     public override void OnDisableVirtual()
     {
         _critDamageCharacterics.ValueChanged -= OnValueChanged;
-        _damageCharacterics.CurrentValue = _defaultDamage;
     }
 }

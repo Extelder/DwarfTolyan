@@ -80,6 +80,31 @@ public class WaveCallBack : GlobalCallBack<WaveCallBack>
     }
 }
 
+[Serializable]
+public class HealthCallBack : GlobalCallBack<HealthCallBack>
+{
+    [SerializeField] private ValueChangable _value;
+
+    public UnityEvent<ValueChangable> Event;
+    public override void SetInstance()
+    {
+        Instance = this;
+    }
+
+    public override void EventInvoked()
+    {
+        if (iterations > EventIterations && EventIterations != -1)
+        {
+            iterations = EventIterations;
+            return;
+        }
+        iterations++;
+        Debug.LogError(_value);
+        Event?.Invoke(_value);
+    }
+}
+
+
 public class GlobalEvents : MonoBehaviour
 {
     public static event Action<int> WaveStarted;

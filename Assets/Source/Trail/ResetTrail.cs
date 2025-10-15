@@ -10,7 +10,6 @@ public class ResetTrail : MonoBehaviour
     private void OnEnable()
     {
         _defaultTime = _trailRenderer.time;
-        Debug.Log(_defaultTime);
         _trailRenderer.time = -1;
         Invoke(nameof(Reset), 0.02f);
     }

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98610ade0bd67245bdae0f130ccbdec, type: 3}
+  m_Name: ReflectiveShield
+  m_EditorClassIdentifier: 
+  <Cost>k__BackingField: 20
+  <Icon>k__BackingField: {fileID: 21300000, guid: 5fc2490d4f2941f4ca46f33e329cf3d7, type: 3}
+  <Desc>k__BackingField: 'The shield has a starting 10% chance to return 50% of damage
+    to the enemy
+
+    This increases by 10% for each new item'
+  _playerCharactersicBuff:
+  - _buffsChangeByGlobalEvent:
+    - rid: 6921512750020296704
+    _divisionFactorForEach: 1
+    <AddValue>k__BackingField: 0.1
+    <Characteristic>k__BackingField: {fileID: 7983809769687898094, guid: b39ee64b3df276445808f15b85d5c6a1, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 6921512750020296704
+      type: {class: WaveCallBack, ns: , asm: Assembly-CSharp}
+      data:
+        <EventIterations>k__BackingField: -1
+        _value:
+          rate: 0
+          duration: 0
+          value: 0
+        Event:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 7983809769687898094, guid: b39ee64b3df276445808f15b85d5c6a1, type: 3}
+              m_TargetAssemblyTypeName: PlayerCharacteristic`1[[ShieldReflectionChanceCharacteristics,
+                Assembly-CSharp
+              m_MethodName: AddValue
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0.1
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2

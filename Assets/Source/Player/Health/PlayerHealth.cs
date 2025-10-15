@@ -40,9 +40,10 @@ public class PlayerHealth : Health
         if (value > 100)
         {
             PlayerDamaged?.Invoke(100);
+            HealthCallBack.Instance.InstanceReceived?.Invoke();
             return;
         }
-
+        HealthCallBack.Instance.InstanceReceived?.Invoke();
         PlayerDamaged?.Invoke(value);
     }
 

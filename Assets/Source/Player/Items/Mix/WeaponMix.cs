@@ -15,6 +15,8 @@ public class WeaponMix : MonoBehaviour
 
     private PlayerCharacter _character;
 
+    public event Action MixPerformed;
+
     private bool _cayout;
 
     private void Start()
@@ -79,6 +81,7 @@ public class WeaponMix : MonoBehaviour
 
     public void PerformMix()
     {
+        MixPerformed?.Invoke();
         _mixSound.Play();
         _weaponShoot.ChangeShootType();
     }

@@ -54,7 +54,6 @@ public class EnemyBuffAttackState : State
             {
                 if (hit.collider.TryGetComponent<IBuffable>(out IBuffable buffable))
                 {
-                    Debug.Log("Buffed");
                     buffable.Buff(_addibleCharacteristicValue);
                 }
             }
